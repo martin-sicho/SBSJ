@@ -1,6 +1,7 @@
 package main;
 
 import net.sourceforge.argparse4j.ArgumentParsers;
+import net.sourceforge.argparse4j.impl.Arguments;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.ArgumentParserException;
 import net.sourceforge.argparse4j.inf.Namespace;
@@ -10,9 +11,10 @@ import net.sourceforge.argparse4j.inf.Namespace;
  * Parsed arguments can be obtained as a Namescpace object
  * via the <code>{@link #build(String[])}  build}</code> method.
  *
+ * <br/>
  * Created by Martin Sicho on 18.3.14.
  */
-public class ArgumentBuilder {
+class ArgumentBuilder {
     private static ArgumentParser mParser;
     private static String mDescription = "This is a very simple backup application.";
 
@@ -45,15 +47,27 @@ public class ArgumentBuilder {
     private static void buildArguments() {
         mParser = ArgumentParsers.newArgumentParser("SBSJ")
                 .description(mDescription);
-        mParser.addArgument("dir_backed")
+        mParser.addArgument("input")
                 .metavar("SOURCE")
+                .nargs("?")
                 .type(String.class)
-                .nargs(1)
                 .help("The file/directory you want to get a backup of.");
-        mParser.addArgument("dir_backup")
+        mParser.addArgument("output")
                 .metavar("DESTINATION")
+                .nargs("?")
                 .type(String.class)
-                .nargs(1)
                 .help("The file/directory where you want the backup copy to be created.");
+
+        // options
+        mParser.addArgument("-s", "--shallow")
+                .action(Arguments.storeTrue())
+                .nargs("?")
+                .setDefault(false)
+                .help("use this option to only make a shallow copy (subdirectories will not be backed)");
+        mParser.addArgument("-l", "--list-backups")
+                .action(Arguments.storeTrue())
+                .nargs("?")
+                .setDefault(false)
+                .help("use this option to list all created backups");
     }
 }
