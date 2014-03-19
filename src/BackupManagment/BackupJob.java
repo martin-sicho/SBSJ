@@ -1,4 +1,4 @@
-package main;
+package BackupManagment;
 
 import net.sourceforge.argparse4j.inf.Namespace;
 
@@ -12,48 +12,28 @@ import java.nio.file.*;
  * <br/>
  * Created by Martin Sicho on 18.3.14.
  */
-class BackupJob {
+public class BackupJob {
     private Path mDirInput;
     private Path mDirOutput;
-    private boolean mListOnly;
+    private boolean mCreateNewBackup;
     private boolean mList;
     private boolean mShallow;
+    private String mBackupName;
 
-    BackupJob(Namespace args) {
+    public BackupJob(Namespace args) {
         if (args != null) {
             System.out.println(args);
             // mozna bych mohl predelat pomoci  Arrays.asList(...).contains(...)
-            if (args.get("input") == null
-                    && args.get("output") == null
-                    && args.getBoolean("list_backups")
-                    ) {
-                //System.out.println("jenom vypisu zalohy");
-                mListOnly = true;
-                return;
-            }
-            else if (args.get("input") == null
-                    && args.get("output") != null
-                    ||
-                    args.get("input") != null
-                    && args.get("output") == null
-                    ) {
+             if (args.get("input") == null && args.get("output") != null
+                    || args.get("input") != null && args.get("output") == null
+                     ) {
                     System.out.println("You have to specify both SOURCE and DESTINATION!");
                     System.exit(-1);
             }
-            else  if (args.get("input") != null
-                    && args.get("output") != null
-                    && args.getBoolean("list_backups")
-                    ) {
+            else  if (args.get("input") != null && args.get("output") != null) {
                 //System.out.println("vytvorim novou zalohu a pak vypisu");
-                mList = true;
                 parseLocations(args);
-            }
-            else  if (args.get("input") != null
-                    && args.get("output") != null
-                    ) {
-                //System.out.println("vytvorim jen novou zalohu");
-                mList = false;
-                parseLocations(args);
+                mCreateNewBackup = true;
             }
             else {
                 System.out.println("Unknown combination of arguments:");
@@ -63,6 +43,8 @@ class BackupJob {
 
             //other arguments
             mShallow = args.getBoolean("shallow");
+            mList = args.getBoolean("list_backups");
+            mBackupName = args.getString("name");
 
         } else {
             System.exit(0);
@@ -76,6 +58,37 @@ class BackupJob {
             System.out.println("The specified SOURCE path: " + args.getString("input") + " doesn't exist");
             System.exit(-1);
         }
-        mDirOutput = Paths.get(args.getString("input"));
+        mDirOutput = Paths.get(args.getString("output"));
+        if (mDirOutput.toAbsolutePath().equals(mDirInput.toAbsolutePath())) {
+            System.out.println("The SOURCE and DESTINATION paths are equal. " +
+                    "You have to put your backup into a different directory!");
+            System.exit(-1);
+        }
+    }
+
+    // getters
+
+    public Path getDirInput() {
+        return mDirInput;
+    }
+
+    public Path getDirOutput() {
+        return mDirOutput;
+    }
+
+    public boolean wantsCreateNewBackup() {
+        return mCreateNewBackup;
+    }
+
+    public boolean wantsList() {
+        return mList;
+    }
+
+    public boolean wantsShallow() {
+        return mShallow;
+    }
+
+    public String getBackupName() {
+        return mBackupName;
     }
 }

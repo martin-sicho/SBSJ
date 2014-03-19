@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="Added BackupJob class that creates backup jobs for further processing.&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Changes to be committed:&#10;#&#9;new file:   .idea/inspectionProfiles/Project_Default.xml&#10;#&#9;new file:   .idea/inspectionProfiles/profiles_settings.xml&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   src/main/Main.java&#10;#&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/BackupJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="All arguments specified for now. Cleaned up a little. Ready to implement the backup manager itself.&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Changes to be committed:&#10;#&#9;new file:   .idea/inspectionProfiles/Project_Default.xml&#10;#&#9;new file:   .idea/inspectionProfiles/profiles_settings.xml&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   src/main/Main.java&#10;#&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ArgumentBuilder.java" afterPath="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\Dokumenty\VSCHT\Informatika\Java_OOP_GUI\projekt\SBSJ\src\main\BackupJob.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupJob.java" />
     </list>
     <ignored path="SBSJ.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,23 +60,7 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/main/BackupJob.java" line="25" class="main.CommandLineObjects" package="main">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -86,37 +69,42 @@
     <favorites_list name="SBSJ" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="8" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArgumentBuilder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/ArgumentBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="8" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BackupJob.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/BackupJob.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="61" selection-start="2050" selection-end="2050" vertical-scroll-proportion="1.4096186" vertical-offset="153" max-vertical-offset="1479">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="16" column="32" selection-start="345" selection-end="345" vertical-scroll-proportion="0.45107794" vertical-offset="0" max-vertical-offset="603">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="BackupJob.java" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupJob.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="63" column="76" selection-start="2298" selection-end="2298" vertical-scroll-proportion="0.4559322" vertical-offset="802" max-vertical-offset="1700">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#2394#2395#0" expanded="true" />
+                    <element signature="e#2426#2427#0" expanded="true" />
+                    <element signature="e#2460#2461#0" expanded="true" />
+                    <element signature="e#2493#2494#0" expanded="true" />
+                    <element signature="e#2744#2745#0" expanded="true" />
+                    <element signature="e#2778#2779#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -132,11 +120,11 @@
       <list>
         <option value="$PROJECT_DIR$/src/base/Main.java" />
         <option value="$PROJECT_DIR$/src/main/CommandLineFactory.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/BackupJob.java" />
         <option value="$PROJECT_DIR$/src/main/CommandLineObjects.java" />
-        <option value="$PROJECT_DIR$/src/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/BackupJob.java" />
+        <option value="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/BackupJob.java" />
+        <option value="$PROJECT_DIR$/src/main/Main.java" />
       </list>
     </option>
   </component>
@@ -191,7 +179,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -241,6 +228,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackupManagment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -258,6 +249,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -285,7 +277,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="test_dir dir_out -l -s" />
+      <option name="PROGRAM_PARAMETERS" value="test_dir out_dir -l -n ahoj" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -466,12 +458,16 @@
       <created>1395150806350</created>
       <updated>1395150806350</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added BackupJob class that creates backup jobs for further processing.&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Changes to be committed:&#10;#&#9;new file:   .idea/inspectionProfiles/Project_Default.xml&#10;#&#9;new file:   .idea/inspectionProfiles/profiles_settings.xml&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   src/main/Main.java&#10;#&#10;">
+      <created>1395218374749</created>
+      <updated>1395218374749</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -479,9 +475,9 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995657" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3991462" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14217253" sideWeight="0.50053364" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32870865" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -489,14 +485,14 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23801917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14217253" sideWeight="0.4994664" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31696904" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3292683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1060" y="100" width="760" height="850" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -510,19 +506,19 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2383592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -539,7 +535,8 @@
     </option>
     <MESSAGE value="Basically just minor changes and settings adjustments.&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Changes to be committed:&#10;#&#9;new file:   .idea/inspectionProfiles/Project_Default.xml&#10;#&#9;new file:   .idea/inspectionProfiles/profiles_settings.xml&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   src/main/Main.java&#10;#&#10;" />
     <MESSAGE value="Added BackupJob class that creates backup jobs for further processing.&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Changes to be committed:&#10;#&#9;new file:   .idea/inspectionProfiles/Project_Default.xml&#10;#&#9;new file:   .idea/inspectionProfiles/profiles_settings.xml&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   src/main/Main.java&#10;#&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added BackupJob class that creates backup jobs for further processing.&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Changes to be committed:&#10;#&#9;new file:   .idea/inspectionProfiles/Project_Default.xml&#10;#&#9;new file:   .idea/inspectionProfiles/profiles_settings.xml&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   src/main/Main.java&#10;#&#10;" />
+    <MESSAGE value="All arguments specified for now. Cleaned up a little. Ready to implement the backup manager itself.&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Changes to be committed:&#10;#&#9;new file:   .idea/inspectionProfiles/Project_Default.xml&#10;#&#9;new file:   .idea/inspectionProfiles/profiles_settings.xml&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   src/main/Main.java&#10;#&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="All arguments specified for now. Cleaned up a little. Ready to implement the backup manager itself.&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Changes to be committed:&#10;#&#9;new file:   .idea/inspectionProfiles/Project_Default.xml&#10;#&#9;new file:   .idea/inspectionProfiles/profiles_settings.xml&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   src/main/Main.java&#10;#&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -549,6 +546,35 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="8" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="340">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ArgumentBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="8" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="1343">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupJob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="75" selection-start="1542" selection-end="1542" vertical-scroll-proportion="0.0" vertical-offset="568" max-vertical-offset="1479">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2394#2395#0" expanded="true" />
+            <element signature="e#2426#2427#0" expanded="true" />
+            <element signature="e#2460#2461#0" expanded="true" />
+            <element signature="e#2493#2494#0" expanded="true" />
+            <element signature="e#2744#2745#0" expanded="true" />
+            <element signature="e#2778#2779#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="51" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="289">
@@ -563,11 +589,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/BackupJob.java">
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupJob.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="16" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="442">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2394#2395#0" expanded="true" />
+            <element signature="e#2426#2427#0" expanded="true" />
+            <element signature="e#2460#2461#0" expanded="true" />
+            <element signature="e#2493#2494#0" expanded="true" />
+            <element signature="e#2744#2745#0" expanded="true" />
+            <element signature="e#2778#2779#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -586,11 +618,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/BackupJob.java">
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupJob.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="40" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="442">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2394#2395#0" expanded="true" />
+            <element signature="e#2426#2427#0" expanded="true" />
+            <element signature="e#2460#2461#0" expanded="true" />
+            <element signature="e#2493#2494#0" expanded="true" />
+            <element signature="e#2744#2745#0" expanded="true" />
+            <element signature="e#2778#2779#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -628,13 +666,6 @@
         <state line="4" column="29" selection-start="127" selection-end="153" vertical-scroll-proportion="0.059371363" vertical-offset="0" max-vertical-offset="859" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="0" selection-start="3592" selection-end="3592" vertical-scroll-proportion="1.3877552" vertical-offset="0" max-vertical-offset="11322">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
@@ -643,26 +674,39 @@
         <state line="10" column="73" selection-start="507" selection-end="507" vertical-scroll-proportion="0.19836639" vertical-offset="0" max-vertical-offset="857" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="8" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+        <state line="72" column="0" selection-start="4440" selection-end="4440" vertical-scroll-proportion="0.96213806" vertical-offset="360" max-vertical-offset="12784">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/ArgumentBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="8" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
+        <state line="47" column="57" selection-start="1537" selection-end="1537" vertical-scroll-proportion="0.2806236" vertical-offset="479" max-vertical-offset="1377">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/BackupJob.java">
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="61" selection-start="2050" selection-end="2050" vertical-scroll-proportion="1.4096186" vertical-offset="153" max-vertical-offset="1479">
+        <state line="63" column="76" selection-start="2298" selection-end="2298" vertical-scroll-proportion="0.4559322" vertical-offset="802" max-vertical-offset="1700">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2394#2395#0" expanded="true" />
+            <element signature="e#2426#2427#0" expanded="true" />
+            <element signature="e#2460#2461#0" expanded="true" />
+            <element signature="e#2493#2494#0" expanded="true" />
+            <element signature="e#2744#2745#0" expanded="true" />
+            <element signature="e#2778#2779#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="32" selection-start="345" selection-end="345" vertical-scroll-proportion="0.45107794" vertical-offset="0" max-vertical-offset="603">
+          <folding />
         </state>
       </provider>
     </entry>

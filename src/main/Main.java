@@ -1,5 +1,7 @@
 package main;
 
+import BackupManagment.BackupJob;
+
 /**
  * This is the main class.
  *
@@ -9,6 +11,14 @@ package main;
 public class Main {
 
     public static void main(String[] args) {
-        BackupJob parameters = new BackupJob(ArgumentBuilder.build(args));
+        BackupJob job = new BackupJob(ArgumentBuilder.build(args));
+
+        if (job.wantsCreateNewBackup()) {
+            // create new backup
+        }
+
+        if (job.wantsList()) {
+            // call the view and list all scheduled backups
+        }
     }
 }

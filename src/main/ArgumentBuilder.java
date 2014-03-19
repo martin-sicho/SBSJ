@@ -45,7 +45,7 @@ class ArgumentBuilder {
     }
 
     private static void buildArguments() {
-        mParser = ArgumentParsers.newArgumentParser("SBSJ")
+        mParser = ArgumentParsers.newArgumentParser("sbsj")
                 .description(mDescription);
         mParser.addArgument("input")
                 .metavar("SOURCE")
@@ -57,9 +57,15 @@ class ArgumentBuilder {
                 .nargs("?")
                 .type(String.class)
                 .help("The file/directory where you want the backup copy to be created.");
+        mParser.addArgument("-n", "--name")
+                .metavar("BACKUP_NAME")
+                .nargs("?")
+                .setDefault("")
+                .help("use this optional argument to specify a name for your backup " +
+                        "- otherwise a backup with generic name will be created");
 
         // options
-        mParser.addArgument("-s", "--shallow")
+        mParser.addArgument("-sh", "--shallow")
                 .action(Arguments.storeTrue())
                 .nargs("?")
                 .setDefault(false)
