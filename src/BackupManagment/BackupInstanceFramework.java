@@ -6,13 +6,15 @@ import java.io.IOException;
 import java.nio.file.*;
 
 /**
- * This class holds everything the BackupManager class
- * needs to perform action.
+ * This class holds everything the
+ * <code>{@link BackupManagment.BackupInstance BackupInstance}</code> constructor
+ * needs to create a new instance for the
+ * <code>{@link BackupManagment.BackupManager BackupManager}</code>.
  *
  * <br/>
  * Created by Martin Sicho on 18.3.14.
  */
-public class BackupJob {
+public class BackupInstanceFramework {
     private Path mDirInput;
     private Path mDirOutput;
     private boolean mCreateNewBackup;
@@ -20,10 +22,9 @@ public class BackupJob {
     private boolean mShallow;
     private String mBackupName;
 
-    public BackupJob(Namespace args) {
+    public BackupInstanceFramework(Namespace args) {
         if (args != null) {
             System.out.println(args);
-            // mozna bych mohl predelat pomoci  Arrays.asList(...).contains(...)
              if (args.get("input") == null && args.get("output") != null
                     || args.get("input") != null && args.get("output") == null
                      ) {
@@ -31,7 +32,6 @@ public class BackupJob {
                     System.exit(-1);
             }
             else  if (args.get("input") != null && args.get("output") != null) {
-                //System.out.println("vytvorim novou zalohu a pak vypisu");
                 parseLocations(args);
                 mCreateNewBackup = true;
             }
@@ -41,7 +41,7 @@ public class BackupJob {
                 System.exit(-1);
             }
 
-            //other arguments
+            //other arguments/options
             mShallow = args.getBoolean("shallow");
             mList = args.getBoolean("list_backups");
             mBackupName = args.getString("name");

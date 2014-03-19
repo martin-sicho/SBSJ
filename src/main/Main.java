@@ -1,6 +1,6 @@
 package main;
 
-import BackupManagment.BackupJob;
+import BackupManagment.*;
 
 /**
  * This is the main class.
@@ -11,13 +11,14 @@ import BackupManagment.BackupJob;
 public class Main {
 
     public static void main(String[] args) {
-        BackupJob job = new BackupJob(ArgumentBuilder.build(args));
+        BackupInstanceFramework framework = new BackupInstanceFramework(ArgumentBuilder.build(args));
+        BackupManager manager = new BackupManager();
 
-        if (job.wantsCreateNewBackup()) {
-            // create new backup
+        if (framework.wantsCreateNewBackup()) {
+            manager.registerNewBackup(framework);
         }
 
-        if (job.wantsList()) {
+        if (framework.wantsList()) {
             // call the view and list all scheduled backups
         }
     }
