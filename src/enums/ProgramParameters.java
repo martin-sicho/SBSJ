@@ -16,7 +16,7 @@ public enum ProgramParameters {
     , LIST_BACKUPS("list_backups")
     ;
 
-    private String value;
+    private final String value;
 
     private ProgramParameters(String value) {
         this.value = value;

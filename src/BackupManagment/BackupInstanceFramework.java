@@ -22,7 +22,7 @@ public class BackupInstanceFramework {
     private boolean mCreateNewBackup;
     private boolean mList;
     private boolean mShallow;
-    private String mBackupName;
+    private String mName;
 
     public BackupInstanceFramework(Namespace args) {
         if (args != null) {
@@ -52,7 +52,7 @@ public class BackupInstanceFramework {
             //other arguments/options
             mShallow = args.getBoolean(ProgramParameters.SHALLOW.get());
             mList = args.getBoolean("list_backups");
-            mBackupName = args.getString(ProgramParameters.NAME.get());
+            mName = args.getString(ProgramParameters.NAME.get());
 
         } else {
             System.exit(0);
@@ -68,8 +68,8 @@ public class BackupInstanceFramework {
                     + args.getString(ProgramParameters.INPUT.get()) + " doesn't exist");
             System.exit(-1);
         }
-        mDirOutput = Paths.get(args.getString(ProgramParameters.OUTPUT.get()));
-        if (mDirOutput.toAbsolutePath().equals(mDirInput.toAbsolutePath())) {
+        mDirOutput = Paths.get(args.getString(ProgramParameters.OUTPUT.get())).toAbsolutePath();
+        if (mDirOutput.equals(mDirInput)) {
             System.out.println("The " + ProgramParameters.INPUT_METAVAR.get()
                     + " and " + ProgramParameters.OUTPUT_METAVAR.get() + " paths are equal. "
                     + "You have to put your backup into a directory that is different from the "
@@ -101,6 +101,6 @@ public class BackupInstanceFramework {
     }
 
     public String getBackupName() {
-        return mBackupName;
+        return mName;
     }
 }

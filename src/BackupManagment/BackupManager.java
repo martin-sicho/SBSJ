@@ -1,9 +1,7 @@
 package BackupManagment;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-//import java.util.Iterator;
+import java.io.*;
+import java.nio.file.*;
 import java.util.Map;
 import java.util.HashMap;
 import enums.ProgramPaths;
@@ -18,14 +16,14 @@ import enums.ProgramPaths;
  */
 public class BackupManager {
     private Map<String,BackupInstance> mBackupList;
-    //private Iterator mBackupListIterator;
 
     public BackupManager() {
         mBackupList = new HashMap<>();
-        //mBackupListIterator = mBackupList.keySet().iterator();
     }
 
     public void registerNewBackup(BackupInstanceFramework framework) {
+        deserialzeBackupList();
+
         if (!framework.getBackupName().equals("") && !mBackupList.containsKey(framework.getBackupName())) {
             mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
         } else {
@@ -37,15 +35,54 @@ public class BackupManager {
 
     private void serialzeBackupList() {
         for (String key : mBackupList.keySet()) {
-            try (FileOutputStream fileOut = new FileOutputStream(ProgramPaths.BACKUPS_DIR.get() + key);
-                 ObjectOutputStream out = new ObjectOutputStream(fileOut)
+            try (
+                    FileOutputStream fileOut = new FileOutputStream(ProgramPaths.BACKUPS_DIR.get() + key);
+                    ObjectOutputStream out = new ObjectOutputStream(fileOut)
             ) {
                 out.writeObject(mBackupList.get(key));
-            }
-            catch (IOException exp) {
+            } catch (IOException exp) {
                 exp.printStackTrace();
             }
         }
     }
 
+    private void deserialzeBackupList() {
+        DirectoryStream.Filter<Path> filter = new DirectoryStream.Filter<Path>() {
+
+            public boolean accept(Path path) throws IOException {
+                try {
+                    return !Files.isDirectory(path);
+                } catch (Exception exp) {
+                    System.err.println(exp);
+                    return false;
+                }
+            }
+
+        };
+
+        try (
+                DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(ProgramPaths.BACKUPS_DIR.get()), filter)
+        ) {
+            for (Path file: stream) {
+                String path = ProgramPaths.BACKUPS_DIR.get() + file.getFileName().toString();
+                String key = file.getFileName().toString();
+                try (
+                        FileInputStream fileIn = new FileInputStream(path);
+                        ObjectInputStream in = new ObjectInputStream(fileIn)
+                ) {
+                    try {
+                        mBackupList.put(key, (BackupInstance) in.readObject());
+                    } catch (ClassNotFoundException exp) {
+                        exp.printStackTrace();
+                    }
+                } catch (IOException exp) {
+                    exp.printStackTrace();
+                }
+            }
+        } catch (IOException | DirectoryIteratorException exp) {
+            // IOException can never be thrown by the iteration.
+            // In this snippet, it can only be thrown by newDirectoryStream.
+            exp.printStackTrace();
+        }
+    }
 }

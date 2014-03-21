@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="Added two Enum classes to hold some constant program information.&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/enums/ProgramParameters.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/enums/ProgramPaths.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ArgumentBuilder.java" afterPath="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
+    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="Set values of the enum classes as static and final. Created the deserialization method for the BackupManager.&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/enums/ProgramParameters.java" afterPath="$PROJECT_DIR$/src/enums/ProgramParameters.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/enums/ProgramPaths.java" afterPath="$PROJECT_DIR$/src/enums/ProgramPaths.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SBSJ.iws" />
@@ -64,22 +63,7 @@
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/main/Main.java" line="20" class="main.Main" package="main">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java" line="34" class="BackupManagment.BackupManager" package="BackupManagment">
+      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java" line="26" class="BackupManagment.BackupManager" package="BackupManagment">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -103,13 +87,13 @@
     <favorites_list name="SBSJ" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5170701">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
           <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="20" column="8" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+                <state line="20" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
                   <folding />
                 </state>
               </provider>
@@ -118,19 +102,12 @@
           <file leaf-file-name="BackupManager.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="40" column="69" selection-start="1326" selection-end="1326" vertical-scroll-proportion="1.0315092" vertical-offset="58" max-vertical-offset="969">
+                <state line="55" column="34" selection-start="1720" selection-end="1720" vertical-scroll-proportion="1.2779661" vertical-offset="181" max-vertical-offset="1598">
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#1465#1807#0" expanded="true" />
+                    <element signature="e#1795#1796#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BackupInstance.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="12" column="43" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -139,15 +116,12 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="BackupInstanceFramework.java" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
+          <file leaf-file-name="BackupInstance.java" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="47" column="34" selection-start="1783" selection-end="1783" vertical-scroll-proportion="-0.07131012" vertical-offset="842" max-vertical-offset="1802">
+                <state line="27" column="0" selection-start="869" selection-end="869" vertical-scroll-proportion="0.72139305" vertical-offset="24" max-vertical-offset="935">
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="method#wantsShallow#0;class#BackupInstanceFramework#0" expanded="false" />
-                    <element signature="e#3549#3550#0" expanded="true" />
-                    <element signature="e#3583#3584#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -176,13 +150,13 @@
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupJob.java" />
         <option value="$PROJECT_DIR$/src/main/Main.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupJobFramework.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
         <option value="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
-        <option value="$PROJECT_DIR$/src/enums/ProgramParameters.java" />
-        <option value="$PROJECT_DIR$/src/enums/ProgramPaths.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/enums/ProgramPaths.java" />
+        <option value="$PROJECT_DIR$/src/enums/ProgramParameters.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
       </list>
     </option>
   </component>
@@ -546,7 +520,11 @@
       <created>1395264565522</created>
       <updated>1395264565522</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added two Enum classes to hold some constant program information.&#10;">
+      <created>1395418861958</created>
+      <updated>1395418861959</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -569,7 +547,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14217253" sideWeight="0.4994664" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.122470714" sideWeight="0.4994664" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31696904" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3292683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1060" y="100" width="760" height="850" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -622,10 +600,15 @@
     <MESSAGE value="All arguments specified for now. Cleaned up a little. Ready to implement the backup manager itself.&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Changes to be committed:&#10;#&#9;new file:   .idea/inspectionProfiles/Project_Default.xml&#10;#&#9;new file:   .idea/inspectionProfiles/profiles_settings.xml&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   src/main/Main.java&#10;#&#10;" />
     <MESSAGE value="Did some refactoring and created the BackupManager and BackupInstance classes and started to implement the core functionality.&#10;" />
     <MESSAGE value="Added two Enum classes to hold some constant program information.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added two Enum classes to hold some constant program information.&#10;" />
+    <MESSAGE value="Set values of the enum classes as static and final. Created the deserialization method for the BackupManager.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set values of the enum classes as static and final. Created the deserialization method for the BackupManager.&#10;" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -642,7 +625,9 @@
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="43" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="374">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -651,6 +636,8 @@
         <state line="39" column="73" selection-start="1290" selection-end="1290" vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="952">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1465#1807#0" expanded="true" />
+            <element signature="e#1795#1796#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -661,8 +648,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#wantsShallow#0;class#BackupInstanceFramework#0" expanded="false" />
-            <element signature="e#3549#3550#0" expanded="true" />
-            <element signature="e#3583#3584#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -677,7 +662,9 @@
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="43" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="374">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -686,6 +673,8 @@
         <state line="39" column="73" selection-start="1290" selection-end="1290" vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="952">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1465#1807#0" expanded="true" />
+            <element signature="e#1795#1796#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -696,8 +685,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#wantsShallow#0;class#BackupInstanceFramework#0" expanded="false" />
-            <element signature="e#3549#3550#0" expanded="true" />
-            <element signature="e#3583#3584#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -714,6 +701,8 @@
         <state line="7" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="255">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1465#1807#0" expanded="true" />
+            <element signature="e#1795#1796#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -724,8 +713,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#wantsShallow#0;class#BackupInstanceFramework#0" expanded="false" />
-            <element signature="e#3549#3550#0" expanded="true" />
-            <element signature="e#3583#3584#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -741,7 +728,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="8" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="1343">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -752,8 +739,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#wantsShallow#0;class#BackupInstanceFramework#0" expanded="false" />
-            <element signature="e#3549#3550#0" expanded="true" />
-            <element signature="e#3583#3584#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -769,7 +754,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="35" selection-start="1136" selection-end="1136" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="1105">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -780,8 +765,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#wantsShallow#0;class#BackupInstanceFramework#0" expanded="false" />
-            <element signature="e#3549#3550#0" expanded="true" />
-            <element signature="e#3583#3584#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -797,7 +780,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="35" selection-start="1136" selection-end="1136" vertical-scroll-proportion="0.0" vertical-offset="223" max-vertical-offset="1105">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -808,8 +791,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#wantsShallow#0;class#BackupInstanceFramework#0" expanded="false" />
-            <element signature="e#3549#3550#0" expanded="true" />
-            <element signature="e#3583#3584#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -860,52 +841,12 @@
         <state line="72" column="0" selection-start="4440" selection-end="4440" vertical-scroll-proportion="0.96213806" vertical-offset="360" max-vertical-offset="12784" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="43" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="8" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/ArgumentBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="73" column="78" selection-start="2941" selection-end="2941" vertical-scroll-proportion="0.0" vertical-offset="551" max-vertical-offset="1462">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="34" selection-start="1783" selection-end="1783" vertical-scroll-proportion="-0.07131012" vertical-offset="842" max-vertical-offset="1802">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#wantsShallow#0;class#BackupInstanceFramework#0" expanded="false" />
-            <element signature="e#3549#3550#0" expanded="true" />
-            <element signature="e#3583#3584#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/ProgramParameters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="5" selection-start="471" selection-end="525" vertical-scroll-proportion="0.7594502" vertical-offset="0" max-vertical-offset="582">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/ProgramPaths.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="5" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -916,11 +857,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
+    <entry file="file://$PROJECT_DIR$/src/enums/ProgramPaths.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="69" selection-start="1326" selection-end="1326" vertical-scroll-proportion="1.0315092" vertical-offset="58" max-vertical-offset="969">
+        <state line="9" column="10" selection-start="139" selection-end="139" vertical-scroll-proportion="0.1719101" vertical-offset="0" max-vertical-offset="890">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="40" selection-start="2770" selection-end="2770" vertical-scroll-proportion="0.5708013" vertical-offset="704" max-vertical-offset="1768">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#wantsShallow#0;class#BackupInstanceFramework#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="869" selection-end="869" vertical-scroll-proportion="0.72139305" vertical-offset="24" max-vertical-offset="935">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/enums/ProgramParameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="11" selection-start="370" selection-end="370" vertical-scroll-proportion="0.49837133" vertical-offset="0" max-vertical-offset="614">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="34" selection-start="1720" selection-end="1720" vertical-scroll-proportion="1.2779661" vertical-offset="181" max-vertical-offset="1598">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1465#1807#0" expanded="true" />
+            <element signature="e#1795#1796#0" expanded="true" />
           </folding>
         </state>
       </provider>

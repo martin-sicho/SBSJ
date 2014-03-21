@@ -7,7 +7,7 @@ package enums;
 public enum ProgramPaths {
     BACKUPS_DIR("backups/");
 
-    private String value;
+    private final String value;
 
     private ProgramPaths(String value) {
         this.value = value;
