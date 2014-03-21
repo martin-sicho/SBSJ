@@ -3,9 +3,10 @@ package BackupManagment;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.Map;
 import java.util.HashMap;
+import enums.ProgramPaths;
 
 /**
  * Takes care of loading instances of
@@ -36,7 +37,7 @@ public class BackupManager {
 
     private void serialzeBackupList() {
         for (String key : mBackupList.keySet()) {
-            try (FileOutputStream fileOut = new FileOutputStream("backups/" + key + ".ser");
+            try (FileOutputStream fileOut = new FileOutputStream(ProgramPaths.BACKUPS_DIR.get() + key);
                  ObjectOutputStream out = new ObjectOutputStream(fileOut)
             ) {
                 out.writeObject(mBackupList.get(key));
