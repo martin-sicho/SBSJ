@@ -28,7 +28,6 @@ class BackupInstance implements java.io.Serializable  {
         mDirInput = framework.getDirInput().toString();
         mDirOutput = framework.getDirOutput().toString();
         mShallow = framework.wantsShallow();
-        //mInputIndex = new HashMap<>();
         mBackupIndex = new HashMap<>();
         synchronize();
     }
@@ -41,8 +40,24 @@ class BackupInstance implements java.io.Serializable  {
         return Paths.get(mDirOutput);
     }
 
+    Path getBackupDestination(Path path) {
+        int end = path.getNameCount();
+        int start = end - Math.abs(end - getInputPath().getNameCount());
+        return getOutputPath().resolve(path.subpath(start, end));
+    }
+
+    Path getOriginalDestination(Path path) {
+        int end = path.getNameCount();
+        int start = end - Math.abs(end - getOutputPath().getNameCount());
+        return getInputPath().resolve(path.subpath(start, end));
+    }
+
     void indexBackup(Path input_dir, FileTime last_modified) {
         mBackupIndex.put(input_dir.toString(), last_modified.toMillis());
+    }
+
+    void removeBackupFromIndex(Path input_path) {
+        mBackupIndex.remove(input_path.toString());
     }
 
     boolean indexed(Path dir) {
@@ -56,9 +71,17 @@ class BackupInstance implements java.io.Serializable  {
     void synchronize() {
         try {
             Files.walkFileTree(getInputPath(), new BackupFileVisitor(this));
+            removeDeleted();
             System.out.println(mName + ": Sync OK.");
         } catch (IOException exp) {
             exp.printStackTrace();
         }
     }
+
+    // internal private methods
+
+    private void removeDeleted() throws IOException{
+        Files.walkFileTree(getOutputPath(), new DeleteFileVisitor(this));
+    }
+
 }
