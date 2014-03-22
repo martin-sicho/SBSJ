@@ -5,7 +5,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import enums.ProgramParameters;
+import static enums.ProgramParameters.*;
 
 /**
  * This class holds everything the
@@ -27,18 +27,18 @@ public class BackupInstanceFramework {
     public BackupInstanceFramework(Namespace args) {
         if (args != null) {
             System.out.println(args);
-             if (args.get(ProgramParameters.INPUT.get()) == null
-                     && args.get(ProgramParameters.OUTPUT.get()) != null
-                    || args.get(ProgramParameters.INPUT.get()) != null
-                     && args.get(ProgramParameters.OUTPUT.get()) == null
+             if (args.get(INPUT.get()) == null
+                     && args.get(OUTPUT.get()) != null
+                    || args.get(INPUT.get()) != null
+                     && args.get(OUTPUT.get()) == null
                      ) {
-                    System.out.println("You have to specify both " +
-                            ProgramParameters.INPUT_METAVAR.get() + " and "
-                            + ProgramParameters.OUTPUT_METAVAR + "!");
+                    System.out.println("You have to specify both "
+                            + INPUT_METAVAR.get() + " and "
+                            + OUTPUT_METAVAR + "!");
                     System.exit(-1);
             }
-            else  if (args.get(ProgramParameters.INPUT.get()) != null
-                     && args.get(ProgramParameters.OUTPUT.get()) != null
+            else  if (args.get(INPUT.get()) != null
+                     && args.get(OUTPUT.get()) != null
                      ) {
                 parseLocations(args);
                 mCreateNewBackup = true;
@@ -50,9 +50,9 @@ public class BackupInstanceFramework {
             }
 
             //other arguments/options
-            mShallow = args.getBoolean(ProgramParameters.SHALLOW.get());
+            mShallow = args.getBoolean(SHALLOW.get());
             mList = args.getBoolean("list_backups");
-            mName = args.getString(ProgramParameters.NAME.get());
+            mName = args.getString(NAME.get());
 
         } else {
             System.exit(0);
@@ -61,19 +61,19 @@ public class BackupInstanceFramework {
 
     private void parseLocations(Namespace args) {
         try {
-            mDirInput = Paths.get(args.getString(ProgramParameters.INPUT.get())).toRealPath();
+            mDirInput = Paths.get(args.getString(INPUT.get())).toRealPath();
         } catch (IOException exp) {
             System.out.println("The specified "
-                    + ProgramParameters.INPUT_METAVAR.get() + " path: "
-                    + args.getString(ProgramParameters.INPUT.get()) + " doesn't exist");
+                    + INPUT_METAVAR.get() + " path: "
+                    + args.getString(INPUT.get()) + " doesn't exist");
             System.exit(-1);
         }
-        mDirOutput = Paths.get(args.getString(ProgramParameters.OUTPUT.get())).toAbsolutePath();
+        mDirOutput = Paths.get(args.getString(OUTPUT.get())).toAbsolutePath();
         if (mDirOutput.equals(mDirInput)) {
-            System.out.println("The " + ProgramParameters.INPUT_METAVAR.get()
-                    + " and " + ProgramParameters.OUTPUT_METAVAR.get() + " paths are equal. "
+            System.out.println("The " + INPUT_METAVAR.get()
+                    + " and " + OUTPUT_METAVAR.get() + " paths are equal. "
                     + "You have to put your backup into a directory that is different from the "
-                    + ProgramParameters.OUTPUT_METAVAR.get() + " directory!");
+                    + OUTPUT_METAVAR.get() + " directory!");
             System.exit(-1);
         }
     }

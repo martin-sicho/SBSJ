@@ -4,7 +4,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.Map;
 import java.util.HashMap;
-import enums.ProgramPaths;
+import static enums.ProgramPaths.*;
 
 /**
  * Takes care of loading instances of
@@ -19,10 +19,11 @@ public class BackupManager {
 
     public BackupManager() {
         mBackupList = new HashMap<>();
+        deserializeBackupList();
     }
 
     public void registerNewBackup(BackupInstanceFramework framework) {
-        deserialzeBackupList();
+        deserializeBackupList();
 
         if (!framework.getBackupName().equals("") && !mBackupList.containsKey(framework.getBackupName())) {
             mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
@@ -30,13 +31,13 @@ public class BackupManager {
             //TODO: nastavit genericke jmeno
         }
 
-        serialzeBackupList();
+        serializeBackupList(); // mozna by bylo dobre vytvorit nekdy metodu na serializaci jedine BackupInstance
     }
 
-    private void serialzeBackupList() {
+    private void serializeBackupList() {
         for (String key : mBackupList.keySet()) {
             try (
-                    FileOutputStream fileOut = new FileOutputStream(ProgramPaths.BACKUPS_DIR.get() + key);
+                    FileOutputStream fileOut = new FileOutputStream(BACKUPS_DIR.get() + key);
                     ObjectOutputStream out = new ObjectOutputStream(fileOut)
             ) {
                 out.writeObject(mBackupList.get(key));
@@ -46,7 +47,7 @@ public class BackupManager {
         }
     }
 
-    private void deserialzeBackupList() {
+    private void deserializeBackupList() {
         DirectoryStream.Filter<Path> filter = new DirectoryStream.Filter<Path>() {
 
             public boolean accept(Path path) throws IOException {
@@ -61,10 +62,10 @@ public class BackupManager {
         };
 
         try (
-                DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(ProgramPaths.BACKUPS_DIR.get()), filter)
+                DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(BACKUPS_DIR.get()), filter)
         ) {
             for (Path file: stream) {
-                String path = ProgramPaths.BACKUPS_DIR.get() + file.getFileName().toString();
+                String path = BACKUPS_DIR.get() + file.getFileName().toString();
                 String key = file.getFileName().toString();
                 try (
                         FileInputStream fileIn = new FileInputStream(path);

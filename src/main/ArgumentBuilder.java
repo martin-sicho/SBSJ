@@ -5,7 +5,7 @@ import net.sourceforge.argparse4j.impl.Arguments;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.ArgumentParserException;
 import net.sourceforge.argparse4j.inf.Namespace;
-import enums.ProgramParameters;
+import static enums.ProgramParameters.*;
 
 /**
  * This class is where all the argument customization and argument parsing is happening.
@@ -46,32 +46,32 @@ class ArgumentBuilder {
     }
 
     private static void buildArguments() {
-        mParser = ArgumentParsers.newArgumentParser(ProgramParameters.PROGRAM_NAME.get())
+        mParser = ArgumentParsers.newArgumentParser(PROGRAM_NAME.get())
                 .description(mDescription);
-        mParser.addArgument(ProgramParameters.INPUT.get())
-                .metavar(ProgramParameters.INPUT_METAVAR.get())
+        mParser.addArgument(INPUT.get())
+                .metavar(INPUT_METAVAR.get())
                 .nargs("?")
                 .type(String.class)
                 .help("The file/directory you want to get a backup of.");
-        mParser.addArgument(ProgramParameters.OUTPUT.get())
-                .metavar(ProgramParameters.OUTPUT_METAVAR.get())
+        mParser.addArgument(OUTPUT.get())
+                .metavar(OUTPUT_METAVAR.get())
                 .nargs("?")
                 .type(String.class)
                 .help("The file/directory where you want the backup copy to be created.");
-        mParser.addArgument("-n", "--" + ProgramParameters.NAME.get())
-                .metavar(ProgramParameters.NAME_METAVAR.get())
+        mParser.addArgument("-n", "--" + NAME.get())
+                .metavar(NAME_METAVAR.get())
                 .nargs("?")
                 .setDefault("")
                 .help("use this optional argument to specify a name for your backup " +
                         "- otherwise a backup with generic name will be created");
 
         // options
-        mParser.addArgument("-sh", "--" + ProgramParameters.SHALLOW.get())
+        mParser.addArgument("-sh", "--" + SHALLOW.get())
                 .action(Arguments.storeTrue())
                 .nargs("?")
                 .setDefault(false)
                 .help("use this option to only make a shallow copy (subdirectories will not be backed)");
-        mParser.addArgument("-ls", "--" + ProgramParameters.LIST_BACKUPS.get())
+        mParser.addArgument("-ls", "--" + LIST_BACKUPS.get())
                 .action(Arguments.storeTrue())
                 .nargs("?")
                 .setDefault(false)
