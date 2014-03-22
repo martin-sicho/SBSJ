@@ -103,4 +103,10 @@ public class BackupInstanceFramework {
     public String getBackupName() {
         return mName;
     }
+
+    // setters
+
+    public void setName(String mName) {
+        this.mName = mName;
+    }
 }

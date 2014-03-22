@@ -25,13 +25,24 @@ public class BackupManager {
     public void registerNewBackup(BackupInstanceFramework framework) {
         deserializeBackupList();
 
-        if (!framework.getBackupName().equals("") && !mBackupList.containsKey(framework.getBackupName())) {
+        if (framework.getBackupName().equals("") && !mBackupList.containsKey(framework.getBackupName())) {
+            framework.setName(framework.getDirInput().toString());
             mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
-        } else {
-            //TODO: nastavit genericke jmeno
+        }
+        else if (mBackupList.containsKey(framework.getBackupName())) {
+            mBackupList.get(framework.getBackupName()).synchronize();
+        }
+        else {
+            mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
         }
 
-        serializeBackupList(); // mozna by bylo dobre vytvorit nekdy metodu na serializaci jedine BackupInstance
+        serializeBackupList();
+    }
+
+    public void synchronize() {
+        for (String key : mBackupList.keySet()) {
+            mBackupList.get(key).synchronize();
+        }
     }
 
     private void serializeBackupList() {

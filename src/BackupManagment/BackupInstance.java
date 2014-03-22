@@ -1,5 +1,7 @@
 package BackupManagment;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
@@ -19,7 +21,6 @@ class BackupInstance implements java.io.Serializable  {
     private String mDirInput;
     private String mDirOutput;
     private boolean mShallow;
-    private Map<String,Long> mInputIndex;
     private Map<String,Long> mBackupIndex;
 
     BackupInstance(BackupInstanceFramework framework) {
@@ -29,7 +30,7 @@ class BackupInstance implements java.io.Serializable  {
         mShallow = framework.wantsShallow();
         //mInputIndex = new HashMap<>();
         mBackupIndex = new HashMap<>();
-
+        synchronize();
     }
 
     Path getInputPath() {
@@ -38,10 +39,6 @@ class BackupInstance implements java.io.Serializable  {
 
     Path getOutputPath() {
         return Paths.get(mDirOutput);
-    }
-
-    void registerInputPath(Path input_dir, FileTime last_modified) {
-        mBackupIndex.put(input_dir.toString(), last_modified.toMillis());
     }
 
     void indexBackup(Path input_dir, FileTime last_modified) {
@@ -54,5 +51,14 @@ class BackupInstance implements java.io.Serializable  {
 
     FileTime getLastBackupTime(Path path) {
         return FileTime.fromMillis(mBackupIndex.get(path.toString()));
+    }
+
+    void synchronize() {
+        try {
+            Files.walkFileTree(getInputPath(), new BackupFileVisitor(this));
+            System.out.println(mName + ": Sync OK.");
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
     }
 }

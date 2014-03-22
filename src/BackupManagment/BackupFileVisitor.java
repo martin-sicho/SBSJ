@@ -14,18 +14,20 @@ import java.nio.file.attribute.FileTime;
  */
 class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
     private BackupInstance mBackupInstance;
+    private int mLevel;
+    private FileTime mDirLastModified;
 
     BackupFileVisitor(BackupInstance instance) {
         mBackupInstance = instance;
+        mLevel = instance.getInputPath().getNameCount();
     }
 
     @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
         FileTime last_modified = attrs.lastModifiedTime();
+        mDirLastModified = last_modified;
         if (!isBackupCreated(dir)) {
-            createNewBackupDir(dir, last_modified);
-        } else {
-            setBackupDirLastModified(dir, last_modified);
+            backupDirectory(dir, last_modified);
         }
         return CONTINUE;
     }
@@ -33,7 +35,10 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         FileTime last_modified = attrs.lastModifiedTime();
-        if (mBackupInstance.getLastBackupTime(file).compareTo(last_modified) != 0) {
+        if (mBackupInstance.indexed(file) && mBackupInstance.getLastBackupTime(file).compareTo(last_modified) != 0) {
+                backupFile(file, last_modified);
+         } else {
+            mBackupInstance.indexBackup(file,last_modified);
             backupFile(file, last_modified);
         }
         return CONTINUE;
@@ -46,30 +51,35 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
 
     @Override
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+        setBackupDirLastModified(dir, mDirLastModified);
         return CONTINUE;
     }
 
     // internal private methods
     private boolean isBackupCreated(Path path) {
-        Path backup_dest = mBackupInstance.getOutputPath().resolve(path.getFileName());
+        Path backup_dest = getBackupDestination(path);
         return Files.exists(backup_dest);
     }
 
-    private void createNewBackupDir(Path dir, FileTime last_modified) throws IOException{
-        Path backup_dir = mBackupInstance.getOutputPath().resolve(dir.getFileName());
-        Files.createDirectory(backup_dir);
+    private void backupDirectory(Path dir, FileTime last_modified) throws IOException{
+        Path backup_dir = getBackupDestination(dir);
+        Files.createDirectories(backup_dir);
         setBackupDirLastModified(backup_dir, last_modified);
         mBackupInstance.indexBackup(dir, last_modified);
     }
 
     private void backupFile(Path file, FileTime last_modified) throws IOException{
-        Path backup_file = mBackupInstance.getOutputPath().resolve(file.getFileName());
+        Path backup_file = getBackupDestination(file);
         Files.copy(file, backup_file, StandardCopyOption.REPLACE_EXISTING);
         mBackupInstance.indexBackup(file, last_modified);
     }
 
     private void setBackupDirLastModified(Path backup_dir, FileTime last_modified) throws IOException{
         Files.setLastModifiedTime(backup_dir, last_modified);
+    }
+
+    private Path getBackupDestination(Path path) {
+        return mBackupInstance.getOutputPath().resolve(path.subpath(mLevel - 1,path.getNameCount()));
     }
 
 }
