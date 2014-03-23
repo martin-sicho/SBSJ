@@ -14,6 +14,7 @@ public enum ProgramParameters {
     , NAME_METAVAR("BACKUP_NAME")
     , SHALLOW("shallow")
     , LIST_BACKUPS("list_backups")
+    , SYNCHRONIZE("synchronize")
     ;
 
     private final String value;

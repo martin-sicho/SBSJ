@@ -11,15 +11,28 @@ import BackupManagment.*;
 public class Main {
 
     public static void main(String[] args) {
-        BackupInstanceFramework framework = new BackupInstanceFramework(ArgumentBuilder.build(args));
-        BackupManager manager = new BackupManager();
+        if (args.length != 0) {
+            BackupInstanceFramework framework = new BackupInstanceFramework(ArgumentBuilder.build(args));
+            BackupManager manager = new BackupManager();
 
-        if (framework.wantsCreateNewBackup()) {
-            manager.registerNewBackup(framework);
-        }
+            if (framework.wantsCreateNewBackup()) {
+                manager.registerNewBackup(framework);
+            }
 
-        if (framework.wantsList()) {
-            // call the view and list all scheduled backups
+            if (framework.wantsSynchronization()) {
+                if (framework.wantsSynchronization() && !framework.getBackupName().equals("")) {
+                    manager.synchronize(framework.getBackupName());
+                } else {
+                    manager.synchronize();
+                }
+            }
+
+            if (framework.wantsList()) {
+                // call the view and list all scheduled backups
+                // TODO: implement the view
+            }
+        } else {
+            System.out.println("Run the utility with -h or --help option to get usage details.");
         }
     }
 }

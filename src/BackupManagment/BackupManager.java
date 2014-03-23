@@ -62,6 +62,12 @@ public class BackupManager {
         }
     }
 
+    public void synchronize(String key) {
+        mBackupList.get(key).synchronize();
+    }
+
+    // internal private methods
+
     private void serializeBackupList() {
         for (String key : mBackupList.keySet()) {
             try (

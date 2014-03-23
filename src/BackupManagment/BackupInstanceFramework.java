@@ -23,41 +23,34 @@ public class BackupInstanceFramework {
     private boolean mCreateNewBackup;
     private boolean mList;
     private boolean mShallow;
+    private boolean mSync;
     private String mName;
 
     public BackupInstanceFramework(Namespace args) {
-        if (args != null) {
-            //System.out.println(args);
-             if (args.get(ORIGINAL.toString()) == null
-                     && args.get(BACKUP.toString()) != null
-                    || args.get(ORIGINAL.toString()) != null
-                     && args.get(BACKUP.toString()) == null
-                     ) {
-                    System.out.println("You have to specify both "
-                            + ORIGINAL_METAVAR + " and "
-                            + BACKUP_METAVAR + "!");
-                    System.exit(-1);
-            }
-            else  if (args.get(ORIGINAL.toString()) != null
-                     && args.get(BACKUP.toString()) != null
-                     ) {
-                parseLocations(args);
-                mCreateNewBackup = true;
-            }
-            else {
-                System.out.println("Unknown combination of arguments:");
-                System.out.println(args.getAttrs().keySet());
-                System.exit(-1);
-            }
-
-            //other arguments/options
-            mShallow = args.getBoolean(SHALLOW.toString());
-            mList = args.getBoolean("list_backups");
-            mName = args.getString(NAME.toString());
-
-        } else {
-            System.exit(0);
+        //System.out.println(args);
+        if (args == null) System.exit(0);
+        if (args.get(ORIGINAL.toString()) == null
+                && args.get(BACKUP.toString()) != null
+                || args.get(ORIGINAL.toString()) != null
+                && args.get(BACKUP.toString()) == null
+                ) {
+            System.out.println("You have to specify both "
+                    + ORIGINAL_METAVAR + " and "
+                    + BACKUP_METAVAR + "!");
+            System.exit(-1);
         }
+        else  if (args.get(ORIGINAL.toString()) != null
+                && args.get(BACKUP.toString()) != null
+                ) {
+            parseLocations(args);
+            mCreateNewBackup = true;
+        }
+
+        //other arguments/options
+        mShallow = args.getBoolean(SHALLOW.toString());
+        mList = args.getBoolean("list_backups");
+        mName = args.getString(NAME.toString());
+        mSync = args.getBoolean(SYNCHRONIZE.toString());
     }
 
     private void parseLocations(Namespace args) {
@@ -121,6 +114,10 @@ public class BackupInstanceFramework {
 
     public boolean wantsShallow() {
         return mShallow;
+    }
+
+    public boolean wantsSynchronization() {
+        return mSync;
     }
 
     public String getBackupName() {

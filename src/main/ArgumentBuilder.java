@@ -53,7 +53,7 @@ class ArgumentBuilder {
                 .metavar(ORIGINAL_METAVAR.toString())
                 .nargs("?")
                 .type(String.class)
-                .help("The file/directory you want to toString a backup of.");
+                .help("The file/directory you want to to get a backup of.");
         mParser.addArgument(BACKUP.toString())
                 .metavar(BACKUP_METAVAR.toString())
                 .nargs("?")
@@ -72,6 +72,12 @@ class ArgumentBuilder {
                         "- otherwise the backup will be named like the " + ORIGINAL_METAVAR);
 
         // options
+        mParser.addArgument("-s", "--" + SYNCHRONIZE)
+                .action(Arguments.storeTrue())
+                .nargs("?")
+                .setDefault(false)
+                .help("use this option to synchronize all scheduled backups. If you add --" + NAME + " " + NAME_METAVAR +
+                        " ,only the specified backup will be synchronized.");
         mParser.addArgument("-sh", "--" + SHALLOW)
                 .action(Arguments.storeTrue())
                 .nargs("?")
