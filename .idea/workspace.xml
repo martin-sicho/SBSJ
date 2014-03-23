@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="A little bit of refactoring.">
+    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="Moved all methods for copying/moving/modifying files from BackupFileVisitor to BackupInstance.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" afterPath="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SBSJ.iws" />
@@ -102,63 +99,37 @@
     <favorites_list name="SBSJ" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/Main.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="20" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="527">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BackupManager.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="38" column="0" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BackupInstance.java" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="42" column="5" selection-start="1345" selection-end="1345" vertical-scroll-proportion="0.16033058" vertical-offset="617" max-vertical-offset="1581">
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="BackupFileVisitor.java" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="28" column="28" selection-start="914" selection-end="914" vertical-scroll-proportion="-0.05743243" vertical-offset="408" max-vertical-offset="1411">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DeleteFileVisitor.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="527">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BackupManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="0" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BackupInstance.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="49" selection-start="1365" selection-end="1365" vertical-scroll-proportion="1.0976821" vertical-offset="0" max-vertical-offset="2329">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -187,8 +158,8 @@
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" />
       </list>
     </option>
   </component>
@@ -570,7 +541,11 @@
       <created>1395514311692</created>
       <updated>1395514311692</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="A little bit of refactoring.">
+      <created>1395558232769</created>
+      <updated>1395558232769</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -587,7 +562,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3991462" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14217253" sideWeight="0.50053364" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32800853" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3276414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -651,7 +626,8 @@
     <MESSAGE value="Corrected bugs and made a few practical changes." />
     <MESSAGE value="Implemented the deletion of backups that are no longer present in the original directory. Hunted a few bugs and hopefully just made it a bit better ;]" />
     <MESSAGE value="A little bit of refactoring." />
-    <option name="LAST_COMMIT_MESSAGE" value="A little bit of refactoring." />
+    <MESSAGE value="Moved all methods for copying/moving/modifying files from BackupFileVisitor to BackupInstance." />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved all methods for copying/moving/modifying files from BackupFileVisitor to BackupInstance." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -965,13 +941,6 @@
         <state line="19" column="0" selection-start="299" selection-end="299" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_51/src.zip!/java/nio/file/FileTreeWalker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="191" column="0" selection-start="6175" selection-end="6240" vertical-scroll-proportion="0.33333334" vertical-offset="2626" max-vertical-offset="3876" />
@@ -998,16 +967,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
+        <state line="57" column="5" selection-start="1966" selection-end="1966" vertical-scroll-proportion="1.4425957" vertical-offset="0" max-vertical-offset="1020">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="28" selection-start="914" selection-end="914" vertical-scroll-proportion="-0.05743243" vertical-offset="408" max-vertical-offset="1411">
+        <state line="14" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="0.22149837" vertical-offset="0" max-vertical-offset="952">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
           <folding />
         </state>
       </provider>
@@ -1021,7 +997,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="5" selection-start="1345" selection-end="1345" vertical-scroll-proportion="0.16033058" vertical-offset="617" max-vertical-offset="1581">
+        <state line="39" column="49" selection-start="1365" selection-end="1365" vertical-scroll-proportion="1.0976821" vertical-offset="0" max-vertical-offset="2329">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
