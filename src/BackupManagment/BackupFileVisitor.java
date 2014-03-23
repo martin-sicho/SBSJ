@@ -25,7 +25,6 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
         FileTime last_modified = attrs.lastModifiedTime();
         mDirLastModified = last_modified;
         if (dir.equals(mBackupInstance.getDirOriginal())) {
-            Files.createDirectories(mBackupInstance.getDirBackup());
             return CONTINUE;
         }
         if (mBackupInstance.isShallow()) {

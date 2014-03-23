@@ -26,7 +26,12 @@ class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        if (!Files.exists(mBackupInstance.getOriginalDestination(file))) {
+//        if (Files.exists(mBackupInstance.getDirOriginal()) && !Files.isDirectory(mBackupInstance.getDirOriginal())) {
+//            return CONTINUE;
+//        }
+        if (Files.notExists(mBackupInstance.getOriginalDestination(file))
+                && mBackupInstance.isIndexed(mBackupInstance.getOriginalDestination(file))
+                ) {
             Files.deleteIfExists(file);
             mBackupInstance.removeBackupFromIndex(file);
         }
@@ -44,7 +49,9 @@ class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
             return CONTINUE;
         }
         try {
-            if (!Files.exists(mBackupInstance.getOriginalDestination(dir))) {
+            if (!Files.exists(mBackupInstance.getOriginalDestination(dir))
+                    && mBackupInstance.isIndexed(mBackupInstance.getOriginalDestination(dir))
+                    ) {
                 Files.deleteIfExists(dir);
                 mBackupInstance.removeBackupFromIndex(dir);
             }

@@ -17,10 +17,11 @@ import static enums.ProgramParameters.*;
  */
 class ArgumentBuilder {
     private static ArgumentParser mParser;
-    private static String mDescription = "This is a very simple backup application.";
+    private static String mDescription = "This is a very simple backup application. " +
+            "It will look for changes in one directory and transfer them to another.";
 
     /**
-     * Private constructor - prevents the class from being instantiated.
+     * Private empty constructor - prevents the class from being instantiated.
      */
     private ArgumentBuilder() {
         // no action
@@ -46,35 +47,40 @@ class ArgumentBuilder {
     }
 
     private static void buildArguments() {
-        mParser = ArgumentParsers.newArgumentParser(PROGRAM_NAME.get())
+        mParser = ArgumentParsers.newArgumentParser(PROGRAM_NAME.toString())
                 .description(mDescription);
-        mParser.addArgument(INPUT.get())
-                .metavar(INPUT_METAVAR.get())
+        mParser.addArgument(ORIGINAL.toString())
+                .metavar(ORIGINAL_METAVAR.toString())
                 .nargs("?")
                 .type(String.class)
-                .help("The file/directory you want to get a backup of.");
-        mParser.addArgument(OUTPUT.get())
-                .metavar(OUTPUT_METAVAR.get())
+                .help("The file/directory you want to toString a backup of.");
+        mParser.addArgument(BACKUP.toString())
+                .metavar(BACKUP_METAVAR.toString())
                 .nargs("?")
                 .type(String.class)
-                .help("The file/directory where you want the backup copy to be created.");
-        mParser.addArgument("-n", "--" + NAME.get())
-                .metavar(NAME_METAVAR.get())
+                .help("The directory where you want the backup to be created. " +
+                        "If it doesn't exist, it is created.\n" +
+                        "Note that this is always a directory to which all files " +
+                        "from the " + ORIGINAL_METAVAR + " are copied. " +
+                        "It is never created as a single file. " +
+                        "Even if your " + ORIGINAL_METAVAR + " is a single file.");
+        mParser.addArgument("-n", "--" + NAME)
+                .metavar(NAME_METAVAR.toString())
                 .nargs("?")
                 .setDefault("")
                 .help("use this optional argument to specify a name for your backup " +
-                        "- otherwise a backup with generic name will be created");
+                        "- otherwise the backup will be named like the " + ORIGINAL_METAVAR);
 
         // options
-        mParser.addArgument("-sh", "--" + SHALLOW.get())
+        mParser.addArgument("-sh", "--" + SHALLOW)
                 .action(Arguments.storeTrue())
                 .nargs("?")
                 .setDefault(false)
                 .help("use this option to only make a shallow copy (subdirectories will not be backed)");
-        mParser.addArgument("-ls", "--" + LIST_BACKUPS.get())
+        mParser.addArgument("-ls", "--" + LIST_BACKUPS)
                 .action(Arguments.storeTrue())
                 .nargs("?")
                 .setDefault(false)
-                .help("use this option to list all created backups");
+                .help("use this option to list all scheduled backups");
     }
 }

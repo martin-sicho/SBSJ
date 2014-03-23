@@ -32,6 +32,12 @@ class BackupInstance implements java.io.Serializable  {
 
     void synchronize() {
         try {
+            Files.createDirectories(getDirBackup());
+        } catch (IOException exp) {
+            System.err.format("An I/O exeption while creating the backup directory: %s%n%s%n", mDirBackup, exp.getLocalizedMessage());
+            System.exit(1);
+        }
+        try {
             Files.walkFileTree(getDirOriginal(), new BackupFileVisitor(this));
             removeDeleted();
             System.out.println(mName + ": Synchronization OK.");
@@ -56,13 +62,21 @@ class BackupInstance implements java.io.Serializable  {
     Path getBackupDestination(Path original_path) {
         int end = original_path.getNameCount();
         int start = end - Math.abs(end - getDirOriginal().getNameCount());
-        return getDirBackup().resolve(original_path.subpath(start, end));
+        if (start == end) {
+            return getDirBackup();
+        } else {
+            return getDirBackup().resolve(original_path.subpath(start, end));
+        }
     }
 
     Path getOriginalDestination(Path backup_path) {
         int end = backup_path.getNameCount();
         int start = end - Math.abs(end - getDirBackup().getNameCount());
-        return getDirOriginal().resolve(backup_path.subpath(start, end));
+        if (start == end) {
+            return getDirOriginal();
+        } else {
+            return getDirOriginal().resolve(backup_path.subpath(start, end));
+        }
     }
 
     void addBackupToIndex(Path input_path, FileTime last_modified) {
@@ -94,10 +108,10 @@ class BackupInstance implements java.io.Serializable  {
             System.err.format("Cannot create directory %s. File already exists: %s%n", backup_dir , exp.getFile());
             System.exit(1);
         } catch (SecurityException exp) {
-            System.err.format("A security exception while creating directory: %s$n%s%n", backup_dir, exp.getMessage());
+            System.err.format("A security exception while creating directory: %s$n%s%n", backup_dir, exp.getLocalizedMessage());
             System.exit(1);
         } catch (IOException exp) {
-            System.err.format("An I/O exeption while creating directory: %s%n%s%n", backup_dir, exp.getMessage());
+            System.err.format("An I/O exeption while creating directory: %s%n%s%n", backup_dir, exp.getLocalizedMessage());
             System.exit(1);
         }
         setBackupDirLastModified(backup_dir, last_modified);
@@ -107,12 +121,15 @@ class BackupInstance implements java.io.Serializable  {
     void backupFile(Path file, FileTime last_modified) {
         Path backup_file = getBackupDestination(file);
         try {
+            if (Files.isDirectory(backup_file)) {
+                backup_file = backup_file.resolve(file.getFileName());
+            }
             Files.copy(file, backup_file, StandardCopyOption.REPLACE_EXISTING);
         } catch (SecurityException exp) {
-            System.err.format("A security exception while copying file: %s$n%s%n", backup_file, exp.getMessage());
+            System.err.format("A security exception while copying file: %s$n%s%n", backup_file, exp.getLocalizedMessage());
             System.exit(1);
         } catch (IOException exp) {
-            System.err.format("An I/O exeption while copying file: %s%n%s%n", backup_file, exp.getMessage());
+            System.err.format("An I/O exeption while copying file: %s%n%s%n", backup_file, exp.getLocalizedMessage());
             System.exit(1);
         }
         addBackupToIndex(file, last_modified);
@@ -122,7 +139,7 @@ class BackupInstance implements java.io.Serializable  {
         try {
             Files.setLastModifiedTime(backup_dir, last_modified);
         } catch (IOException | SecurityException exp) {
-            System.err.format("Error setting last modified: %s%n", exp.getMessage());
+            System.err.format("Error setting last modified: %s%n", exp.getLocalizedMessage());
         }
     }
 

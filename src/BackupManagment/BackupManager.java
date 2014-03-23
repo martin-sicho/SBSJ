@@ -2,6 +2,9 @@ package BackupManagment;
 
 import java.io.*;
 import java.nio.file.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
 import static enums.ProgramPaths.*;
@@ -15,6 +18,7 @@ import static enums.ProgramPaths.*;
  * Created by Martin Sicho on 19.3.14.
  */
 public class BackupManager {
+    private DateFormat mDateFormatter = new SimpleDateFormat("dd_MM_yyyy-HH_mm_ss_SSS");
     private Map<String,BackupInstance> mBackupList;
 
     public BackupManager() {
@@ -32,11 +36,12 @@ public class BackupManager {
     }
 
     public void registerNewBackup(BackupInstanceFramework framework) {
-        if (framework.getBackupName().equals("") && !mBackupList.containsKey(framework.getBackupName())) {
-            framework.setName(framework.getDirOriginal().toString());
+        if (framework.getBackupName().equals("") && !backupExists(framework.getBackupName())) {
+            Date timestamp = new Date();
+            framework.setName(framework.getDirOriginal().getFileName().toString() + "_" + mDateFormatter.format(timestamp));
             mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
         }
-        else if (mBackupList.containsKey(framework.getBackupName())) {
+        else if (backupExists(framework.getBackupName())) {
             System.out.println("Backup " + framework.getBackupName() + " already exists. It will only be synchronized.");
             mBackupList.get(framework.getBackupName()).synchronize();
         }
@@ -45,6 +50,10 @@ public class BackupManager {
         }
 
         serializeBackupList();
+    }
+
+    public boolean backupExists(String name) {
+        return (mBackupList.containsKey(name));
     }
 
     public void synchronize() {
@@ -61,7 +70,7 @@ public class BackupManager {
             ) {
                 out.writeObject(mBackupList.get(key));
             } catch (IOException exp) {
-                exp.printStackTrace();
+                System.err.format("The backup (name: %s) could not be saved: %n%s", key, exp.getLocalizedMessage());
             }
         }
     }

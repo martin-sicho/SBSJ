@@ -6,10 +6,10 @@ package enums;
  */
 public enum ProgramParameters {
     PROGRAM_NAME("sbsj")
-    , INPUT("input")
-    , INPUT_METAVAR("SOURCE")
-    , OUTPUT("output")
-    , OUTPUT_METAVAR("DESTINATION")
+    , ORIGINAL("input")
+    , ORIGINAL_METAVAR("ORIGINAL")
+    , BACKUP("output")
+    , BACKUP_METAVAR("BACKUP_DESTINATION")
     , NAME("name")
     , NAME_METAVAR("BACKUP_NAME")
     , SHALLOW("shallow")
@@ -22,7 +22,7 @@ public enum ProgramParameters {
         this.value = value;
     }
 
-    public String get() {
+    public String toString() {
         return this.value;
     }
 }

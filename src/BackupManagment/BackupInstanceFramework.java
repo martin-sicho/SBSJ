@@ -3,6 +3,7 @@ package BackupManagment;
 import net.sourceforge.argparse4j.inf.Namespace;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import static enums.ProgramParameters.*;
@@ -17,8 +18,8 @@ import static enums.ProgramParameters.*;
  * Created by Martin Sicho on 18.3.14.
  */
 public class BackupInstanceFramework {
-    private Path mDirInput;
-    private Path mDirOutput;
+    private Path mDirOriginal;
+    private Path mDirBackup;
     private boolean mCreateNewBackup;
     private boolean mList;
     private boolean mShallow;
@@ -26,19 +27,19 @@ public class BackupInstanceFramework {
 
     public BackupInstanceFramework(Namespace args) {
         if (args != null) {
-            System.out.println(args);
-             if (args.get(INPUT.get()) == null
-                     && args.get(OUTPUT.get()) != null
-                    || args.get(INPUT.get()) != null
-                     && args.get(OUTPUT.get()) == null
+            //System.out.println(args);
+             if (args.get(ORIGINAL.toString()) == null
+                     && args.get(BACKUP.toString()) != null
+                    || args.get(ORIGINAL.toString()) != null
+                     && args.get(BACKUP.toString()) == null
                      ) {
                     System.out.println("You have to specify both "
-                            + INPUT_METAVAR.get() + " and "
-                            + OUTPUT_METAVAR + "!");
+                            + ORIGINAL_METAVAR + " and "
+                            + BACKUP_METAVAR + "!");
                     System.exit(-1);
             }
-            else  if (args.get(INPUT.get()) != null
-                     && args.get(OUTPUT.get()) != null
+            else  if (args.get(ORIGINAL.toString()) != null
+                     && args.get(BACKUP.toString()) != null
                      ) {
                 parseLocations(args);
                 mCreateNewBackup = true;
@@ -50,9 +51,9 @@ public class BackupInstanceFramework {
             }
 
             //other arguments/options
-            mShallow = args.getBoolean(SHALLOW.get());
+            mShallow = args.getBoolean(SHALLOW.toString());
             mList = args.getBoolean("list_backups");
-            mName = args.getString(NAME.get());
+            mName = args.getString(NAME.toString());
 
         } else {
             System.exit(0);
@@ -60,32 +61,54 @@ public class BackupInstanceFramework {
     }
 
     private void parseLocations(Namespace args) {
+        // test if the original path exists
         try {
-            mDirInput = Paths.get(args.getString(INPUT.get())).toRealPath();
+            mDirOriginal = Paths.get(args.getString(ORIGINAL.toString())).toRealPath().normalize();
         } catch (IOException exp) {
             System.out.println("The specified "
-                    + INPUT_METAVAR.get() + " path: "
-                    + args.getString(INPUT.get()) + " doesn't exist");
+                    + ORIGINAL_METAVAR + " path: "
+                    + args.getString(ORIGINAL.toString()) + " doesn't exist");
             System.exit(-1);
         }
-        mDirOutput = Paths.get(args.getString(OUTPUT.get())).toAbsolutePath();
-        if (mDirOutput.equals(mDirInput)) {
-            System.out.println("The " + INPUT_METAVAR.get()
-                    + " and " + OUTPUT_METAVAR.get() + " paths are equal. "
+
+        // test paths for equality
+        mDirBackup = Paths.get(args.getString(BACKUP.toString())).toAbsolutePath().normalize();
+        if (mDirBackup.equals(mDirOriginal)) {
+            System.out.println("The " + ORIGINAL_METAVAR
+                    + " and " + BACKUP_METAVAR + " paths are equal. "
                     + "You have to put your backup into a directory that is different from the "
-                    + OUTPUT_METAVAR.get() + " directory!");
+                    + BACKUP_METAVAR + " directory!");
             System.exit(-1);
+        }
+
+        // test for possible infinite loop
+        Path pp = mDirBackup.relativize(mDirOriginal);
+        boolean backup_is_subpath = true;
+        for (int i = 0; i < pp.getNameCount(); i++) {
+            if (!pp.getName(i).toString().equals("..")) {
+                backup_is_subpath = false;
+                break;
+            }
+        }
+        if (backup_is_subpath) {
+            System.out.println(BACKUP_METAVAR + " can't be a subpath of " + ORIGINAL_METAVAR + "!!!");
+            System.exit(-1);
+        }
+
+        // warn if the backup is inefective (the backup location contains the original file)
+        if (mDirOriginal.getParent().equals(mDirBackup) && !Files.isDirectory(mDirOriginal)) {
+            System.out.println("WARNING: Backup inefective - the backup location contains the original file!");
         }
     }
 
     // getters
 
     public Path getDirOriginal() {
-        return mDirInput;
+        return mDirOriginal;
     }
 
     public Path getDirBackup() {
-        return mDirOutput;
+        return mDirBackup;
     }
 
     public boolean wantsCreateNewBackup() {
