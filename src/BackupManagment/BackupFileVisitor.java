@@ -16,7 +16,7 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
     private BackupInstance mBackupInstance;
     private FileTime mDirLastModified;
 
-    BackupFileVisitor(BackupInstance instance) {
+    BackupFileVisitor(BackupInstance instance, boolean shallow) {
         mBackupInstance = instance;
     }
 
@@ -24,8 +24,8 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
         FileTime last_modified = attrs.lastModifiedTime();
         mDirLastModified = last_modified;
-        if (dir.equals(mBackupInstance.getInputPath())) {
-            Files.createDirectories(mBackupInstance.getOutputPath());
+        if (dir.equals(mBackupInstance.getDirOriginal())) {
+            Files.createDirectories(mBackupInstance.getDirBackup());
             return CONTINUE;
         }
         if (!isBackupCreated(dir)) {
@@ -37,10 +37,10 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         FileTime last_modified = attrs.lastModifiedTime();
-        if (mBackupInstance.indexed(file) && mBackupInstance.getLastBackupTime(file).compareTo(last_modified) != 0) {
+        if (mBackupInstance.isIndexed(file) && mBackupInstance.getLastBackupTime(file).compareTo(last_modified) != 0) {
                 backupFile(file, last_modified);
          } else {
-            mBackupInstance.indexBackup(file,last_modified);
+            mBackupInstance.addBackupToIndex(file, last_modified);
             backupFile(file, last_modified);
         }
         return CONTINUE;
@@ -67,13 +67,13 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
         Path backup_dir = mBackupInstance.getBackupDestination(dir);
         Files.createDirectories(backup_dir);
         setBackupDirLastModified(backup_dir, last_modified);
-        mBackupInstance.indexBackup(dir, last_modified);
+        mBackupInstance.addBackupToIndex(dir, last_modified);
     }
 
     private void backupFile(Path file, FileTime last_modified) throws IOException{
         Path backup_file = mBackupInstance.getBackupDestination(file);
         Files.copy(file, backup_file, StandardCopyOption.REPLACE_EXISTING);
-        mBackupInstance.indexBackup(file, last_modified);
+        mBackupInstance.addBackupToIndex(file, last_modified);
     }
 
     private void setBackupDirLastModified(Path backup_dir, FileTime last_modified) throws IOException{

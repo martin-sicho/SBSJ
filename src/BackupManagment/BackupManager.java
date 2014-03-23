@@ -26,7 +26,7 @@ public class BackupManager {
         deserializeBackupList();
 
         if (framework.getBackupName().equals("") && !mBackupList.containsKey(framework.getBackupName())) {
-            framework.setName(framework.getDirInput().toString());
+            framework.setName(framework.getDirOriginal().toString());
             mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
         }
         else if (mBackupList.containsKey(framework.getBackupName())) {

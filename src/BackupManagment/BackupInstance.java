@@ -18,59 +18,23 @@ import java.util.HashMap;
  */
 class BackupInstance implements java.io.Serializable  {
     private String mName;
-    private String mDirInput;
-    private String mDirOutput;
+    private String mDirOriginal;
+    private String mDirBackup;
     private boolean mShallow;
     private Map<String,Long> mBackupIndex;
 
     BackupInstance(BackupInstanceFramework framework) {
         mName = framework.getBackupName();
-        mDirInput = framework.getDirInput().toString();
-        mDirOutput = framework.getDirOutput().toString();
+        mDirOriginal = framework.getDirOriginal().toString();
+        mDirBackup = framework.getDirBackup().toString();
         mShallow = framework.wantsShallow();
         mBackupIndex = new HashMap<>();
         synchronize();
     }
 
-    Path getInputPath() {
-        return Paths.get(mDirInput);
-    }
-
-    Path getOutputPath() {
-        return Paths.get(mDirOutput);
-    }
-
-    Path getBackupDestination(Path path) {
-        int end = path.getNameCount();
-        int start = end - Math.abs(end - getInputPath().getNameCount());
-        return getOutputPath().resolve(path.subpath(start, end));
-    }
-
-    Path getOriginalDestination(Path path) {
-        int end = path.getNameCount();
-        int start = end - Math.abs(end - getOutputPath().getNameCount());
-        return getInputPath().resolve(path.subpath(start, end));
-    }
-
-    void indexBackup(Path input_dir, FileTime last_modified) {
-        mBackupIndex.put(input_dir.toString(), last_modified.toMillis());
-    }
-
-    void removeBackupFromIndex(Path input_path) {
-        mBackupIndex.remove(input_path.toString());
-    }
-
-    boolean indexed(Path dir) {
-        return mBackupIndex.containsKey(dir.toString());
-    }
-
-    FileTime getLastBackupTime(Path path) {
-        return FileTime.fromMillis(mBackupIndex.get(path.toString()));
-    }
-
     void synchronize() {
         try {
-            Files.walkFileTree(getInputPath(), new BackupFileVisitor(this));
+            Files.walkFileTree(getDirOriginal(), new BackupFileVisitor(this, mShallow));
             removeDeleted();
             System.out.println(mName + ": Sync OK.");
         } catch (IOException exp) {
@@ -78,10 +42,46 @@ class BackupInstance implements java.io.Serializable  {
         }
     }
 
+    Path getDirOriginal() {
+        return Paths.get(mDirOriginal);
+    }
+
+    Path getDirBackup() {
+        return Paths.get(mDirBackup);
+    }
+
+    Path getBackupDestination(Path original_path) {
+        int end = original_path.getNameCount();
+        int start = end - Math.abs(end - getDirOriginal().getNameCount());
+        return getDirBackup().resolve(original_path.subpath(start, end));
+    }
+
+    Path getOriginalDestination(Path backup_path) {
+        int end = backup_path.getNameCount();
+        int start = end - Math.abs(end - getDirBackup().getNameCount());
+        return getDirOriginal().resolve(backup_path.subpath(start, end));
+    }
+
+    void addBackupToIndex(Path input_path, FileTime last_modified) {
+        mBackupIndex.put(input_path.toString(), last_modified.toMillis());
+    }
+
+    void removeBackupFromIndex(Path input_path) {
+        mBackupIndex.remove(input_path.toString());
+    }
+
+    boolean isIndexed(Path path) {
+        return mBackupIndex.containsKey(path.toString());
+    }
+
+    FileTime getLastBackupTime(Path path) {
+        return FileTime.fromMillis(mBackupIndex.get(path.toString()));
+    }
+
     // internal private methods
 
     private void removeDeleted() throws IOException{
-        Files.walkFileTree(getOutputPath(), new DeleteFileVisitor(this));
+        Files.walkFileTree(getDirBackup(), new DeleteFileVisitor(this));
     }
 
 }

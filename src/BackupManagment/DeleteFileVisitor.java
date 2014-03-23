@@ -12,7 +12,7 @@ import java.nio.file.attribute.BasicFileAttributes;
  * <br/>
  * Created by Martin Sicho on 22.3.14.
  */
-public class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
+class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
     private BackupInstance mBackupInstance;
 
     DeleteFileVisitor(BackupInstance instance) {
@@ -40,7 +40,7 @@ public class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
 
     @Override
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-        if (dir.equals(mBackupInstance.getOutputPath())) {
+        if (dir.equals(mBackupInstance.getDirBackup())) {
             return CONTINUE;
         }
         try {

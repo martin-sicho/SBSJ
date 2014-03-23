@@ -80,11 +80,11 @@ public class BackupInstanceFramework {
 
     // getters
 
-    public Path getDirInput() {
+    public Path getDirOriginal() {
         return mDirInput;
     }
 
-    public Path getDirOutput() {
+    public Path getDirBackup() {
         return mDirOutput;
     }
 
