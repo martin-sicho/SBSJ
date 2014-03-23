@@ -32,7 +32,7 @@ class BackupInstance implements java.io.Serializable  {
 
     void synchronize() {
         try {
-            Files.walkFileTree(getDirOriginal(), new BackupFileVisitor(this, mShallow));
+            Files.walkFileTree(getDirOriginal(), new BackupFileVisitor(this));
             removeDeleted();
             System.out.println(mName + ": Synchronization OK.");
         } catch (IOException exp) {
@@ -47,6 +47,10 @@ class BackupInstance implements java.io.Serializable  {
 
     Path getDirBackup() {
         return Paths.get(mDirBackup);
+    }
+
+    boolean isShallow() {
+        return mShallow;
     }
 
     Path getBackupDestination(Path original_path) {

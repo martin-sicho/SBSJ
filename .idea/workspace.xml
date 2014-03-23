@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="Moved all methods for copying/moving/modifying files from BackupFileVisitor to BackupInstance.">
+    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="Implemented the shallow backup + a bit of tweaking and refactoring never hurt anybody. Hunted down a few bugs too.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SBSJ.iws" />
@@ -59,38 +60,7 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java" line="38" class="BackupManagment.BackupManager" package="BackupManagment">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" line="43" class="BackupManagment.DeleteFileVisitor" package="BackupManagment">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -100,31 +70,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <file leaf-file-name="BackupFileVisitor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="527">
+            <state line="61" column="0" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.0" vertical-offset="211" max-vertical-offset="1122">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BackupManager.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="BackupManager.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666">
+            <state line="34" column="0" selection-start="985" selection-end="985" vertical-scroll-proportion="0.84437084" vertical-offset="0" max-vertical-offset="1802">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BackupInstance.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="49" selection-start="1365" selection-end="1365" vertical-scroll-proportion="1.0976821" vertical-offset="0" max-vertical-offset="2329">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -152,14 +111,14 @@
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupJobFramework.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/enums/ProgramParameters.java" />
-        <option value="$PROJECT_DIR$/src/enums/ProgramPaths.java" />
         <option value="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/FileVisitor.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
+        <option value="$PROJECT_DIR$/src/enums/ProgramPaths.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
       </list>
     </option>
   </component>
@@ -277,6 +236,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="enums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -328,7 +291,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="d:\temp\test_dir\ out_dir -l -n ahoj" />
+      <option name="PROGRAM_PARAMETERS" value="d:\temp\test_dir\ out_dir2 -l -n ahoj_deep" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -545,12 +508,16 @@
       <created>1395558232769</created>
       <updated>1395558232769</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Moved all methods for copying/moving/modifying files from BackupFileVisitor to BackupInstance.">
+      <created>1395561324969</created>
+      <updated>1395561324969</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32870865" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -627,7 +594,8 @@
     <MESSAGE value="Implemented the deletion of backups that are no longer present in the original directory. Hunted a few bugs and hopefully just made it a bit better ;]" />
     <MESSAGE value="A little bit of refactoring." />
     <MESSAGE value="Moved all methods for copying/moving/modifying files from BackupFileVisitor to BackupInstance." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved all methods for copying/moving/modifying files from BackupFileVisitor to BackupInstance." />
+    <MESSAGE value="Implemented the shallow backup + a bit of tweaking and refactoring never hurt anybody. Hunted down a few bugs too." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented the shallow backup + a bit of tweaking and refactoring never hurt anybody. Hunted down a few bugs too." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -931,16 +899,6 @@
         <state line="2" column="9" selection-start="26" selection-end="26" vertical-scroll-proportion="0.055374593" vertical-offset="0" max-vertical-offset="614" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/ProgramParameters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="11" selection-start="370" selection-end="370" vertical-scroll-proportion="0.49837133" vertical-offset="0" max-vertical-offset="614" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/ProgramPaths.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="299" selection-end="299" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_51/src.zip!/java/nio/file/FileTreeWalker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="191" column="0" selection-start="6175" selection-end="6240" vertical-scroll-proportion="0.33333334" vertical-offset="2626" max-vertical-offset="3876" />
@@ -967,40 +925,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/enums/ProgramParameters.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="5" selection-start="1966" selection-end="1966" vertical-scroll-proportion="1.4425957" vertical-offset="0" max-vertical-offset="1020">
+        <state line="18" column="11" selection-start="370" selection-end="370" vertical-scroll-proportion="0.3358946" vertical-offset="0" max-vertical-offset="911">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/enums/ProgramPaths.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="0.22149837" vertical-offset="0" max-vertical-offset="952">
+        <state line="7" column="17" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+        <state line="20" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.37321624" vertical-offset="0" max-vertical-offset="911">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666">
+        <state line="43" column="0" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.6904501" vertical-offset="0" max-vertical-offset="952">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="0" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.0" vertical-offset="422" max-vertical-offset="1122">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="49" selection-start="1365" selection-end="1365" vertical-scroll-proportion="1.0976821" vertical-offset="0" max-vertical-offset="2329">
+        <state line="58" column="0" selection-start="1752" selection-end="1752" vertical-scroll-proportion="1.0450054" vertical-offset="0" max-vertical-offset="2363">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="0" selection-start="985" selection-end="985" vertical-scroll-proportion="0.84437084" vertical-offset="0" max-vertical-offset="1802">
+          <folding />
         </state>
       </provider>
     </entry>

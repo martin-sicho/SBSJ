@@ -16,7 +16,7 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
     private BackupInstance mBackupInstance;
     private FileTime mDirLastModified;
 
-    BackupFileVisitor(BackupInstance instance, boolean shallow) {
+    BackupFileVisitor(BackupInstance instance) {
         mBackupInstance = instance;
     }
 
@@ -27,6 +27,9 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
         if (dir.equals(mBackupInstance.getDirOriginal())) {
             Files.createDirectories(mBackupInstance.getDirBackup());
             return CONTINUE;
+        }
+        if (mBackupInstance.isShallow()) {
+            return SKIP_SUBTREE;
         }
         if (!mBackupInstance.isBackupCreated(dir)) {
             mBackupInstance.backupDirectory(dir, last_modified);
@@ -53,7 +56,10 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
 
     @Override
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-        mBackupInstance.setBackupDirLastModified(dir, mDirLastModified);
+        if (dir.equals(mBackupInstance.getDirOriginal())) {
+            return CONTINUE;
+        }
+        mBackupInstance.setBackupDirLastModified(mBackupInstance.getBackupDestination(dir), mDirLastModified);
         return CONTINUE;
     }
 

@@ -18,18 +18,26 @@ public class BackupManager {
     private Map<String,BackupInstance> mBackupList;
 
     public BackupManager() {
+        Path backup_dir = Paths.get(BACKUPS_DIR.get());
+        if (Files.notExists(backup_dir)) {
+            try {
+                Files.createDirectories(backup_dir);
+            } catch (IOException exp) {
+                System.err.println("Failed to create directory for scheduled backups:");
+                System.err.println(exp.getMessage());
+            }
+        }
         mBackupList = new HashMap<>();
         deserializeBackupList();
     }
 
     public void registerNewBackup(BackupInstanceFramework framework) {
-        deserializeBackupList();
-
         if (framework.getBackupName().equals("") && !mBackupList.containsKey(framework.getBackupName())) {
             framework.setName(framework.getDirOriginal().toString());
             mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
         }
         else if (mBackupList.containsKey(framework.getBackupName())) {
+            System.out.println("Backup " + framework.getBackupName() + " already exists. It will only be synchronized.");
             mBackupList.get(framework.getBackupName()).synchronize();
         }
         else {
