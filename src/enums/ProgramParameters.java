@@ -7,7 +7,7 @@ package enums;
 public enum ProgramParameters {
     PROGRAM_NAME("sbsj")
     , ORIGINAL("input")
-    , ORIGINAL_METAVAR("ORIGINAL")
+    , ORIGINAL_METAVAR("ORIGINAL_PATH")
     , BACKUP("output")
     , BACKUP_METAVAR("BACKUP_DESTINATION")
     , NAME("name")
@@ -15,6 +15,7 @@ public enum ProgramParameters {
     , SHALLOW("shallow")
     , LIST_BACKUPS("list_backups")
     , SYNCHRONIZE("synchronize")
+    , KEEP_ALL("keep_all")
     ;
 
     private final String value;

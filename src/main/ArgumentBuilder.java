@@ -72,12 +72,18 @@ class ArgumentBuilder {
                         "- otherwise the backup will be named like the " + ORIGINAL_METAVAR);
 
         // options
+        mParser.addArgument("-ka", "--" + KEEP_ALL)
+                .action(Arguments.storeTrue())
+                .nargs("?")
+                .setDefault(false)
+                .help("this option can be specified to tell the utility to keep all files and directories " +
+                        "that were ever created in the " + ORIGINAL_METAVAR + " backed up forever in the " + BACKUP_METAVAR + " .");
         mParser.addArgument("-s", "--" + SYNCHRONIZE)
                 .action(Arguments.storeTrue())
                 .nargs("?")
                 .setDefault(false)
                 .help("use this option to synchronize all scheduled backups. If you add --" + NAME + " " + NAME_METAVAR +
-                        " ,only the specified backup will be synchronized.");
+                        ", only the specified backup will be synchronized.");
         mParser.addArgument("-sh", "--" + SHALLOW)
                 .action(Arguments.storeTrue())
                 .nargs("?")

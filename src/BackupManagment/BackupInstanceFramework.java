@@ -25,6 +25,7 @@ public class BackupInstanceFramework {
     private boolean mList;
     private boolean mShallow;
     private boolean mSync;
+    private boolean mKeepAll;
     private String mName;
 
     public BackupInstanceFramework(Namespace args) {
@@ -52,6 +53,7 @@ public class BackupInstanceFramework {
         mList = args.getBoolean("list_backups");
         mName = args.getString(NAME.toString());
         mSync = args.getBoolean(SYNCHRONIZE.toString());
+        mKeepAll = args.getBoolean(KEEP_ALL.toString());
     }
 
     private void parseLocations(Namespace args) {
@@ -129,6 +131,10 @@ public class BackupInstanceFramework {
 
     public boolean wantsShallow() {
         return mShallow;
+    }
+
+    public boolean wantsKeepAll() {
+        return mKeepAll;
     }
 
     public boolean wantsSynchronization() {

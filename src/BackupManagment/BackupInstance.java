@@ -19,6 +19,7 @@ class BackupInstance implements java.io.Serializable  {
     private String mDirOriginal;
     private String mDirBackup;
     private boolean mShallow;
+    private boolean mKeepAll;
     private Map<String,Long> mBackupIndex;
 
     BackupInstance(BackupInstanceFramework framework) {
@@ -26,6 +27,7 @@ class BackupInstance implements java.io.Serializable  {
         mDirOriginal = framework.getDirOriginal().toString();
         mDirBackup = framework.getDirBackup().toString();
         mShallow = framework.wantsShallow();
+        mKeepAll = framework.wantsKeepAll();
         mBackupIndex = new HashMap<>();
         synchronize();
     }
@@ -39,7 +41,9 @@ class BackupInstance implements java.io.Serializable  {
         }
         try {
             Files.walkFileTree(getDirOriginal(), new BackupFileVisitor(this));
-            removeDeleted();
+            if (!mKeepAll) {
+                removeDeleted();
+            }
             System.out.println(mName + ": Synchronization OK.");
         } catch (IOException exp) {
             System.err.println(mName + ": Synchronization FAILED.");

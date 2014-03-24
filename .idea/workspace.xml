@@ -6,15 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="Hunted down a few bugs and made a few adjustments.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" />
+    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ArgumentBuilder.java" afterPath="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" afterPath="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/enums/ProgramPaths.java" afterPath="$PROJECT_DIR$/src/enums/ProgramPaths.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/enums/ProgramParameters.java" afterPath="$PROJECT_DIR$/src/enums/ProgramParameters.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SBSJ.iws" />
@@ -71,7 +67,7 @@
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" line="42" class="BackupManagment.BackupInstance" package="BackupManagment">
+      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" line="46" class="BackupManagment.BackupInstance" package="BackupManagment">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -86,7 +82,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" line="40" class="BackupManagment.BackupInstance" package="BackupManagment">
+      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" line="42" class="BackupManagment.BackupInstance" package="BackupManagment">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -133,14 +129,14 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/BackupManagment/FileVisitor.java" />
         <option value="$PROJECT_DIR$/src/enums/ProgramPaths.java" />
-        <option value="$PROJECT_DIR$/src/enums/ProgramParameters.java" />
-        <option value="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" />
+        <option value="$PROJECT_DIR$/src/enums/ProgramParameters.java" />
+        <option value="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
       </list>
     </option>
   </component>
@@ -323,7 +319,7 @@
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="SearchEverywhereHistory" value="" />
   </component>
-  <component name="RunManager" selected="Application.Sync">
+  <component name="RunManager" selected="Application.Create">
     <configuration default="false" name="Create" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
@@ -593,7 +589,11 @@
       <created>1395591583480</created>
       <updated>1395591583480</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Hunted down a few bugs and made a few adjustments.">
+      <created>1395680398725</created>
+      <updated>1395680398725</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -611,14 +611,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32230523" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14217253" sideWeight="0.50053364" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32657418" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32657418" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14749734" sideWeight="0.4994664" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32230523" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14749734" sideWeight="0.4994664" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32230523" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3292683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1060" y="100" width="760" height="850" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -702,7 +702,6 @@
             <element signature="imports" expanded="true" />
             <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
-            <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -742,7 +741,6 @@
             <element signature="imports" expanded="true" />
             <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
-            <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -768,7 +766,6 @@
             <element signature="imports" expanded="true" />
             <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
-            <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -801,7 +798,6 @@
             <element signature="imports" expanded="true" />
             <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
-            <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -809,7 +805,9 @@
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="70" column="16" selection-start="2404" selection-end="2404" vertical-scroll-proportion="0.0" vertical-offset="1190" max-vertical-offset="1547">
-          <folding />
+          <folding>
+            <element signature="method#parseLocations#0;class#BackupInstanceFramework#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -834,7 +832,6 @@
             <element signature="imports" expanded="true" />
             <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
-            <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -842,7 +839,9 @@
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="70" column="16" selection-start="2404" selection-end="2404" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1700">
-          <folding />
+          <folding>
+            <element signature="method#parseLocations#0;class#BackupInstanceFramework#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -860,7 +859,6 @@
             <element signature="imports" expanded="true" />
             <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
-            <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -868,7 +866,9 @@
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="63" column="76" selection-start="2298" selection-end="2298" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1700">
-          <folding />
+          <folding>
+            <element signature="method#parseLocations#0;class#BackupInstanceFramework#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -889,7 +889,9 @@
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="75" selection-start="1542" selection-end="1542" vertical-scroll-proportion="0.0" vertical-offset="568" max-vertical-offset="1479">
-          <folding />
+          <folding>
+            <element signature="method#parseLocations#0;class#BackupInstanceFramework#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -910,7 +912,9 @@
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="16" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="442">
-          <folding />
+          <folding>
+            <element signature="method#parseLocations#0;class#BackupInstanceFramework#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -931,7 +935,9 @@
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="40" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="442">
-          <folding />
+          <folding>
+            <element signature="method#parseLocations#0;class#BackupInstanceFramework#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1001,20 +1007,6 @@
         <state line="1" column="9" selection-start="15" selection-end="15" vertical-scroll-proportion="0.027914613" vertical-offset="0" max-vertical-offset="609" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ArgumentBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="60" selection-start="1964" selection-end="1964" vertical-scroll-proportion="0.97208536" vertical-offset="258" max-vertical-offset="1581">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/ProgramParameters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="30" selection-start="397" selection-end="397" vertical-scroll-proportion="0.44663382" vertical-offset="0" max-vertical-offset="609">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/SBSJ_jar.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="911" />
@@ -1023,20 +1015,6 @@
     <entry file="file://$PROJECT_DIR$/src/enums/ProgramPaths.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="17" selection-start="116" selection-end="116" vertical-scroll-proportion="0.13062568" vertical-offset="0" max-vertical-offset="911">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="0" selection-start="4024" selection-end="4024" vertical-scroll-proportion="0.0" vertical-offset="1426" max-vertical-offset="2346">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="83" selection-start="250" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1173">
           <folding />
         </state>
       </provider>
@@ -1055,22 +1033,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
+    <entry file="file://$PROJECT_DIR$/src/enums/ProgramParameters.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="71" selection-start="249" selection-end="313" vertical-scroll-proportion="0.16859505" vertical-offset="0" max-vertical-offset="2584">
+        <state line="9" column="37" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="9" selection-start="2168" selection-end="2168" vertical-scroll-proportion="1.077686" vertical-offset="249" max-vertical-offset="1530">
+        <state line="127" column="0" selection-start="4753" selection-end="4753" vertical-scroll-proportion="2.674877" vertical-offset="122" max-vertical-offset="2108">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
-            <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="39" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.72577995" vertical-offset="0" max-vertical-offset="2652">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="23" selection-start="4762" selection-end="4762" vertical-scroll-proportion="0.58128077" vertical-offset="870" max-vertical-offset="1547">
+          <folding>
+            <element signature="method#parseLocations#0;class#BackupInstanceFramework#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ArgumentBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="105" selection-start="3339" selection-end="3339" vertical-scroll-proportion="0.46962234" vertical-offset="972" max-vertical-offset="1683">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="83" selection-start="250" selection-end="308" vertical-scroll-proportion="0.13957307" vertical-offset="0" max-vertical-offset="1173">
+          <folding />
         </state>
       </provider>
     </entry>
