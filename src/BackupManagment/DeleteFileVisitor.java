@@ -9,6 +9,13 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
 /**
+ * Implementation of the <code>{@link java.nio.file.FileVisitor FileVisitor}</code> interface.
+ * Takes care of removing the files that were deleted in the original directory and are therefore no longer needed.
+ * <br/>
+ * This delete functionality is deliberately seperated from
+ * the <code>{@link BackupManagment.BackupFileVisitor BackupFileVisitor}</code> in order to allow for easy
+ * implementation of the case where the user wishes to keep all the files ever created in the original directory.
+ *
  * <br/>
  * Created by Martin Sicho on 22.3.14.
  */
@@ -33,7 +40,7 @@ class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
                 && mBackupInstance.isIndexed(mBackupInstance.getOriginalDestination(file))
                 ) {
             Files.deleteIfExists(file);
-            mBackupInstance.removeBackupFromIndex(file);
+            mBackupInstance.removeBackupFromIndex(mBackupInstance.getOriginalDestination(file));
         }
         return CONTINUE;
     }
@@ -53,7 +60,7 @@ class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
                     && mBackupInstance.isIndexed(mBackupInstance.getOriginalDestination(dir))
                     ) {
                 Files.deleteIfExists(dir);
-                mBackupInstance.removeBackupFromIndex(dir);
+                mBackupInstance.removeBackupFromIndex(mBackupInstance.getOriginalDestination(dir));
             }
         } catch (DirectoryNotEmptyException exp) {
             System.out.println(exp.getMessage());

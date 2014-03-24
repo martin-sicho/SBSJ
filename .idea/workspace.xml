@@ -6,8 +6,15 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="Implemented the synchronization option + a few tweaks here and there.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/SBSJ_jar.xml" />
+    <list default="true" id="6285b430-43ae-4e4a-a716-8cc4cb998ef0" name="Default" comment="Hunted down a few bugs and made a few adjustments.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" afterPath="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" afterPath="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/enums/ProgramPaths.java" afterPath="$PROJECT_DIR$/src/enums/ProgramPaths.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SBSJ.iws" />
@@ -64,7 +71,22 @@
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" line="91" class="BackupManagment.BackupInstanceFramework" package="BackupManagment">
+      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" line="42" class="BackupManagment.BackupInstance" package="BackupManagment">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" line="40" class="BackupManagment.BackupInstance" package="BackupManagment">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -111,14 +133,14 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/BackupManagment/FileVisitor.java" />
         <option value="$PROJECT_DIR$/src/enums/ProgramPaths.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
-        <option value="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" />
         <option value="$PROJECT_DIR$/src/enums/ProgramParameters.java" />
         <option value="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
+        <option value="$PROJECT_DIR$/src/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstance.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java" />
         <option value="$PROJECT_DIR$/src/BackupManagment/BackupManager.java" />
-        <option value="$PROJECT_DIR$/src/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java" />
+        <option value="$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java" />
       </list>
     </option>
   </component>
@@ -173,6 +195,21 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="SBSJ">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -261,21 +298,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="SBSJ">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -301,12 +323,12 @@
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="SearchEverywhereHistory" value="" />
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
+  <component name="RunManager" selected="Application.Sync">
+    <configuration default="false" name="Create" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-s -n MOJE" />
+      <option name="PROGRAM_PARAMETERS" value="D:/temp/test_dir D:/temp/zaloha -n MOJE" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -449,13 +471,37 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <list size="2">
+    <configuration default="false" name="Sync" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="-s" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SBSJ" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.Show Help" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Sync" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Create" />
     </list>
     <recent_temporary>
       <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Create" />
       </list>
     </recent_temporary>
   </component>
@@ -543,7 +589,11 @@
       <created>1395591422112</created>
       <updated>1395591422112</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Added a created artifact for the output jar file.">
+      <created>1395591583480</created>
+      <updated>1395591583480</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -561,19 +611,19 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32230523" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14217253" sideWeight="0.50053364" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32657418" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32657418" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14749734" sideWeight="0.4994664" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14749734" sideWeight="0.4994664" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32230523" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3292683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1060" y="100" width="760" height="850" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -587,19 +637,19 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2383592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -629,7 +679,9 @@
     <MESSAGE value="A few tweaks here and there. Improved the DeleteFileVisitor - it doesn't care about non-index files and leaves them in the backup directory." />
     <MESSAGE value="Added META-INF." />
     <MESSAGE value="Implemented the synchronization option + a few tweaks here and there." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented the synchronization option + a few tweaks here and there." />
+    <MESSAGE value="Added a created artifact for the output jar file." />
+    <MESSAGE value="Hunted down a few bugs and made a few adjustments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Hunted down a few bugs and made a few adjustments." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -647,6 +699,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="0" selection-start="1177" selection-end="1177" vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="1802">
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
             <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
@@ -685,6 +739,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="32" selection-start="631" selection-end="631" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="1615">
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
             <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
@@ -709,6 +765,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="32" selection-start="631" selection-end="631" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="782">
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
             <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
@@ -740,6 +798,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="73" selection-start="1290" selection-end="1290" vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="952">
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
             <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
@@ -771,6 +831,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="73" selection-start="1290" selection-end="1290" vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="952">
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
             <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
@@ -795,6 +857,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="255">
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
             <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
             <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
           </folding>
@@ -905,11 +969,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="73" selection-start="507" selection-end="507" vertical-scroll-proportion="0.19836639" vertical-offset="0" max-vertical-offset="857" />
-      </provider>
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="73" selection-start="507" selection-end="507" vertical-scroll-proportion="0.19836639" vertical-offset="0" max-vertical-offset="857" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -927,73 +991,19 @@
         <state line="112" column="0" selection-start="5012" selection-end="5012" vertical-scroll-proportion="3.2900763" vertical-offset="163" max-vertical-offset="1989" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/ProgramPaths.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="17" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="11" selection-start="979" selection-end="979" vertical-scroll-proportion="0.6644951" vertical-offset="0" max-vertical-offset="1071">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1383" selection-end="1383" vertical-scroll-proportion="1.0244299" vertical-offset="0" max-vertical-offset="2584">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="609">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="609" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="9" selection-start="15" selection-end="15" vertical-scroll-proportion="0.027914613" vertical-offset="0" max-vertical-offset="609">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="20" selection-start="4015" selection-end="4015" vertical-scroll-proportion="0.0" vertical-offset="1575" max-vertical-offset="2108">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="5" selection-start="2273" selection-end="2273" vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="1241">
-          <folding>
-            <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
-            <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="1863" selection-end="1863" vertical-scroll-proportion="0.0" vertical-offset="640" max-vertical-offset="1105">
-          <folding />
-        </state>
+        <state line="1" column="9" selection-start="15" selection-end="15" vertical-scroll-proportion="0.027914613" vertical-offset="0" max-vertical-offset="609" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/ArgumentBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="55" column="60" selection-start="1964" selection-end="1964" vertical-scroll-proportion="0.97208536" vertical-offset="258" max-vertical-offset="1581">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="67" selection-start="727" selection-end="727" vertical-scroll-proportion="0.41379312" vertical-offset="139" max-vertical-offset="748">
           <folding />
         </state>
       </provider>
@@ -1007,8 +1017,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/SBSJ_jar.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="911">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="911" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/enums/ProgramPaths.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="17" selection-start="116" selection-end="116" vertical-scroll-proportion="0.13062568" vertical-offset="0" max-vertical-offset="911">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstanceFramework.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="106" column="0" selection-start="4024" selection-end="4024" vertical-scroll-proportion="0.0" vertical-offset="1426" max-vertical-offset="2346">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupFileVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="83" selection-start="250" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1173">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="12" selection-start="841" selection-end="841" vertical-scroll-proportion="0.5785124" vertical-offset="143" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/DeleteFileVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="51" selection-start="1760" selection-end="1760" vertical-scroll-proportion="1.0115702" vertical-offset="0" max-vertical-offset="1190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="71" selection-start="249" selection-end="313" vertical-scroll-proportion="0.16859505" vertical-offset="0" max-vertical-offset="2584">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackupManagment/BackupManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="9" selection-start="2168" selection-end="2168" vertical-scroll-proportion="1.077686" vertical-offset="249" max-vertical-offset="1530">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#serializeBackup#0;class#BackupManager#0" expanded="false" />
+            <element signature="method#serializeBackupList#0;class#BackupManager#0" expanded="false" />
+            <element signature="method#deserializeBackupList#0;class#BackupManager#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

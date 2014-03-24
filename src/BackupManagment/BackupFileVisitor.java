@@ -9,6 +9,10 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 
 /**
+ * Implementation of the <code>{@link java.nio.file.FileVisitor FileVisitor}</code> interface.
+ * Takes care of copying and modifying the files in the backup directory according to
+ * their state in the original directory.
+ *
  * <br/>
  * Created by Martin Sicho on 22.3.14.
  */

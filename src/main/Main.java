@@ -32,7 +32,7 @@ public class Main {
                 // TODO: implement the view
             }
         } else {
-            System.out.println("Run the utility with -h or --help option to get usage details.");
+            System.out.println("Run the utility with -h or --help option to toString usage details.");
         }
     }
 }

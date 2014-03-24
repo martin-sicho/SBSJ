@@ -79,12 +79,12 @@ class BackupInstance implements java.io.Serializable  {
         }
     }
 
-    void addBackupToIndex(Path input_path, FileTime last_modified) {
-        mBackupIndex.put(input_path.toString(), last_modified.toMillis());
+    void addBackupToIndex(Path original_path, FileTime last_modified) {
+        mBackupIndex.put(original_path.toString(), last_modified.toMillis());
     }
 
-    void removeBackupFromIndex(Path input_path) {
-        mBackupIndex.remove(input_path.toString());
+    void removeBackupFromIndex(Path original_path) {
+        mBackupIndex.remove(original_path.toString());
     }
 
     boolean isIndexed(Path path) {

@@ -4,6 +4,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import static enums.ProgramParameters.*;
@@ -54,18 +55,32 @@ public class BackupInstanceFramework {
     }
 
     private void parseLocations(Namespace args) {
-        // test if the original path exists
+        // load the original path and test if the original path is valid and exists
         try {
             mDirOriginal = Paths.get(args.getString(ORIGINAL.toString())).toRealPath().normalize();
+        } catch (InvalidPathException exp) {
+            System.out.println("The specified "
+                    + ORIGINAL_METAVAR + " path: "
+                    + args.getString(ORIGINAL.toString()) + " is invalid.");
+            System.exit(-1);
         } catch (IOException exp) {
             System.out.println("The specified "
                     + ORIGINAL_METAVAR + " path: "
-                    + args.getString(ORIGINAL.toString()) + " doesn't exist");
+                    + args.getString(ORIGINAL.toString()) + " doesn't exist.");
+            System.exit(-1);
+        }
+
+        // load the backup path and test if it is valid
+        try {
+            mDirBackup = Paths.get(args.getString(BACKUP.toString())).toAbsolutePath().normalize();
+        } catch (InvalidPathException exp) {
+            System.out.println("The specified "
+                    + BACKUP_METAVAR + " path: "
+                    + args.getString(BACKUP.toString()) + " is invalid.");
             System.exit(-1);
         }
 
         // test paths for equality
-        mDirBackup = Paths.get(args.getString(BACKUP.toString())).toAbsolutePath().normalize();
         if (mDirBackup.equals(mDirOriginal)) {
             System.out.println("The " + ORIGINAL_METAVAR
                     + " and " + BACKUP_METAVAR + " paths are equal. "

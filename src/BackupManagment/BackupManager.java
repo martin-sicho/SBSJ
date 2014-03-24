@@ -22,7 +22,7 @@ public class BackupManager {
     private Map<String,BackupInstance> mBackupList;
 
     public BackupManager() {
-        Path backup_dir = Paths.get(BACKUPS_DIR.get());
+        Path backup_dir = Paths.get(BACKUPS_DIR.toString());
         if (Files.notExists(backup_dir)) {
             try {
                 Files.createDirectories(backup_dir);
@@ -40,16 +40,18 @@ public class BackupManager {
             Date timestamp = new Date();
             framework.setName(framework.getDirOriginal().getFileName().toString() + "_" + mDateFormatter.format(timestamp));
             mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
+            serializeBackup(framework.getBackupName());
+            System.out.println("Backup " + framework.getBackupName() + " was created successfully.");
         }
         else if (backupExists(framework.getBackupName())) {
             System.out.println("Backup " + framework.getBackupName() + " already exists. It will only be synchronized.");
             mBackupList.get(framework.getBackupName()).synchronize();
+            serializeBackup(framework.getBackupName());
         }
         else {
             mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
+            serializeBackup(framework.getBackupName());
         }
-
-        serializeBackupList();
     }
 
     public boolean backupExists(String name) {
@@ -60,18 +62,35 @@ public class BackupManager {
         for (String key : mBackupList.keySet()) {
             mBackupList.get(key).synchronize();
         }
+        serializeBackupList();
     }
 
     public void synchronize(String key) {
-        mBackupList.get(key).synchronize();
+        if (backupExists(key)) {
+            mBackupList.get(key).synchronize();
+            serializeBackup(key);
+        } else {
+            System.out.println("Synchronization canceled: Backup " + key + " not found.");
+        }
     }
 
     // internal private methods
 
+    private void serializeBackup(String key) {
+        try (
+                FileOutputStream fileOut = new FileOutputStream(BACKUPS_DIR.toString() + key);
+                ObjectOutputStream out = new ObjectOutputStream(fileOut)
+        ) {
+            out.writeObject(mBackupList.get(key));
+        } catch (IOException exp) {
+            System.err.format("The backup (name: %s) could not be saved: %n%s", key, exp.getLocalizedMessage());
+        }
+    }
+
     private void serializeBackupList() {
         for (String key : mBackupList.keySet()) {
             try (
-                    FileOutputStream fileOut = new FileOutputStream(BACKUPS_DIR.get() + key);
+                    FileOutputStream fileOut = new FileOutputStream(BACKUPS_DIR.toString() + key);
                     ObjectOutputStream out = new ObjectOutputStream(fileOut)
             ) {
                 out.writeObject(mBackupList.get(key));
@@ -96,10 +115,10 @@ public class BackupManager {
         };
 
         try (
-                DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(BACKUPS_DIR.get()), filter)
+                DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(BACKUPS_DIR.toString()), filter)
         ) {
             for (Path file: stream) {
-                String path = BACKUPS_DIR.get() + file.getFileName().toString();
+                String path = BACKUPS_DIR.toString() + file.getFileName().toString();
                 String key = file.getFileName().toString();
                 try (
                         FileInputStream fileIn = new FileInputStream(path);
