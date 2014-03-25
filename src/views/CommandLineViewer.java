@@ -20,21 +20,26 @@ public class CommandLineViewer implements BackupViewer {
         this.mName = null;
     }
 
+    /**
+     * This method just prints the header for the output information table.
+     */
     @Override
     public void printHeader() {
-        printLines(mWidth);
+        printLine(mWidth);
         String format_string = "%-" + mWidth / 4 + "s %-" + mWidth / 2  + "s %-" + mWidth / 4 + "s%n";
         System.out.printf(format_string, "Name", "Last Synchronized", "Shallow");
-        printLines(mWidth);
+        printLine(mWidth);
     }
 
-    void printLines(int width) {
-        for (int i = 0; i < width; i++) {
-            System.out.print("-");
-        }
-        System.out.println();
-    }
-
+    /**
+     * This mathod takes information about a backup from a
+     * {@link backupmanagment.BackupManager BackupManager} instance.
+     * The information is then listed in the form of a table.
+     *
+     * @param name backup name
+     * @param date date of last synchronization
+     * @param shallow whether the backup was scheduled as shallow
+     */
     @Override
     public void listBackup(String name, Date date, boolean shallow) {
         String format_string = "%-" + mWidth / 4 + "s %-" + mWidth / 2  + "s %-" + mWidth / 4 + "s%n";
@@ -53,5 +58,14 @@ public class CommandLineViewer implements BackupViewer {
     @Override
     public void setName(String name) {
         this.mName = name;
+    }
+
+    // internal private methods
+
+    private void printLine(int width) {
+        for (int i = 0; i < width; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
     }
 }
