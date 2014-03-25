@@ -1,4 +1,4 @@
-package BackupManagment;
+package backupmanagment;
 
 import net.sourceforge.argparse4j.inf.Namespace;
 
@@ -11,9 +11,9 @@ import static enums.ProgramParameters.*;
 
 /**
  * This class holds everything the
- * <code>{@link BackupManagment.BackupInstance BackupInstance}</code> constructor
+ * <code>{@link backupmanagment.BackupInstance BackupInstance}</code> constructor
  * needs to create a new instance for the
- * <code>{@link BackupManagment.BackupManager BackupManager}</code>.
+ * <code>{@link backupmanagment.BackupManager BackupManager}</code>.
  *
  * <br/>
  * Created by Martin Sicho on 18.3.14.
@@ -29,11 +29,11 @@ public class BackupInstanceFramework {
     private String mName;
 
     /**
-     * The {@link BackupManagment.BackupInstanceFramework} constructor.
+     * The {@link backupmanagment.BackupInstanceFramework} constructor.
      * It takes an instance of the {@link net.sourceforge.argparse4j.inf.Namespace}
      * class implemented by the {@link net.sourceforge.argparse4j argparse4j} library
-     * and uses it to create the {@link BackupManagment.BackupInstanceFramework} for the creation
-     * of a {@link BackupManagment.BackupInstance} object.
+     * and uses it to create the {@link backupmanagment.BackupInstanceFramework} for the creation
+     * of a {@link backupmanagment.BackupInstance} object.
      *
      * @param args an instance of the {@link net.sourceforge.argparse4j.inf.Namespace} class
      *             that represents the command line arguments passed by the user

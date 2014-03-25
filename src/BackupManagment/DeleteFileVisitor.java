@@ -1,4 +1,4 @@
-package BackupManagment;
+package backupmanagment;
 
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
@@ -13,7 +13,7 @@ import java.nio.file.attribute.BasicFileAttributes;
  * Takes care of removing the files that were deleted in the original directory and are therefore no longer needed.
  * <br/>
  * This delete functionality is deliberately seperated from
- * the <code>{@link BackupManagment.BackupFileVisitor BackupFileVisitor}</code> in order to allow for easy
+ * the <code>{@link backupmanagment.BackupFileVisitor BackupFileVisitor}</code> in order to allow for easy
  * implementation of the case where the user wishes to keep all the files ever created in the original directory.
  *
  * <br/>
@@ -23,11 +23,11 @@ class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
     private BackupInstance mBackupInstance;
 
     /**
-     * The {@link BackupManagment.DeleteFileVisitor DeleteFileVisitor} constructor.
-     * It takes an instance of {@link BackupManagment.BackupInstance BackupInstance}
+     * The {@link backupmanagment.DeleteFileVisitor DeleteFileVisitor} constructor.
+     * It takes an instance of {@link backupmanagment.BackupInstance BackupInstance}
      * to perform the delete actions.
      *
-     * @param instance instance of {@link BackupManagment.BackupInstance BackupInstance}
+     * @param instance instance of {@link backupmanagment.BackupInstance BackupInstance}
      * to perform the backup actions
      */
     DeleteFileVisitor(BackupInstance instance) {

@@ -1,4 +1,4 @@
-package BackupManagment;
+package backupmanagment;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -21,11 +21,11 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
     private FileTime mDirLastModified;
 
     /**
-     * The {@link BackupManagment.BackupFileVisitor BackupFileVisitor} constructor.
-     * It takes an instance of {@link BackupManagment.BackupInstance BackupInstance}
+     * The {@link backupmanagment.BackupFileVisitor BackupFileVisitor} constructor.
+     * It takes an instance of {@link backupmanagment.BackupInstance BackupInstance}
      * to perform the backup actions.
      *
-     * @param instance instance of {@link BackupManagment.BackupInstance BackupInstance}
+     * @param instance instance of {@link backupmanagment.BackupInstance BackupInstance}
      * to perform the backup actions
      */
     BackupFileVisitor(BackupInstance instance) {

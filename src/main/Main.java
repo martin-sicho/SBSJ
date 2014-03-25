@@ -1,6 +1,7 @@
 package main;
 
-import BackupManagment.*;
+import backupmanagment.*;
+import views.CommandLineViewer;
 
 /**
  * This is the main class.
@@ -19,6 +20,7 @@ public class Main {
         if (args.length != 0) {
             BackupInstanceFramework framework = new BackupInstanceFramework(ArgumentBuilder.build(args));
             BackupManager manager = new BackupManager();
+            CommandLineViewer viewer = new CommandLineViewer();
 
             if (framework.wantsCreateNewBackup()) {
                 manager.registerNewBackup(framework);
@@ -33,11 +35,12 @@ public class Main {
             }
 
             if (framework.wantsList()) {
-                // call the view and list all scheduled backups
-                // TODO: implement the view
+                viewer.setName(framework.getBackupName());
+                viewer.printHeader();
+                manager.updateView(viewer);
             }
         } else {
-            System.out.println("Run the utility with -h or --help option to toString usage details.");
+            System.out.println("Run the utility with -h or --help option to get usage details.");
         }
     }
 }

@@ -1,14 +1,15 @@
-package BackupManagment;
+package backupmanagment;
 
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.FileTime;
+import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
 
 /**
  * Holds every information about a scheduled backup.
- * The <code>{@link BackupManagment.BackupManager BackupManager}</code> class
+ * The <code>{@link backupmanagment.BackupManager BackupManager}</code> class
  * manages, creates and serializes instances of this class.
  *
  * <br/>
@@ -22,14 +23,16 @@ class BackupInstance implements java.io.Serializable  {
     private boolean mKeepAll;
     private Map<String,Long> mBackupIndex;
 
+    private Date mLastSynchronization;
+
     /**
      * The class constructor. Takes one instance of
-     * <code>{@link BackupManagment.BackupInstanceFramework BackupInstanceFramework}</code>
+     * <code>{@link backupmanagment.BackupInstanceFramework BackupInstanceFramework}</code>
      * that serves as a template for the serializable
-     * <code>{@link BackupManagment.BackupInstance BackupInstance}</code> object.
+     * <code>{@link backupmanagment.BackupInstance BackupInstance}</code> object.
      *
      * @param framework instance of
-     * <code>{@link BackupManagment.BackupInstanceFramework BackupInstanceFramework}</code>
+     * <code>{@link backupmanagment.BackupInstanceFramework BackupInstanceFramework}</code>
      */
     BackupInstance(BackupInstanceFramework framework) {
         mName = framework.getBackupName();
@@ -38,13 +41,14 @@ class BackupInstance implements java.io.Serializable  {
         mShallow = framework.wantsShallow();
         mKeepAll = framework.wantsKeepAll();
         mBackupIndex = new HashMap<>();
+        mLastSynchronization = new Date();
         synchronize();
     }
 
     /**
      * This method is used to synchronize the backup directory with the original.
      * It controls the flow according to rules set by
-     * {@link BackupManagment.BackupInstanceFramework BackupInstanceFramework}
+     * {@link backupmanagment.BackupInstanceFramework BackupInstanceFramework}
      * instance that was passed to the class <code>{@link #BackupInstance(BackupInstanceFramework) constructor}</code>.
      */
     void synchronize() {
@@ -60,6 +64,7 @@ class BackupInstance implements java.io.Serializable  {
                 removeDeleted();
             }
             System.out.println(mName + ": Synchronization OK.");
+            mLastSynchronization = new Date();
         } catch (IOException exp) {
             System.err.println(mName + ": Synchronization FAILED.");
             System.err.println(exp.getMessage());
@@ -237,7 +242,7 @@ class BackupInstance implements java.io.Serializable  {
     }
 
     /**
-     * Set last modified time for a directory. This method is used by {@link BackupManagment.BackupFileVisitor}
+     * Set last modified time for a directory. This method is used by {@link backupmanagment.BackupFileVisitor}
      * to set correct last modified times for directories in the backup location.
      * <br/>
      * NOTE: this feature is pretty much useless at the moment because
@@ -259,6 +264,12 @@ class BackupInstance implements java.io.Serializable  {
 
     private void removeDeleted() throws IOException{
         Files.walkFileTree(getDirBackup(), new DeleteFileVisitor(this));
+    }
+
+    // getters
+
+    public Date getLastSyncDate() {
+        return mLastSynchronization;
     }
 
 }

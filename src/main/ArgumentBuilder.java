@@ -94,6 +94,7 @@ class ArgumentBuilder {
                 .action(Arguments.storeTrue())
                 .nargs("?")
                 .setDefault(false)
-                .help("use this option to list all scheduled backups");
+                .help("use this option to list all scheduled backups. You can use the --" + NAME + " argument " +
+                        "to select only a single backup.");
     }
 }

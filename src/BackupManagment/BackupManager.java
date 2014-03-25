@@ -1,17 +1,18 @@
-package BackupManagment;
+package backupmanagment;
+
+import views.BackupViewer;
 
 import java.io.*;
 import java.nio.file.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
+
 import static enums.ProgramPaths.*;
 
 /**
  * Takes care of loading instances of
- * <code>{@link BackupManagment.BackupInstance BackupInstance}</code>
+ * <code>{@link backupmanagment.BackupInstance BackupInstance}</code>
  * and registers new ones.
  *
  * <br/>
@@ -22,7 +23,7 @@ public class BackupManager {
     private Map<String,BackupInstance> mBackupList;
 
     /**
-     * The {@link BackupManagment.BackupManager} constructor.
+     * The {@link backupmanagment.BackupManager} constructor.
      * It creates the directory into which the scheduled backups are serialized
      * or it loads backups that are already scheduled.
      *
@@ -44,10 +45,10 @@ public class BackupManager {
 
     /**
      * This method is used to schedule a new backup
-     * according to rules specified by the {@link BackupManagment.BackupInstanceFramework}
+     * according to rules specified by the {@link backupmanagment.BackupInstanceFramework}
      * and implements all the logic to be able to do so.
      *
-     * @param framework instance of {@link BackupManagment.BackupInstanceFramework}
+     * @param framework instance of {@link backupmanagment.BackupInstanceFramework}
      */
     public void registerNewBackup(BackupInstanceFramework framework) {
         if (framework.getBackupName().equals("") && !backupExists(framework.getBackupName())) {
@@ -99,6 +100,22 @@ public class BackupManager {
             serializeBackup(name);
         } else {
             System.out.println("Synchronization canceled: Backup " + name + " not found.");
+        }
+    }
+
+    public void updateView(BackupViewer view) {
+        if (view.getName() == null || view.getName().equals("")) {
+            List<String> keys = new ArrayList<>();
+            for (String key : mBackupList.keySet()) {
+                keys.add(key);
+            }
+            Collections.sort(keys);
+            for (String item : keys) {
+                view.listBackup(item, mBackupList.get(item).getLastSyncDate(), mBackupList.get(item).isShallow());
+            }
+        } else {
+            String name = view.getName();
+            view.listBackup(name, mBackupList.get(name).getLastSyncDate(), mBackupList.get(name).isShallow());
         }
     }
 
