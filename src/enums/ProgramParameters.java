@@ -1,6 +1,10 @@
 package enums;
 
 /**
+ * This enum class holds names and identifiers (METAVARs) for all command line parameters.
+ * Generally all command line related constants that appear or can appear on multiple
+ * places in the code are stored here.
+ *
  * <br/>
  * Created by Martin Sicho on 21.3.14.
  */

@@ -1,6 +1,8 @@
 package enums;
 
 /**
+ * This enum class stores any constant paths related to the program functionality.
+ *
  * <br/>
  * Created by Martin Sicho on 21.3.14.
  */

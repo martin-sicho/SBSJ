@@ -10,6 +10,11 @@ import BackupManagment.*;
  */
 public class Main {
 
+    /**
+     * This is the main method.
+     * @param args command line arguments
+     *             as a <code>{@link java.lang.String String}</code> array.
+     */
     public static void main(String[] args) {
         if (args.length != 0) {
             BackupInstanceFramework framework = new BackupInstanceFramework(ArgumentBuilder.build(args));

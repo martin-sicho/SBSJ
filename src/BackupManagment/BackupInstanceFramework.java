@@ -28,6 +28,16 @@ public class BackupInstanceFramework {
     private boolean mKeepAll;
     private String mName;
 
+    /**
+     * The {@link BackupManagment.BackupInstanceFramework} constructor.
+     * It takes an instance of the {@link net.sourceforge.argparse4j.inf.Namespace}
+     * class implemented by the {@link net.sourceforge.argparse4j argparse4j} library
+     * and uses it to create the {@link BackupManagment.BackupInstanceFramework} for the creation
+     * of a {@link BackupManagment.BackupInstance} object.
+     *
+     * @param args an instance of the {@link net.sourceforge.argparse4j.inf.Namespace} class
+     *             that represents the command line arguments passed by the user
+     */
     public BackupInstanceFramework(Namespace args) {
         //System.out.println(args);
         if (args == null) System.exit(0);
@@ -55,6 +65,8 @@ public class BackupInstanceFramework {
         mSync = args.getBoolean(SYNCHRONIZE.toString());
         mKeepAll = args.getBoolean(KEEP_ALL.toString());
     }
+
+    // internal private methods
 
     private void parseLocations(Namespace args) {
         // load the original path and test if the original path is valid and exists

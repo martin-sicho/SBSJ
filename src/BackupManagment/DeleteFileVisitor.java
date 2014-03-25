@@ -22,6 +22,14 @@ import java.nio.file.attribute.BasicFileAttributes;
 class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
     private BackupInstance mBackupInstance;
 
+    /**
+     * The {@link BackupManagment.DeleteFileVisitor DeleteFileVisitor} constructor.
+     * It takes an instance of {@link BackupManagment.BackupInstance BackupInstance}
+     * to perform the delete actions.
+     *
+     * @param instance instance of {@link BackupManagment.BackupInstance BackupInstance}
+     * to perform the backup actions
+     */
     DeleteFileVisitor(BackupInstance instance) {
         mBackupInstance = instance;
     }

@@ -8,9 +8,9 @@ import net.sourceforge.argparse4j.inf.Namespace;
 import static enums.ProgramParameters.*;
 
 /**
- * This class is where all the argument customization and argument parsing is happening.
- * Parsed arguments can be obtained as a Namescpace object
- * via the <code>{@link #build(String[])}  build}</code> method.
+ * This class is where all the argument definition and customization is located.
+ * The command line arguments are parsed here and return as a Namescpace object
+ * via the <code>{@link #build(String[]) build()}</code> method.
  *
  * <br/>
  * Created by Martin Sicho on 18.3.14.
@@ -21,7 +21,7 @@ class ArgumentBuilder {
             "It will look for changes in one directory and transfer them to another.";
 
     /**
-     * Private empty constructor - prevents the class from being instantiated.
+     * Empty private constructor - prevents the class from being instantiated.
      */
     private ArgumentBuilder() {
         // no action
@@ -30,7 +30,8 @@ class ArgumentBuilder {
     /**
      * Customizes and parses the command line arguments.
      *
-     * @param args command line arguments as <code>{@link java.lang.String String[]}</code>
+     * @param args command line arguments
+     *             as a <code>{@link java.lang.String String}</code> array
      * @return parsed arguments as
      * a <code>{@link net.sourceforge.argparse4j.inf.Namespace Namespace}</code> object
      */

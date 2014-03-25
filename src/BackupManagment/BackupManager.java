@@ -21,6 +21,12 @@ public class BackupManager {
     private DateFormat mDateFormatter = new SimpleDateFormat("dd_MM_yyyy-HH_mm_ss_SSS");
     private Map<String,BackupInstance> mBackupList;
 
+    /**
+     * The {@link BackupManagment.BackupManager} constructor.
+     * It creates the directory into which the scheduled backups are serialized
+     * or it loads backups that are already scheduled.
+     *
+     */
     public BackupManager() {
         Path backup_dir = Paths.get(BACKUPS_DIR.toString());
         if (Files.notExists(backup_dir)) {
@@ -29,12 +35,20 @@ public class BackupManager {
             } catch (IOException exp) {
                 System.err.println("Failed to create directory for scheduled backups:");
                 System.err.println(exp.getMessage());
+                System.exit(1);
             }
         }
         mBackupList = new HashMap<>();
         deserializeBackupList();
     }
 
+    /**
+     * This method is used to schedule a new backup
+     * according to rules specified by the {@link BackupManagment.BackupInstanceFramework}
+     * and implements all the logic to be able to do so.
+     *
+     * @param framework instance of {@link BackupManagment.BackupInstanceFramework}
+     */
     public void registerNewBackup(BackupInstanceFramework framework) {
         if (framework.getBackupName().equals("") && !backupExists(framework.getBackupName())) {
             Date timestamp = new Date();
@@ -54,10 +68,19 @@ public class BackupManager {
         }
     }
 
+    /**
+     * Check whether a backup with the specified name already exists or not.
+     *
+     * @param name name to be checked
+     * @return returns <code>true</code>, if it exists, <code>false</code> if it doesn't
+     */
     public boolean backupExists(String name) {
         return (mBackupList.containsKey(name));
     }
 
+    /**
+     * Synchronizes all scheduled backups
+     */
     public void synchronize() {
         for (String key : mBackupList.keySet()) {
             mBackupList.get(key).synchronize();
@@ -65,12 +88,17 @@ public class BackupManager {
         serializeBackupList();
     }
 
-    public void synchronize(String key) {
-        if (backupExists(key)) {
-            mBackupList.get(key).synchronize();
-            serializeBackup(key);
+    /**
+     * Synchronizes only a specified backup.
+     *
+     * @param name name of the backup to be updated
+     */
+    public void synchronize(String name) {
+        if (backupExists(name)) {
+            mBackupList.get(name).synchronize();
+            serializeBackup(name);
         } else {
-            System.out.println("Synchronization canceled: Backup " + key + " not found.");
+            System.out.println("Synchronization canceled: Backup " + name + " not found.");
         }
     }
 
