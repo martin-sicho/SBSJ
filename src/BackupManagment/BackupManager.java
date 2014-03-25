@@ -103,6 +103,12 @@ public class BackupManager {
         }
     }
 
+    /**
+     * This method is used to provide information about backups to a view
+     * that implements the {@link views.BackupViewer} interface.
+     *
+     * @param view instance of a class that implemets the {@link views.BackupViewer} interface.
+     */
     public void updateView(BackupViewer view) {
         if (view.getName() == null || view.getName().equals("")) {
             List<String> keys = new ArrayList<>();
