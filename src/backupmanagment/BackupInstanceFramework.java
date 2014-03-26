@@ -104,17 +104,19 @@ public class BackupInstanceFramework {
         }
 
         // test for possible infinite loop
-        Path pp = mDirBackup.relativize(mDirOriginal);
-        boolean backup_is_subpath = true;
-        for (int i = 0; i < pp.getNameCount(); i++) {
-            if (!pp.getName(i).toString().equals("..")) {
-                backup_is_subpath = false;
-                break;
+        if (mDirBackup.getRoot().equals(mDirOriginal.getRoot())) {
+            Path pp = mDirBackup.relativize(mDirOriginal);
+            boolean backup_is_subpath = true;
+            for (int i = 0; i < pp.getNameCount(); i++) {
+                if (!pp.getName(i).toString().equals("..")) {
+                    backup_is_subpath = false;
+                    break;
+                }
             }
-        }
-        if (backup_is_subpath) {
-            System.out.println(BACKUP_METAVAR + " can't be a subpath of " + ORIGINAL_METAVAR + "!!!");
-            System.exit(-1);
+            if (backup_is_subpath) {
+                System.out.println(BACKUP_METAVAR + " can't be a subpath of " + ORIGINAL_METAVAR + "!!!");
+                System.exit(-1);
+            }
         }
 
         // warn if the backup is inefective (the backup location contains the original file)

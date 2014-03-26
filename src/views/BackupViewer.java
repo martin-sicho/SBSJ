@@ -12,8 +12,7 @@ import java.util.Date;
  * Created by Martin Sicho on 25.3.14.
  */
 public interface BackupViewer {
-    void printHeader();
-    void listBackup(String name, Date date, boolean shallow);
-    String getName();
-    void setName(String name);
+    public void listBackup(String name, Date date, boolean shallow, String original, String backup);
+    public String getName();
+    public void setName(String name);
 }

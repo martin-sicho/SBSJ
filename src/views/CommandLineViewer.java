@@ -13,7 +13,7 @@ import java.util.Locale;
  */
 public class CommandLineViewer implements BackupViewer {
     private String mName;
-    private int mWidth = 80;
+    private int mWidth = 160;
     private DateFormat mDateFormatter = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.DEFAULT, new Locale("en", "GB")); 
 
     public CommandLineViewer() {
@@ -23,11 +23,11 @@ public class CommandLineViewer implements BackupViewer {
     /**
      * This method just prints the header for the output information table.
      */
-    @Override
     public void printHeader() {
         printLine(mWidth);
-        String format_string = "%-" + mWidth / 4 + "s %-" + mWidth / 2  + "s %-" + mWidth / 4 + "s%n";
-        System.out.printf(format_string, "Name", "Last Synchronized", "Shallow");
+        String format_string = "%-" + mWidth / 9 + "s %-" + mWidth / 4  + "s %-" + mWidth / 4
+                + "s %-" + mWidth / 12 + "s %-" + mWidth / 6 + "s%n";
+        System.out.printf(format_string, "Name", "Original Directory", "Backup Directory" , "Shallow", "Last Synchronized");
         printLine(mWidth);
     }
 
@@ -41,9 +41,10 @@ public class CommandLineViewer implements BackupViewer {
      * @param shallow whether the backup was scheduled as shallow
      */
     @Override
-    public void listBackup(String name, Date date, boolean shallow) {
-        String format_string = "%-" + mWidth / 4 + "s %-" + mWidth / 2  + "s %-" + mWidth / 4 + "s%n";
-        System.out.printf(format_string, name, mDateFormatter.format(date), shallow);
+    public void listBackup(String name, Date date, boolean shallow, String original, String backup) {
+        String format_string = "%-" + mWidth / 9 + "s %-" + mWidth / 4  + "s %-" + mWidth / 4 + "s %-"
+                + mWidth / 12 + "s %-" + mWidth / 6 + "s%n";
+        System.out.printf(format_string, name, original, backup, shallow, mDateFormatter.format(date));
     }
 
     // getters

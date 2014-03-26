@@ -117,11 +117,23 @@ public class BackupManager {
             }
             Collections.sort(keys);
             for (String item : keys) {
-                view.listBackup(item, mBackupList.get(item).getLastSyncDate(), mBackupList.get(item).isShallow());
+                BackupInstance backup_instance = mBackupList.get(item);
+                view.listBackup(item
+                        , backup_instance.getLastSyncDate()
+                        , backup_instance.isShallow()
+                        , backup_instance.getDirOriginal().toString()
+                        , backup_instance.getDirBackup().toString()
+                );
             }
         } else {
             String name = view.getName();
-            view.listBackup(name, mBackupList.get(name).getLastSyncDate(), mBackupList.get(name).isShallow());
+            BackupInstance backup_instance = mBackupList.get(name);
+            view.listBackup(name
+                    , backup_instance.getLastSyncDate()
+                    , backup_instance.isShallow()
+                    , backup_instance.getDirOriginal().toString()
+                    , backup_instance.getDirBackup().toString()
+            );
         }
     }
 
