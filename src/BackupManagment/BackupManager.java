@@ -158,7 +158,7 @@ public class BackupManager {
                 try {
                     return !Files.isDirectory(path);
                 } catch (Exception exp) {
-                    System.err.println(exp);
+                    System.err.println(exp.getMessage());
                     return false;
                 }
             }
