@@ -1,6 +1,7 @@
 package views;
 
 import java.text.DateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -11,13 +12,17 @@ import java.util.Locale;
  * <br/>
  * Created by Martin Sicho on 25.3.14.
  */
-public class CommandLineViewer implements BackupViewer {
+public final class CommandLineViewer implements BackupViewer {
     private String mName;
     private int mWidth = 160;
-    private DateFormat mDateFormatter = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.DEFAULT, new Locale("en", "GB")); 
+    private int[] mTableRatios = {9,4,4,12,4};
+    private int[] mDataMaxLengths = new int[5];
+    private int mCellMaxHeight = 1;
+    private DateFormat mDateFormatter = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.DEFAULT, new Locale("en", "GB"));
 
     public CommandLineViewer() {
-        this.mName = null;
+        mName = null;
+        Arrays.fill(mDataMaxLengths, 0);
     }
 
     /**
@@ -25,8 +30,9 @@ public class CommandLineViewer implements BackupViewer {
      */
     public void printHeader() {
         printLine(mWidth);
-        String format_string = "%-" + mWidth / 9 + "s %-" + mWidth / 4  + "s %-" + mWidth / 4
-                + "s %-" + mWidth / 12 + "s %-" + mWidth / 6 + "s%n";
+        String format_string = "%-" + mWidth / mTableRatios[0] + "s %-"
+                + mWidth / mTableRatios[1]  + "s %-" + mWidth / mTableRatios[2]
+                + "s %-" + mWidth / mTableRatios[3] + "s %-" + mWidth / mTableRatios[4] + "s%n";
         System.out.printf(format_string, "Name", "Original Directory", "Backup Directory" , "Shallow", "Last Synchronized");
         printLine(mWidth);
     }
@@ -41,10 +47,30 @@ public class CommandLineViewer implements BackupViewer {
      * @param shallow whether the backup was scheduled as shallow
      */
     @Override
-    public void listBackup(String name, Date date, boolean shallow, String original, String backup) {
-        String format_string = "%-" + mWidth / 9 + "s %-" + mWidth / 4  + "s %-" + mWidth / 4 + "s %-"
-                + mWidth / 12 + "s %-" + mWidth / 6 + "s%n";
-        System.out.printf(format_string, name, original, backup, shallow, mDateFormatter.format(date));
+    public void listBackup(String name, Date date, String shallow, String original, String backup) {
+        String[] data = new String[5];
+        data[0] = name;
+        data[4] = mDateFormatter.format(date);
+        data[3] = shallow;
+        data[1] = original;
+        data[2] = backup;
+
+        mDataMaxLengths[0] = name.length();
+        mDataMaxLengths[4] = mDateFormatter.format(date).length();
+        mDataMaxLengths[3] = shallow.length();
+        mDataMaxLengths[1] = original.length();
+        mDataMaxLengths[2] = backup.length();
+
+        mCellMaxHeight = computeCellMaxHeight();
+
+        for (String i : getFormattedRow(data)) {
+            System.out.print(i);
+        }
+
+//        String format_string = "%-" + mWidth / mTableRatios[0] + "s %-"
+//                + mWidth / mTableRatios[1]  + "s %-" + mWidth / mTableRatios[2] + "s %-"
+//                + mWidth / mTableRatios[3] + "s %-" + mWidth / mTableRatios[4] + "s%n";
+//        System.out.printf(format_string, name, original, backup, shallow, mDateFormatter.format(date));
     }
 
     // getters
@@ -68,5 +94,40 @@ public class CommandLineViewer implements BackupViewer {
             System.out.print("-");
         }
         System.out.println();
+    }
+
+    private int computeCellMaxHeight() {
+        int max = 0;
+        for (int i = 0; i < mDataMaxLengths.length; i++) {
+            int current = mDataMaxLengths[i] / (mWidth / mTableRatios[i]);
+            mDataMaxLengths[i] = mWidth / mTableRatios[i];
+            if (current + 1 > max) {
+                max = current + 1;
+            }
+        }
+        return max;
+    }
+
+    private String[] getFormattedRow(String[] data) {
+        String[] data_temp = data.clone();
+        String[] rows = new String[mCellMaxHeight];
+        for (int row_idx = 0; row_idx < rows.length; row_idx++) {
+            String row = "%-";
+            for (int data_idx = 0; data_idx < data.length; data_idx++) {
+                if (data[data_idx].length() > mDataMaxLengths[data_idx]) {
+                    row = row + mDataMaxLengths[data_idx] + "s %-";
+                    data_temp[data_idx] = data[data_idx].substring(0, mDataMaxLengths[data_idx]);
+                    data[data_idx] = data[data_idx].substring(mDataMaxLengths[data_idx]);
+                } else {
+                    row = row + mDataMaxLengths[data_idx] + "s %-";
+                    data_temp[data_idx] = data[data_idx];
+                    data[data_idx] = "";
+                }
+            }
+            row = row.substring(0, row.length() - ("s %-".length() - 1));
+            row = String.format(row + "%n", data_temp[0], data_temp[1], data_temp[2], data_temp[3], data_temp[4]);
+            rows[row_idx] = row;
+        }
+        return rows;
     }
 }

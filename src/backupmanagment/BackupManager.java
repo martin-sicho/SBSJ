@@ -120,7 +120,7 @@ public class BackupManager {
                 BackupInstance backup_instance = mBackupList.get(item);
                 view.listBackup(item
                         , backup_instance.getLastSyncDate()
-                        , backup_instance.isShallow()
+                        , ((Boolean) backup_instance.isShallow()).toString()
                         , backup_instance.getDirOriginal().toString()
                         , backup_instance.getDirBackup().toString()
                 );
@@ -130,7 +130,7 @@ public class BackupManager {
             BackupInstance backup_instance = mBackupList.get(name);
             view.listBackup(name
                     , backup_instance.getLastSyncDate()
-                    , backup_instance.isShallow()
+                    , ((Boolean) backup_instance.isShallow()).toString()
                     , backup_instance.getDirOriginal().toString()
                     , backup_instance.getDirBackup().toString()
             );
