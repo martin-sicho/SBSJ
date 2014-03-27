@@ -71,6 +71,12 @@ class ArgumentBuilder {
                 .setDefault("")
                 .help("use this optional argument to specify a name for your backup " +
                         "- otherwise the backup will be named like the " + ORIGINAL_METAVAR);
+        mParser.addArgument("-del", "--" + DELETE)
+                .metavar(NAME_METAVAR.toString())
+                .nargs("?")
+                .setDefault("")
+                .help("use this optional argument to stop tracking directory for changes - " +
+                        "this will entirely remove the backup from the utility!");
 
         // options
         mParser.addArgument("-ka", "--" + KEEP_ALL)

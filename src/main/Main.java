@@ -22,6 +22,10 @@ public class Main {
             BackupManager manager = new BackupManager();
             CommandLineViewer viewer = new CommandLineViewer();
 
+            if (!framework.getDeleteName().equals("")) {
+                manager.deleteBackup(framework.getDeleteName());
+            }
+
             if (framework.wantsCreateNewBackup()) {
                 manager.registerNewBackup(framework);
             }

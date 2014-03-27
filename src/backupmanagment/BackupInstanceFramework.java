@@ -27,6 +27,7 @@ public class BackupInstanceFramework {
     private boolean mSync;
     private boolean mKeepAll;
     private String mName;
+    private String mDeleteName;
 
     /**
      * The {@link backupmanagment.BackupInstanceFramework} constructor.
@@ -64,6 +65,7 @@ public class BackupInstanceFramework {
         mName = args.getString(NAME.toString());
         mSync = args.getBoolean(SYNCHRONIZE.toString());
         mKeepAll = args.getBoolean(KEEP_ALL.toString());
+        mDeleteName = args.getString(DELETE.toString());
     }
 
     // internal private methods
@@ -157,6 +159,10 @@ public class BackupInstanceFramework {
 
     public String getBackupName() {
         return mName;
+    }
+
+    public String getDeleteName() {
+        return mDeleteName;
     }
 
     // setters

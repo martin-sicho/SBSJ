@@ -66,8 +66,8 @@ public class BackupManager {
             serializeBackup(name);
         }
         else if (mFailedToLoad.contains(name)) {
-            System.out.println("Backup with the name " + name + " already exists and failed to load.");
-            System.out.println("Remove the bad file first (" + Paths.get(BACKUPS_DIR.toString(), name).toAbsolutePath()
+            System.out.println("Backup with the name " + name + " already exists and previously failed to load.");
+            System.out.println("Remove the backup first (" + Paths.get(BACKUPS_DIR.toString(), name).toAbsolutePath()
                     + ") and run the utility again to replace it: ");
         }
         else {
@@ -77,19 +77,31 @@ public class BackupManager {
     }
 
     /**
-     * Check whether a backup with the specified name already exists or not.
+     * Check whether a backup with the specified name exists in the
+     * {@link backupmanagment.BackupManager} or not.
      *
      * @param name name to be checked
      * @return returns <code>true</code>, if it exists, <code>false</code> if it doesn't
      */
     public boolean backupExists(String name) {
-        return mBackupList.containsKey(name) && !mFailedToLoad.contains(name);
+        return mBackupList.containsKey(name);
+    }
+
+    /**
+     * Check whether a backup file with the specified name exists or not.
+     *
+     * @param name name of the backup file
+     * @return @return returns <code>true</code>, if it exists, <code>false</code> if it doesn't
+     */
+    public boolean backupFileExists(String name) {
+        return Files.exists(Paths.get(BACKUPS_DIR.toString(), name));
     }
 
     /**
      * Synchronizes all scheduled backups
      */
     public void synchronize() {
+        if (mBackupList.isEmpty()) System.out.println("No backups scheduled. Nothing to synchronize...");
         for (String key : mBackupList.keySet()) {
             mBackupList.get(key).synchronize();
         }
@@ -141,6 +153,26 @@ public class BackupManager {
                     , backup_instance.getDirOriginal().toString()
                     , backup_instance.getDirBackup().toString()
             );
+        }
+    }
+
+    /**
+     * Attempts to delete a backup.
+     *
+     * @param name backup name
+     */
+    public void deleteBackup(String name) {
+        if (backupFileExists(name)) {
+            try {
+                Files.delete(Paths.get(BACKUPS_DIR.toString(), name));
+                System.out.println("Backup deleted: " + name);
+            } catch (IOException exp) {
+                System.err.println("IO Exception occured.");
+                System.err.println("FAILED to delete backup: " + name);
+            }
+            mBackupList.remove(name);
+        } else {
+            System.out.println("Backup " + name + " doesn't exist. Nothing to delete...");
         }
     }
 
@@ -197,7 +229,7 @@ public class BackupManager {
                         exp.printStackTrace();
                     }
                 } catch (IOException exp) {
-                    exp.printStackTrace();
+                    System.err.println("An IO Exception occured. Could not load following backup: " + file.getFileName());
                 }
             }
         } catch (IOException | DirectoryIteratorException exp) {

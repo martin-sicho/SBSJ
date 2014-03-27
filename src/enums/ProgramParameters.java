@@ -20,6 +20,7 @@ public enum ProgramParameters {
     , LIST_BACKUPS("list_backups")
     , SYNCHRONIZE("synchronize")
     , KEEP_ALL("keep_all")
+    , DELETE("delete")
     ;
 
     private final String value;

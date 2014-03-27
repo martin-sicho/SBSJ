@@ -14,8 +14,8 @@ import java.util.Locale;
  */
 public final class CommandLineViewer implements BackupViewer {
     private String mName;
-    private int mWidth = 160;
-    private int[] mTableRatios = {9,4,4,12,4};
+    private int mWidth = 120;
+    private int[] mTableRatios = {7,5,5,12,3};
     private int[] mDataMaxLengths = new int[5];
     private int mCellMaxHeight = 1;
     private DateFormat mDateFormatter = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.DEFAULT, new Locale("en", "GB"));
@@ -29,7 +29,8 @@ public final class CommandLineViewer implements BackupViewer {
      * This method just prints the header for the output information table.
      */
     public void printHeader() {
-        printLine(mWidth);
+        //printLine(mWidth);
+        System.out.println();
         String format_string = "%-" + mWidth / mTableRatios[0] + "s %-"
                 + mWidth / mTableRatios[1]  + "s %-" + mWidth / mTableRatios[2]
                 + "s %-" + mWidth / mTableRatios[3] + "s %-" + mWidth / mTableRatios[4] + "s%n";
@@ -90,7 +91,7 @@ public final class CommandLineViewer implements BackupViewer {
     // internal private methods
 
     private void printLine(int width) {
-        for (int i = 0; i < width; i++) {
+        for (int i = 0; i < width - 1; i++) {
             System.out.print("-");
         }
         System.out.println();
