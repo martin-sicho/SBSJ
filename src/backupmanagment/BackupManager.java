@@ -56,6 +56,7 @@ public class BackupManager {
         if (name.equals("") && !backupExists(name)) {
             Date timestamp = new Date();
             framework.setName(framework.getDirOriginal().getFileName().toString() + "_" + mDateFormatter.format(timestamp));
+            name = framework.getBackupName();
             mBackupList.put(name, new BackupInstance(framework));
             serializeBackup(name);
             System.out.println("Backup " + name + " was created successfully.");
