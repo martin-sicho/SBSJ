@@ -21,6 +21,7 @@ import static enums.ProgramPaths.*;
 public class BackupManager {
     private DateFormat mDateFormatter = new SimpleDateFormat("dd_MM_yyyy-HH_mm_ss_SSS");
     private Map<String,BackupInstance> mBackupList;
+    private List<String> mFailedToLoad = new ArrayList<>();
 
     /**
      * The {@link backupmanagment.BackupManager} constructor.
@@ -51,21 +52,27 @@ public class BackupManager {
      * @param framework instance of {@link backupmanagment.BackupInstanceFramework}
      */
     public void registerNewBackup(BackupInstanceFramework framework) {
-        if (framework.getBackupName().equals("") && !backupExists(framework.getBackupName())) {
+        String name = framework.getBackupName();
+        if (name.equals("") && !backupExists(name)) {
             Date timestamp = new Date();
             framework.setName(framework.getDirOriginal().getFileName().toString() + "_" + mDateFormatter.format(timestamp));
-            mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
-            serializeBackup(framework.getBackupName());
-            System.out.println("Backup " + framework.getBackupName() + " was created successfully.");
+            mBackupList.put(name, new BackupInstance(framework));
+            serializeBackup(name);
+            System.out.println("Backup " + name + " was created successfully.");
         }
-        else if (backupExists(framework.getBackupName())) {
-            System.out.println("Backup " + framework.getBackupName() + " already exists. It will only be synchronized.");
-            mBackupList.get(framework.getBackupName()).synchronize();
-            serializeBackup(framework.getBackupName());
+        else if (backupExists(name)) {
+            System.out.println("Backup " + name + " already exists. It will only be synchronized.");
+            mBackupList.get(name).synchronize();
+            serializeBackup(name);
+        }
+        else if (mFailedToLoad.contains(name)) {
+            System.out.println("Backup with the name " + name + " already exists and failed to load.");
+            System.out.println("Remove the bad file first (" + Paths.get(BACKUPS_DIR.toString(), name).toAbsolutePath()
+                    + ") and run the utility again to replace it: ");
         }
         else {
-            mBackupList.put(framework.getBackupName(), new BackupInstance(framework));
-            serializeBackup(framework.getBackupName());
+            mBackupList.put(name, new BackupInstance(framework));
+            serializeBackup(name);
         }
     }
 
@@ -76,7 +83,7 @@ public class BackupManager {
      * @return returns <code>true</code>, if it exists, <code>false</code> if it doesn't
      */
     public boolean backupExists(String name) {
-        return (mBackupList.containsKey(name));
+        return mBackupList.containsKey(name) && !mFailedToLoad.contains(name);
     }
 
     /**
@@ -152,14 +159,7 @@ public class BackupManager {
 
     private void serializeBackupList() {
         for (String key : mBackupList.keySet()) {
-            try (
-                    FileOutputStream fileOut = new FileOutputStream(BACKUPS_DIR.toString() + key);
-                    ObjectOutputStream out = new ObjectOutputStream(fileOut)
-            ) {
-                out.writeObject(mBackupList.get(key));
-            } catch (IOException exp) {
-                System.err.format("The backup (name: %s) could not be saved: %n%s", key, exp.getLocalizedMessage());
-            }
+            serializeBackup(key);
         }
     }
 
@@ -189,6 +189,10 @@ public class BackupManager {
                 ) {
                     try {
                         mBackupList.put(key, (BackupInstance) in.readObject());
+                    } catch (InvalidClassException exp) {
+                        System.err.println("Could not load following backup (it was probably created " +
+                                "by an earlier version of the utility or the file is corrupted): " + file.getFileName());
+                        mFailedToLoad.add(key);
                     } catch (ClassNotFoundException exp) {
                         exp.printStackTrace();
                     }

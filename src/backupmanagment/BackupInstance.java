@@ -52,23 +52,37 @@ class BackupInstance implements java.io.Serializable  {
      * instance that was passed to the class <code>{@link #BackupInstance(BackupInstanceFramework) constructor}</code>.
      */
     void synchronize() {
-        try {
-            Files.createDirectories(getDirBackup());
-        } catch (IOException exp) {
-            System.err.format("An I/O exeption while creating the backup directory: %s%n%s%n", mDirBackup, exp.getLocalizedMessage());
-            System.exit(1);
-        }
-        try {
-            Files.walkFileTree(getDirOriginal(), new BackupFileVisitor(this));
-            if (!mKeepAll) {
-                removeDeleted();
+        if (Files.exists(getDirOriginal())) {
+            try {
+                Files.createDirectories(getDirBackup());
+            } catch (IOException exp) {
+                System.err.format("An I/O exeption while creating the backup directory: %s%n%s%n", mDirBackup, exp.getLocalizedMessage());
+                System.exit(1);
             }
-            System.out.println(mName + ": Synchronization OK.");
-            mLastSynchronization = new Date();
-        } catch (IOException exp) {
+            try {
+                Files.walkFileTree(getDirOriginal(), new BackupFileVisitor(this));
+                if (!mKeepAll) {
+                    removeDeleted();
+                }
+                System.out.println(mName + ": Synchronization OK.");
+                mLastSynchronization = new Date();
+            } catch (IOException exp) {
+                System.err.println(mName + ": Synchronization FAILED.");
+                System.err.println(exp.getMessage());
+            }
+        } else {
             System.err.println(mName + ": Synchronization FAILED.");
-            System.err.println(exp.getMessage());
+            System.err.println("Path to the original not found: " + getDirOriginal());
         }
+    }
+
+    /**
+     * This method returns the date of last synchronization.
+     *
+     * @return date of last synchronization as {@link java.util.Date}
+     */
+    Date getLastSyncDate() {
+        return mLastSynchronization;
     }
 
     /**
@@ -264,12 +278,6 @@ class BackupInstance implements java.io.Serializable  {
 
     private void removeDeleted() throws IOException{
         Files.walkFileTree(getDirBackup(), new DeleteFileVisitor(this));
-    }
-
-    // getters
-
-    public Date getLastSyncDate() {
-        return mLastSynchronization;
     }
 
 }
