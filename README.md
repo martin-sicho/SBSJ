@@ -16,4 +16,7 @@ However, you are more than welcome to look around and I will be glad for any com
 For more details see the project's [Wiki](https://github.com/martin-sicho/SBSJ/wiki "SBSJ Wiki").
 
 ### Current State of the Project
-Right now I am happy to announce that I have something that could be called version 1.0. You can check the release [here](https://github.com/martin-sicho/SBSJ/releases "SBSJ v1.0").
+Right now I am happy to announce that I finally have something that can eventually do stuff! You can check the release [here](https://github.com/martin-sicho/SBSJ/releases "SBSJ v1.1").
+
+### Used libraries
+To parse command line arguments the utility uses the "Python like" argument parser [argparse4j](http://argparse4j.sourceforge.net/ "argparse4j").
