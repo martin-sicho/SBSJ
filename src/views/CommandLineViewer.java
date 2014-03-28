@@ -17,7 +17,7 @@ public final class CommandLineViewer implements BackupViewer {
     private int mWidth = 120;
     private int[] mTableRatios = {7,5,5,12,3};
     private int[] mDataMaxLengths = new int[5];
-    private int mCellMaxHeight = 1;
+    private int mRowHeight = 1;
     private DateFormat mDateFormatter = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.DEFAULT, new Locale("en", "GB"));
 
     public CommandLineViewer() {
@@ -29,13 +29,13 @@ public final class CommandLineViewer implements BackupViewer {
      * This method just prints the header for the output information table.
      */
     public void printHeader() {
-        //printLine(mWidth);
+        //printDashedLine(mWidth);
         System.out.println();
         String format_string = "%-" + mWidth / mTableRatios[0] + "s %-"
                 + mWidth / mTableRatios[1]  + "s %-" + mWidth / mTableRatios[2]
                 + "s %-" + mWidth / mTableRatios[3] + "s %-" + mWidth / mTableRatios[4] + "s%n";
         System.out.printf(format_string, "Name", "Original Directory", "Backup Directory" , "Shallow", "Last Synchronized");
-        printLine(mWidth);
+        printDashedLine(mWidth);
     }
 
     /**
@@ -48,7 +48,7 @@ public final class CommandLineViewer implements BackupViewer {
      * @param shallow whether the backup was scheduled as shallow
      */
     @Override
-    public void listBackup(String name, Date date, String shallow, String original, String backup) {
+    public void getBackupInfo(String name, String original, String backup, String shallow, Date date) {
         String[] data = new String[5];
         data[0] = name;
         data[4] = mDateFormatter.format(date);
@@ -62,9 +62,9 @@ public final class CommandLineViewer implements BackupViewer {
         mDataMaxLengths[1] = original.length();
         mDataMaxLengths[2] = backup.length();
 
-        mCellMaxHeight = computeCellMaxHeight();
+        mRowHeight = computeRowHeight();
 
-        for (String i : getFormattedRow(data)) {
+        for (String i : getFormattedRows(data)) {
             System.out.print(i);
         }
 
@@ -90,14 +90,14 @@ public final class CommandLineViewer implements BackupViewer {
 
     // internal private methods
 
-    private void printLine(int width) {
+    private void printDashedLine(int width) {
         for (int i = 0; i < width - 1; i++) {
             System.out.print("-");
         }
         System.out.println();
     }
 
-    private int computeCellMaxHeight() {
+    private int computeRowHeight() {
         int max = 0;
         for (int i = 0; i < mDataMaxLengths.length; i++) {
             int current = mDataMaxLengths[i] / (mWidth / mTableRatios[i]);
@@ -109,9 +109,9 @@ public final class CommandLineViewer implements BackupViewer {
         return max;
     }
 
-    private String[] getFormattedRow(String[] data) {
+    private String[] getFormattedRows(String[] data) {
         String[] data_temp = data.clone();
-        String[] rows = new String[mCellMaxHeight];
+        String[] rows = new String[mRowHeight];
         for (int row_idx = 0; row_idx < rows.length; row_idx++) {
             String row = "%-";
             for (int data_idx = 0; data_idx < data.length; data_idx++) {

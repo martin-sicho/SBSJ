@@ -76,7 +76,7 @@ class ArgumentBuilder {
                 .nargs("?")
                 .setDefault("")
                 .help("use this optional argument to stop tracking directory for changes - " +
-                        "this will entirely remove the backup from the utility!");
+                        "this will entirely remove the backup from the utility, but all files are preserved!");
 
         // options
         mParser.addArgument("-ka", "--" + KEEP_ALL)

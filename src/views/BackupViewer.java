@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by Martin Sicho on 25.3.14.
  */
 public interface BackupViewer {
-    public void listBackup(String name, Date date, String shallow, String original, String backup);
+    public void getBackupInfo(String name, String original, String backup, String shallow, Date date);
     public String getName();
     public void setName(String name);
 }
