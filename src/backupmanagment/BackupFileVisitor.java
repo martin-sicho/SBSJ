@@ -36,7 +36,7 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
         FileTime last_modified = attrs.lastModifiedTime();
         mDirLastModified = last_modified;
-        if (dir.equals(mBackupInstance.getDirOriginal())) {
+        if (dir.equals(mBackupInstance.dirOriginal())) {
             return CONTINUE;
         }
         if (mBackupInstance.isShallow()) {
@@ -51,7 +51,7 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         FileTime last_modified = attrs.lastModifiedTime();
-        if (mBackupInstance.isIndexed(file) && mBackupInstance.getLastBackupTime(file).compareTo(last_modified) != 0) {
+        if (mBackupInstance.isPathIndexed(file) && mBackupInstance.retrieveLastBackupTime(file).compareTo(last_modified) != 0) {
             mBackupInstance.backupFile(file, last_modified);
          } else {
             mBackupInstance.addBackupToIndex(file, last_modified);
@@ -67,10 +67,10 @@ class BackupFileVisitor implements java.nio.file.FileVisitor<Path> {
 
     @Override
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-        if (dir.equals(mBackupInstance.getDirOriginal())) {
+        if (dir.equals(mBackupInstance.dirOriginal())) {
             return CONTINUE;
         }
-        mBackupInstance.setBackupDirLastModified(mBackupInstance.getBackupDestination(dir), mDirLastModified);
+        mBackupInstance.rewriteLastModified(mBackupInstance.retrieveBackupPath(dir), mDirLastModified);
         return CONTINUE;
     }
 

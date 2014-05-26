@@ -10,13 +10,13 @@ and perform backups on demand. Then I would like to add a simple GUI for ease of
 
 Please, note that this project was mainly created for educational purposes
 and is therefore under heavy development so it may contain a lot of bugs and unresolved issues.
-If you're looking for some serious backup software, you should seek it elswhere.
-However, you are more than welcome to look around and I will be glad for any comments or questions regarding the project.
+If you're looking for some serious backup software, you should seek it elsewhere.
+However, you are more than welcome to look around and I will be glad for any comments, questions or suggestions regarding the project.
 
 For more details see the project's [Wiki](https://github.com/martin-sicho/SBSJ/wiki "SBSJ Wiki").
 
 ### Current State of the Project
 Right now I am happy to announce that I finally have something that can eventually do stuff! You can check the release [here](https://github.com/martin-sicho/SBSJ/releases "SBSJ v1.1").
 
-### Used libraries
+### Used Libraries
 To parse command line arguments the utility uses the "Python like" argument parser [argparse4j](http://argparse4j.sourceforge.net/ "argparse4j").

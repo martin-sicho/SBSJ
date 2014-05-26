@@ -1,7 +1,6 @@
 package views;
 
 import java.text.DateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -15,14 +14,13 @@ import java.util.Locale;
 public final class CommandLineViewer implements BackupViewer {
     private String mName;
     private int mWidth = 120;
-    private int[] mTableRatios = {7,5,5,12,3};
+    private int[] mTableRatios = {7,4,4,12,3};
     private int[] mDataMaxLengths = new int[5];
     private int mRowHeight = 1;
     private DateFormat mDateFormatter = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.DEFAULT, new Locale("en", "GB"));
 
     public CommandLineViewer() {
-        mName = null;
-        Arrays.fill(mDataMaxLengths, 0);
+        // no action
     }
 
     /**
@@ -48,7 +46,7 @@ public final class CommandLineViewer implements BackupViewer {
      * @param shallow whether the backup was scheduled as shallow
      */
     @Override
-    public void getBackupInfo(String name, String original, String backup, String shallow, Date date) {
+    public void showBackupInfo(String name, String original, String backup, String shallow, Date date) {
         String[] data = new String[5];
         data[0] = name;
         data[4] = mDateFormatter.format(date);
@@ -64,14 +62,9 @@ public final class CommandLineViewer implements BackupViewer {
 
         mRowHeight = computeRowHeight();
 
-        for (String i : getFormattedRows(data)) {
+        for (String i : retrieveFormattedRows(data)) {
             System.out.print(i);
         }
-
-//        String format_string = "%-" + mWidth / mTableRatios[0] + "s %-"
-//                + mWidth / mTableRatios[1]  + "s %-" + mWidth / mTableRatios[2] + "s %-"
-//                + mWidth / mTableRatios[3] + "s %-" + mWidth / mTableRatios[4] + "s%n";
-//        System.out.printf(format_string, name, original, backup, shallow, mDateFormatter.format(date));
     }
 
     // getters
@@ -109,7 +102,7 @@ public final class CommandLineViewer implements BackupViewer {
         return max;
     }
 
-    private String[] getFormattedRows(String[] data) {
+    private String[] retrieveFormattedRows(String[] data) {
         String[] data_temp = data.clone();
         String[] rows = new String[mRowHeight];
         for (int row_idx = 0; row_idx < rows.length; row_idx++) {

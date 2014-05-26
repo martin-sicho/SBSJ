@@ -41,14 +41,14 @@ class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-//        if (Files.exists(mBackupInstance.getDirOriginal()) && !Files.isDirectory(mBackupInstance.getDirOriginal())) {
+//        if (Files.exists(mBackupInstance.dirOriginal()) && !Files.isDirectory(mBackupInstance.dirOriginal())) {
 //            return CONTINUE;
 //        }
-        if (Files.notExists(mBackupInstance.getOriginalDestination(file))
-                && mBackupInstance.isIndexed(mBackupInstance.getOriginalDestination(file))
+        if (Files.notExists(mBackupInstance.retrieveOriginalpath(file))
+                && mBackupInstance.isPathIndexed(mBackupInstance.retrieveOriginalpath(file))
                 ) {
             Files.deleteIfExists(file);
-            mBackupInstance.removeBackupFromIndex(mBackupInstance.getOriginalDestination(file));
+            mBackupInstance.removeBackupFromIndex(mBackupInstance.retrieveOriginalpath(file));
         }
         return CONTINUE;
     }
@@ -60,15 +60,15 @@ class DeleteFileVisitor implements java.nio.file.FileVisitor<Path> {
 
     @Override
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-        if (dir.equals(mBackupInstance.getDirBackup())) {
+        if (dir.equals(mBackupInstance.dirBackup())) {
             return CONTINUE;
         }
         try {
-            if (!Files.exists(mBackupInstance.getOriginalDestination(dir))
-                    && mBackupInstance.isIndexed(mBackupInstance.getOriginalDestination(dir))
+            if (!Files.exists(mBackupInstance.retrieveOriginalpath(dir))
+                    && mBackupInstance.isPathIndexed(mBackupInstance.retrieveOriginalpath(dir))
                     ) {
                 Files.deleteIfExists(dir);
-                mBackupInstance.removeBackupFromIndex(mBackupInstance.getOriginalDestination(dir));
+                mBackupInstance.removeBackupFromIndex(mBackupInstance.retrieveOriginalpath(dir));
             }
         } catch (DirectoryNotEmptyException exp) {
             System.out.println(exp.getMessage());

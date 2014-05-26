@@ -52,15 +52,15 @@ class BackupInstance implements java.io.Serializable  {
      * instance that was passed to the class <code>{@link #BackupInstance(BackupInstanceFramework) constructor}</code>.
      */
     void synchronize() {
-        if (Files.exists(getDirOriginal())) {
+        if (Files.exists(dirOriginal())) {
             try {
-                Files.createDirectories(getDirBackup());
+                Files.createDirectories(dirBackup());
             } catch (IOException exp) {
                 System.err.format("An I/O exeption while creating the backup directory: %s%n%s%n", mDirBackup, exp.getLocalizedMessage());
                 System.exit(1);
             }
             try {
-                Files.walkFileTree(getDirOriginal(), new BackupFileVisitor(this));
+                Files.walkFileTree(dirOriginal(), new BackupFileVisitor(this));
                 if (!mKeepAll) {
                     removeDeleted();
                 }
@@ -72,7 +72,7 @@ class BackupInstance implements java.io.Serializable  {
             }
         } else {
             System.err.println(mName + ": Synchronization FAILED.");
-            System.err.println("Path to the original not found: " + getDirOriginal());
+            System.err.println("Path to the original not found: " + dirOriginal());
         }
     }
 
@@ -81,7 +81,7 @@ class BackupInstance implements java.io.Serializable  {
      *
      * @return date of last synchronization as {@link java.util.Date}
      */
-    Date getLastSyncDate() {
+    Date lastSyncDate() {
         return mLastSynchronization;
     }
 
@@ -90,7 +90,7 @@ class BackupInstance implements java.io.Serializable  {
      *
      * @return {@link java.nio.file.Path Path} to the original.
      */
-    Path getDirOriginal() {
+    Path dirOriginal() {
         return Paths.get(mDirOriginal);
     }
 
@@ -100,7 +100,7 @@ class BackupInstance implements java.io.Serializable  {
      *
      * @return {@link java.nio.file.Path Path} to the backup directory.
      */
-    Path getDirBackup() {
+    Path dirBackup() {
         return Paths.get(mDirBackup);
     }
 
@@ -109,7 +109,7 @@ class BackupInstance implements java.io.Serializable  {
     }
 
     /**
-     * This method, together with {@link #getOriginalDestination(java.nio.file.Path)},
+     * This method, together with {@link #retrieveOriginalpath(java.nio.file.Path)},
      * provides the program with the ability
      * to rebuild the directory tree of the original location in the backup directory.
      * <br/>
@@ -119,18 +119,18 @@ class BackupInstance implements java.io.Serializable  {
      * @param original_path a {@link java.nio.file.Path} located somewhere in the original directory
      * @return a corresponding {@link java.nio.file.Path} in the backup directory
      */
-    Path getBackupDestination(Path original_path) {
+    Path retrieveBackupPath(Path original_path) {
         int end = original_path.getNameCount();
-        int start = end - Math.abs(end - getDirOriginal().getNameCount());
+        int start = end - Math.abs(end - dirOriginal().getNameCount());
         if (start == end) {
-            return getDirBackup();
+            return dirBackup();
         } else {
-            return getDirBackup().resolve(original_path.subpath(start, end));
+            return dirBackup().resolve(original_path.subpath(start, end));
         }
     }
 
     /**
-     * This method, together with {@link #getBackupDestination(java.nio.file.Path)}
+     * This method, together with {@link #retrieveBackupPath(java.nio.file.Path)}
      * , provides the program with the ability
      * to rebuild the directory tree of the original location in the backup directory.
      * <br/>
@@ -140,19 +140,19 @@ class BackupInstance implements java.io.Serializable  {
      * @param backup_path a path located somewhere in the backup directory
      * @return a corresponding path to the original
      */
-    Path getOriginalDestination(Path backup_path) {
+    Path retrieveOriginalpath(Path backup_path) {
         int end = backup_path.getNameCount();
-        int start = end - Math.abs(end - getDirBackup().getNameCount());
+        int start = end - Math.abs(end - dirBackup().getNameCount());
         if (start == end) {
-            return getDirOriginal();
+            return dirOriginal();
         } else {
-            return getDirOriginal().resolve(backup_path.subpath(start, end));
+            return dirOriginal().resolve(backup_path.subpath(start, end));
         }
     }
 
     /**
      * Indexes a path. Only paths to the original are indexed (they can be converted
-     * back to the backup location with the {@link #getBackupDestination(java.nio.file.Path)} method).
+     * back to the backup location with the {@link #retrieveBackupPath(java.nio.file.Path)} method).
      *
      * @param original_path instance of {@link java.nio.file.Path} pointing to file/directory to be indexed.
      * @param last_modified instance of {@link java.nio.file.attribute.FileTime}
@@ -179,7 +179,7 @@ class BackupInstance implements java.io.Serializable  {
      * @param path the path to be checked.
      * @return returns <code>true</code>, if it is indexed, <code>false</code> if it isn't
      */
-    boolean isIndexed(Path path) {
+    boolean isPathIndexed(Path path) {
         return mBackupIndex.containsKey(path.toString());
     }
 
@@ -191,7 +191,7 @@ class BackupInstance implements java.io.Serializable  {
      *         specifying the time of last modification of the original file/directory
      *         when it was last indexed.
      */
-    FileTime getLastBackupTime(Path path) {
+    FileTime retrieveLastBackupTime(Path path) {
         return FileTime.fromMillis(mBackupIndex.get(path.toString()));
     }
 
@@ -202,7 +202,7 @@ class BackupInstance implements java.io.Serializable  {
      * @return returns <code>true</code>, if backup exists, <code>false</code> if it doesn't
      */
     boolean isBackupCreated(Path path) {
-        Path backup_dest = getBackupDestination(path);
+        Path backup_dest = retrieveBackupPath(path);
         return Files.exists(backup_dest);
     }
 
@@ -210,24 +210,26 @@ class BackupInstance implements java.io.Serializable  {
      * Creates a backup of a directory.
      *
      * @param dir {@link java.nio.file.Path} to the directory that is being backed.
-     * @param last_modified known last modified time in the form of
-     *                      {@link java.nio.file.attribute.FileTime} instance
+     * @param last_modified known last modified time in the form of {@link java.nio.file.attribute.FileTime} instance
      */
     void backupDirectory(Path dir, FileTime last_modified) {
-        Path backup_dir = getBackupDestination(dir);
+        Path backup_dir = retrieveBackupPath(dir);
         try {
             Files.createDirectories(backup_dir);
         } catch (FileAlreadyExistsException exp) {
             System.err.format("Cannot create directory %s. File already exists: %s%n", backup_dir , exp.getFile());
+            exp.printStackTrace();
             System.exit(1);
         } catch (SecurityException exp) {
             System.err.format("A security exception while creating directory: %s$n%s%n", backup_dir, exp.getLocalizedMessage());
+            exp.printStackTrace();
             System.exit(1);
         } catch (IOException exp) {
             System.err.format("An I/O exception while creating directory: %s%n%s%n", backup_dir, exp.getLocalizedMessage());
+            exp.printStackTrace();
             System.exit(1);
         }
-        setBackupDirLastModified(backup_dir, last_modified);
+        rewriteLastModified(backup_dir, last_modified);
         addBackupToIndex(dir, last_modified);
     }
 
@@ -239,7 +241,7 @@ class BackupInstance implements java.io.Serializable  {
      *                      {@link java.nio.file.attribute.FileTime} instance
      */
     void backupFile(Path file, FileTime last_modified) {
-        Path backup_file = getBackupDestination(file);
+        Path backup_file = retrieveBackupPath(file);
         try {
             if (Files.isDirectory(backup_file)) {
                 backup_file = backup_file.resolve(file.getFileName());
@@ -247,9 +249,11 @@ class BackupInstance implements java.io.Serializable  {
             Files.copy(file, backup_file, StandardCopyOption.REPLACE_EXISTING);
         } catch (SecurityException exp) {
             System.err.format("A security exception while copying file: %s$n%s%n", backup_file, exp.getLocalizedMessage());
+            exp.printStackTrace();
             System.exit(1);
         } catch (IOException exp) {
             System.err.format("An I/O exception while copying file: %s%n%s%n", backup_file, exp.getLocalizedMessage());
+            exp.printStackTrace();
             System.exit(1);
         }
         addBackupToIndex(file, last_modified);
@@ -266,7 +270,7 @@ class BackupInstance implements java.io.Serializable  {
      * @param backup_dir location in the backup directory
      * @param last_modified last modified time of the original directory (located somewhere in the backup path)
      */
-    void setBackupDirLastModified(Path backup_dir, FileTime last_modified) {
+    void rewriteLastModified(Path backup_dir, FileTime last_modified) {
         try {
             Files.setLastModifiedTime(backup_dir, last_modified);
         } catch (IOException | SecurityException exp) {
@@ -277,7 +281,7 @@ class BackupInstance implements java.io.Serializable  {
     // internal private methods
 
     private void removeDeleted() throws IOException{
-        Files.walkFileTree(getDirBackup(), new DeleteFileVisitor(this));
+        Files.walkFileTree(dirBackup(), new DeleteFileVisitor(this));
     }
 
 }
