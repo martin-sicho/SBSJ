@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.MainWindow">
+  <grid id="27dc6" binding="container" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="d9ef" binding="pButtons" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="South"/>
+        <properties>
+          <alignmentX value="0.5"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="429bf" class="javax.swing.JButton" binding="btSyncSele">
+            <constraints/>
+            <properties>
+              <actionCommand value="btSyncSele"/>
+              <text value="Synchronize Seleceted"/>
+              <toolTipText value="Synchronize selected backups."/>
+            </properties>
+          </component>
+          <component id="2409" class="javax.swing.JButton" binding="btSyncAll">
+            <constraints/>
+            <properties>
+              <actionCommand value="btSyncAll"/>
+              <text value="Synchronize All"/>
+              <toolTipText value="Synchronize all backups."/>
+            </properties>
+          </component>
+          <component id="2931a" class="javax.swing.JButton" binding="btCreateNew">
+            <constraints/>
+            <properties>
+              <actionCommand value="btCreateNew"/>
+              <text value="Create New Backup"/>
+              <toolTipText value="Create new backup."/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <scrollpane id="f4fda" binding="scrlPane">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <preferredSize width="453" height="200"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="8a273" class="javax.swing.JTable" binding="table" default-binding="true">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <grid id="385e0" binding="pIntro" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="empty">
+          <size top="5" left="3" bottom="5" right="3"/>
+        </border>
+        <children>
+          <component id="7da23" class="javax.swing.JLabel" binding="intro">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <text value="Introductory text."/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

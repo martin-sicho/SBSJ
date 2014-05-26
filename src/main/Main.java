@@ -2,6 +2,7 @@ package main;
 
 import backupmanagment.*;
 import views.CommandLineViewer;
+import views.MainWindow;
 
 /**
  * This is the main class.
@@ -44,7 +45,8 @@ public class Main {
                 manager.updateView(viewer);
             }
         } else {
-            System.out.println("Run the utility with -h or --help option to get usage details.");
+            MainWindow gui = new MainWindow();
+            gui.showGUI();
         }
     }
 }
