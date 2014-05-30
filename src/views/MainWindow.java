@@ -14,7 +14,7 @@ import java.util.Date;
  * <br/>
  * Created by Martin Sicho on 26.5.2014.
  */
-public class MainWindow extends JFrame implements BackupViewer {
+public class MainWindow extends JFrame {
     // containers
     private JPanel pContainer;
     private JPanel pIntro;
@@ -31,17 +31,18 @@ public class MainWindow extends JFrame implements BackupViewer {
 
     // members
     BackupTableModel mTableModel;
+    BackupManager mBackupManager;
 
     public MainWindow() {
+        mBackupManager = new BackupManager();
         setTitle("Simple Backup System in Java");
         getContentPane().add($$$getRootComponent$$$());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        adjustTable();
-        updateTable();
+        setUpTable();
 
+        setMinimumSize(new Dimension(600, 200));
         pack();
-        setResizable(false);
         setLocationByPlatform(true);
     }
 
@@ -49,29 +50,15 @@ public class MainWindow extends JFrame implements BackupViewer {
         setVisible(true);
     }
 
-    @Override
-    public void showBackupInfo(String name, String original, String backup, boolean shallow, Date date) {
-        mTableModel.fillRow(name, original, backup, shallow, date);
-    }
-
-    @Override
-    public String getBackupName() {
-        return null;
-    }
-
-    @Override
-    public void setBackupName(String name) {
-        // no action
+    public void updateTable() {
+        mTableModel.update();
     }
 
     // private methods
-    private void updateTable() {
-        new BackupManager().updateView(this);
-    }
 
-    private void adjustTable() {
+    private void setUpTable() {
         table.setRowHeight(25);
-        mTableModel = new BackupTableModel();
+        mTableModel = new BackupTableModel(mBackupManager);
         table.setModel(mTableModel);
         table.setDefaultRenderer(Date.class, new BackupTableDateRenderer());
         TableColumn col = table.getColumn("Synchronize");

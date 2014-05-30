@@ -1,5 +1,9 @@
 package views;
 
+import backupmanagment.BackupManager;
+
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import java.util.Date;
 import java.util.Vector;
@@ -8,7 +12,7 @@ import java.util.Vector;
  * <br />
  * Created by Martin Sicho on 30.5.2014.
  */
-class BackupTableModel extends AbstractTableModel {
+class BackupTableModel extends AbstractTableModel implements TableModelListener, BackupViewer {
 
     private String[] mTableHeader = {
             "Selected"
@@ -19,13 +23,16 @@ class BackupTableModel extends AbstractTableModel {
             , "Shallow"
             , "Last Synchronized"
     };
-    private Vector<Vector> mTableData;
+    private Vector<Vector> mTableData = new Vector<>();
+    private BackupManager mBackupManager;
 
-    BackupTableModel() {
-        mTableData = new Vector<>();
+    BackupTableModel(BackupManager manager) {
+        mBackupManager = manager;
+        update();
+        addTableModelListener(this);
     }
 
-    public void fillRow(String name, String original, String backup, boolean shallow, Date date) {
+    public void addRow(String name, String original, String backup, boolean shallow, Date date) {
         Vector<Object> row = new Vector<>();
         row.add(false);
         row.add(name);
@@ -35,6 +42,23 @@ class BackupTableModel extends AbstractTableModel {
         row.add(shallow);
         row.add(date);
         mTableData.add(row);
+    }
+
+    public BackupManager getBackupManager() {
+        return mBackupManager;
+    }
+
+    public void setBackupManager(BackupManager mBackupManager) {
+        this.mBackupManager = mBackupManager;
+    }
+
+    public void update() {
+        clear();
+        mBackupManager.updateView(this);
+    }
+
+    public void clear() {
+        mTableData = new Vector<>();
     }
 
     /**
@@ -129,5 +153,33 @@ class BackupTableModel extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return columnIndex < 2;
+    }
+
+    /**
+     * Update the model when the table is edited.
+     * <br />
+     * Additionally this fine grain notification tells listeners the exact range
+     * of cells, rows, or columns that changed.
+     *
+     * @param e instance of {@link javax.swing.event.TableModelEvent}
+     */
+    @Override
+    public void tableChanged(TableModelEvent e) {
+        update();
+    }
+
+    @Override
+    public void showBackupInfo(String name, String original, String backup, boolean shallow, Date date) {
+        addRow(name, original, backup, shallow, date);
+    }
+
+    @Override
+    public String getBackupName() {
+        return null;
+    }
+
+    @Override
+    public void setBackupName(String name) {
+        // no action
     }
 }

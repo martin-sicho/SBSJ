@@ -1,7 +1,8 @@
 package views;
 
-import javax.swing.*;
 import javax.swing.table.TableCellEditor;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,11 +13,15 @@ import java.awt.event.ActionListener;
  */
 class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
 
-    JButton btSyncButton;
-    String mBackupName;
+    private JButton btSyncButton;
+    private String mBackupName;
+    private JTable tbTable;
+    private BackupTableModel mTableModel;
+    private int mRow;
+    private int mColumn;
 
     BackupTableButtonEditor() {
-        btSyncButton = new JButton("Synchronize");
+        btSyncButton = new JButton("Syncronizing...");
         btSyncButton.addActionListener(this);
     }
 
@@ -47,6 +52,10 @@ class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEdi
      */
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+        tbTable = table;
+        mTableModel = (BackupTableModel) table.getModel();
+        mRow = row;
+        mColumn = column;
         mBackupName = (String) value;
         return btSyncButton;
     }
@@ -58,7 +67,7 @@ class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEdi
      */
     @Override
     public Object getCellEditorValue() {
-        return btSyncButton;
+        return mBackupName;
     }
 
     /**
@@ -68,9 +77,9 @@ class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEdi
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO: implement synchronization
-        System.out.println(e.getSource());
-        System.out.println(mBackupName);
+        mTableModel.getBackupManager().synchronize(mBackupName);
+        mTableModel.fireTableCellUpdated(mRow, mColumn);
         fireEditingStopped();
+        tbTable.repaint();
     }
 }
