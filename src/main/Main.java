@@ -40,7 +40,7 @@ public class Main {
             }
 
             if (framework.wantsList()) {
-                viewer.setName(framework.getBackupName());
+                viewer.setBackupName(framework.getBackupName());
                 viewer.printHeader();
                 manager.updateView(viewer);
             }

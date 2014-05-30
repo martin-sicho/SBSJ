@@ -1,29 +1,67 @@
 package views;
 
+import backupmanagment.BackupManager;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Date;
 
 /**
- * Created by Krwemil on 26.5.2014.
+ * This class wraps all components of the aplication main window.
+ *
+ * <br/>
+ * Created by Martin Sicho on 26.5.2014.
  */
-public class MainWindow extends JFrame {
-    private JPanel container;
+public class MainWindow extends JFrame implements BackupViewer {
+    // containers
+    private JPanel pContainer;
+    private JPanel pIntro;
+    private JScrollPane scrlPane;
+    private JPanel pButtons;
+
+    // components
     private JTable table;
     private JButton btSyncSele;
     private JButton btSyncAll;
     private JButton btCreateNew;
-    private JLabel intro;
-    private JPanel pButtons;
-    private JScrollPane scrlPane;
-    private JPanel pIntro;
+    private JLabel lbIntro;
+
+    // members
+    String mBackupName;
+
+    public MainWindow() {
+        setTitle("Simple Backup System in Java");
+        getContentPane().add($$$getRootComponent$$$());
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        updateTable();
+        pack();
+        setResizable(false);
+        setLocationByPlatform(true);
+    }
 
     public void showGUI() {
-        this.getContentPane().add(this.$$$getRootComponent$$$());
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.pack();
-        this.setResizable(false);
-        this.setLocationByPlatform(true);
-        this.setVisible(true);
+        setVisible(true);
+    }
+
+    @Override
+    public void showBackupInfo(String name, String original, String backup, boolean shallow, Date date) {
+        // TODO: implement the logic of table update
+    }
+
+    @Override
+    public String getBackupName() {
+        return mBackupName;
+    }
+
+    @Override
+    public void setBackupName(String name) {
+        mBackupName = name;
+    }
+
+    // private methods
+
+    private void updateTable() {
+        new BackupManager().updateView(this);
     }
 
     {
@@ -41,12 +79,12 @@ public class MainWindow extends JFrame {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        container = new JPanel();
-        container.setLayout(new BorderLayout(0, 0));
+        pContainer = new JPanel();
+        pContainer.setLayout(new BorderLayout(0, 0));
         pButtons = new JPanel();
         pButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         pButtons.setAlignmentX(0.5f);
-        container.add(pButtons, BorderLayout.SOUTH);
+        pContainer.add(pButtons, BorderLayout.SOUTH);
         btSyncSele = new JButton();
         btSyncSele.setActionCommand("btSyncSele");
         btSyncSele.setText("Synchronize Seleceted");
@@ -64,22 +102,22 @@ public class MainWindow extends JFrame {
         pButtons.add(btCreateNew);
         scrlPane = new JScrollPane();
         scrlPane.setPreferredSize(new Dimension(453, 200));
-        container.add(scrlPane, BorderLayout.CENTER);
+        pContainer.add(scrlPane, BorderLayout.CENTER);
         table = new JTable();
         scrlPane.setViewportView(table);
         pIntro = new JPanel();
         pIntro.setLayout(new BorderLayout(0, 0));
-        container.add(pIntro, BorderLayout.NORTH);
+        pContainer.add(pIntro, BorderLayout.NORTH);
         pIntro.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(5, 3, 5, 3), null));
-        intro = new JLabel();
-        intro.setText("Introductory text.");
-        pIntro.add(intro, BorderLayout.CENTER);
+        lbIntro = new JLabel();
+        lbIntro.setText("Introductory text.");
+        pIntro.add(lbIntro, BorderLayout.CENTER);
     }
 
     /**
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {
-        return container;
+        return pContainer;
     }
 }

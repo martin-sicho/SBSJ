@@ -130,7 +130,7 @@ public class BackupManager {
      * @param view instance of a class that implemets the {@link views.BackupViewer} interface.
      */
     public void updateView(BackupViewer view) {
-        if (view.getName() == null || view.getName().equals("")) {
+        if (view.getBackupName() == null || view.getBackupName().equals("")) {
             List<String> keys = new ArrayList<>();
             for (String key : mBackupList.keySet()) {
                 keys.add(key);
@@ -141,17 +141,17 @@ public class BackupManager {
                 view.showBackupInfo(item
                         , backup_instance.dirOriginal().toString()
                         , backup_instance.dirBackup().toString()
-                        , ((Boolean) backup_instance.isShallow()).toString()
+                        , backup_instance.isShallow()
                         , backup_instance.lastSyncDate()
                 );
             }
         } else {
-            String name = view.getName();
+            String name = view.getBackupName();
             BackupInstance backup_instance = mBackupList.get(name);
             view.showBackupInfo(name
                     , backup_instance.dirOriginal().toString()
                     , backup_instance.dirBackup().toString()
-                    , ((Boolean) backup_instance.isShallow()).toString()
+                    , backup_instance.isShallow()
                     , backup_instance.lastSyncDate()
             );
         }

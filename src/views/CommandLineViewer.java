@@ -12,7 +12,7 @@ import java.util.Locale;
  * Created by Martin Sicho on 25.3.14.
  */
 public final class CommandLineViewer implements BackupViewer {
-    private String mName;
+    private String mBackupName;
     private int mWidth = 120;
     private int[] mTableRatios = {7,4,4,12,3};
     private int[] mDataMaxLengths = new int[5];
@@ -40,23 +40,22 @@ public final class CommandLineViewer implements BackupViewer {
      * This mathod takes information about a backup from a
      * {@link backupmanagment.BackupManager BackupManager} instance.
      * The information is then listed in the form of a table.
-     *
-     * @param name backup name
-     * @param date date of last synchronization
+     *  @param name backup name
      * @param shallow whether the backup was scheduled as shallow
+     * @param date date of last synchronization
      */
     @Override
-    public void showBackupInfo(String name, String original, String backup, String shallow, Date date) {
+    public void showBackupInfo(String name, String original, String backup, boolean shallow, Date date) {
         String[] data = new String[5];
         data[0] = name;
         data[4] = mDateFormatter.format(date);
-        data[3] = shallow;
+        data[3] = shallow ? "Yes." : "No.";
         data[1] = original;
         data[2] = backup;
 
         mDataMaxLengths[0] = name.length();
         mDataMaxLengths[4] = mDateFormatter.format(date).length();
-        mDataMaxLengths[3] = shallow.length();
+        mDataMaxLengths[3] = data[3].length();
         mDataMaxLengths[1] = original.length();
         mDataMaxLengths[2] = backup.length();
 
@@ -70,15 +69,15 @@ public final class CommandLineViewer implements BackupViewer {
     // getters
 
     @Override
-    public String getName() {
-        return mName;
+    public String getBackupName() {
+        return mBackupName;
     }
 
     // setters
 
     @Override
-    public void setName(String name) {
-        this.mName = name;
+    public void setBackupName(String name) {
+        mBackupName = name;
     }
 
     // internal private methods
