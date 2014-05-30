@@ -19,7 +19,7 @@
             <properties>
               <actionCommand value="btDelSelected"/>
               <text value="Delete Selected"/>
-              <toolTipText value="Delete selected backups."/>
+              <toolTipText value="Delete selected backups. Only removes backups from the application. All files are preserved."/>
             </properties>
           </component>
           <component id="429bf" class="javax.swing.JButton" binding="btSyncSele">
@@ -55,7 +55,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="8a273" class="javax.swing.JTable" binding="table" default-binding="true">
+          <component id="8a273" class="javax.swing.JTable" binding="tbTable" default-binding="true">
             <constraints/>
             <properties/>
           </component>

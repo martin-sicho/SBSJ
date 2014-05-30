@@ -5,8 +5,7 @@ import backupmanagment.BackupManager;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import java.util.Date;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * <br />
@@ -24,6 +23,7 @@ class BackupTableModel extends AbstractTableModel implements TableModelListener,
             , "Last Synchronized"
     };
     private Vector<Vector> mTableData = new Vector<>();
+    Set<String> mSelectedBackups = new HashSet<>();
     private BackupManager mBackupManager;
 
     BackupTableModel(BackupManager manager) {
@@ -32,9 +32,9 @@ class BackupTableModel extends AbstractTableModel implements TableModelListener,
         addTableModelListener(this);
     }
 
-    public void addRow(String name, String original, String backup, boolean shallow, Date date) {
+    public void addRow(boolean selected, String name, String original, String backup, boolean shallow, Date date) {
         Vector<Object> row = new Vector<>();
-        row.add(false);
+        row.add(selected);
         row.add(name);
         row.add(name);
         row.add(original);
@@ -50,6 +50,22 @@ class BackupTableModel extends AbstractTableModel implements TableModelListener,
 
     public void setBackupManager(BackupManager mBackupManager) {
         this.mBackupManager = mBackupManager;
+    }
+
+    public Set<String> getSelectedBackups() {
+        return mSelectedBackups;
+    }
+
+    private void saveSelectedBackups() {
+        for (Enumeration<Vector> e = mTableData.elements(); e.hasMoreElements();) {
+            Vector<Object> row = e.nextElement();
+            if ((Boolean) row.get(0)) {
+                mSelectedBackups.add((String) row.get(1));
+            }
+            else {
+                mSelectedBackups.remove((String) row.get(1));
+            }
+        }
     }
 
     public void update() {
@@ -141,6 +157,7 @@ class BackupTableModel extends AbstractTableModel implements TableModelListener,
     @Override
     public void setValueAt(Object value, int rowIndex, int columnIndex) {
         mTableData.get(rowIndex).set(columnIndex, value);
+        fireTableCellUpdated(rowIndex, columnIndex);
     }
 
     /**
@@ -165,12 +182,17 @@ class BackupTableModel extends AbstractTableModel implements TableModelListener,
      */
     @Override
     public void tableChanged(TableModelEvent e) {
+        saveSelectedBackups();
         update();
     }
 
     @Override
     public void showBackupInfo(String name, String original, String backup, boolean shallow, Date date) {
-        addRow(name, original, backup, shallow, date);
+        boolean selected = false;
+        if (mSelectedBackups.contains(name)) {
+            selected = true;
+        }
+        addRow(selected, name, original, backup, shallow, date);
     }
 
     @Override

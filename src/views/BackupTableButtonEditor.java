@@ -17,8 +17,8 @@ class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEdi
     private String mBackupName;
     private JTable tbTable;
     private BackupTableModel mTableModel;
-    private int mRow;
-    private int mColumn;
+//    private int mRow;
+//    private int mColumn;
 
     BackupTableButtonEditor() {
         btSyncButton = new JButton("Syncronizing...");
@@ -54,8 +54,8 @@ class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEdi
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         tbTable = table;
         mTableModel = (BackupTableModel) table.getModel();
-        mRow = row;
-        mColumn = column;
+//        mRow = row;
+//        mColumn = column;
         mBackupName = (String) value;
         return btSyncButton;
     }
@@ -78,7 +78,6 @@ class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEdi
     @Override
     public void actionPerformed(ActionEvent e) {
         mTableModel.getBackupManager().synchronize(mBackupName);
-        mTableModel.fireTableCellUpdated(mRow, mColumn);
         fireEditingStopped();
         tbTable.repaint();
     }

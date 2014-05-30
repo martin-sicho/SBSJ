@@ -6,7 +6,10 @@ import views.tablerenderers.*;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * This class wraps all components of the aplication main window.
@@ -22,7 +25,7 @@ public class MainWindow extends JFrame {
     private JPanel pButtons;
 
     // components
-    private JTable table;
+    private JTable tbTable;
     private JButton btSyncSele;
     private JButton btSyncAll;
     private JButton btCreateNew;
@@ -41,6 +44,8 @@ public class MainWindow extends JFrame {
 
         setUpTable();
 
+        attachButtonListeners();
+
         setMinimumSize(new Dimension(600, 200));
         pack();
         setLocationByPlatform(true);
@@ -52,26 +57,70 @@ public class MainWindow extends JFrame {
 
     public void updateTable() {
         mTableModel.update();
+        tbTable.repaint();
     }
 
     // private methods
 
     private void setUpTable() {
-        table.setRowHeight(25);
+        tbTable.setRowHeight(25);
         mTableModel = new BackupTableModel(mBackupManager);
-        table.setModel(mTableModel);
-        table.setDefaultRenderer(Date.class, new BackupTableDateRenderer());
-        TableColumn col = table.getColumn("Synchronize");
+        tbTable.setModel(mTableModel);
+        tbTable.setDefaultRenderer(Date.class, new BackupTableDateRenderer());
+        TableColumn col = tbTable.getColumn("Synchronize");
         col.setCellEditor(new BackupTableButtonEditor());
         col.setCellRenderer(new BackupTableSyncButtonRenderer());
         col.setWidth(100);
-        col = table.getColumn("Selected");
+        col = tbTable.getColumn("Selected");
         //col.setCellRenderer(new BackupTableSelectedRenderer());
         col.setMaxWidth(60);
-        col = table.getColumn("Shallow");
+        col = tbTable.getColumn("Shallow");
         col.setMaxWidth(60);
-        col = table.getColumn("Name");
+        col = tbTable.getColumn("Name");
         col.setPreferredWidth(50);
+    }
+
+    private void attachButtonListeners() {
+        btSyncSele.addMouseListener(new MouseAdapter() {
+            /**
+             * {@inheritDoc}
+             *
+             * @param e
+             */
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Set<String> backup_names = mTableModel.getSelectedBackups();
+                for (String name : backup_names) {
+                    mBackupManager.synchronize(name);
+                }
+                updateTable();
+            }
+        });
+
+        btSyncAll.addMouseListener(new MouseAdapter() {
+            /**
+             * {@inheritDoc}
+             *
+             * @param e
+             */
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                mBackupManager.synchronize();
+                updateTable();
+            }
+        });
+
+        btCreateNew.addMouseListener(new MouseAdapter() {
+            /**
+             * {@inheritDoc}
+             *
+             * @param e
+             */
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // TODO invocation of a dialog window, where the user can specify the backup properties
+            }
+        });
     }
 
     {
@@ -98,7 +147,7 @@ public class MainWindow extends JFrame {
         btDelSelected = new JButton();
         btDelSelected.setActionCommand("btDelSelected");
         btDelSelected.setText("Delete Selected");
-        btDelSelected.setToolTipText("Delete selected backups.");
+        btDelSelected.setToolTipText("Delete selected backups. Only removes backups from the application. All files are preserved.");
         pButtons.add(btDelSelected);
         btSyncSele = new JButton();
         btSyncSele.setActionCommand("btSyncSele");
@@ -118,8 +167,8 @@ public class MainWindow extends JFrame {
         scrlPane = new JScrollPane();
         scrlPane.setPreferredSize(new Dimension(700, 200));
         pContainer.add(scrlPane, BorderLayout.CENTER);
-        table = new JTable();
-        scrlPane.setViewportView(table);
+        tbTable = new JTable();
+        scrlPane.setViewportView(tbTable);
         pIntro = new JPanel();
         pIntro.setLayout(new BorderLayout(0, 0));
         pContainer.add(pIntro, BorderLayout.NORTH);
