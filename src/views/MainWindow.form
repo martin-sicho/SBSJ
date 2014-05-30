@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.MainWindow">
   <grid id="27dc6" binding="pContainer" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="526" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -14,6 +14,14 @@
         </properties>
         <border type="none"/>
         <children>
+          <component id="d64b8" class="javax.swing.JButton" binding="btDelSelected">
+            <constraints/>
+            <properties>
+              <actionCommand value="btDelSelected"/>
+              <text value="Delete Selected"/>
+              <toolTipText value="Delete selected backups."/>
+            </properties>
+          </component>
           <component id="429bf" class="javax.swing.JButton" binding="btSyncSele">
             <constraints/>
             <properties>

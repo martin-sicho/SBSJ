@@ -1,6 +1,5 @@
 package views;
 
-import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.util.Date;
 import java.util.Vector;
@@ -28,8 +27,8 @@ class BackupTableModel extends AbstractTableModel {
 
     public void fillRow(String name, String original, String backup, boolean shallow, Date date) {
         Vector<Object> row = new Vector<>();
-        row.add(new JCheckBox());
-        row.add(new JButton("Synchronize"));
+        row.add(false);
+        row.add(name);
         row.add(name);
         row.add(original);
         row.add(backup);
@@ -105,6 +104,19 @@ class BackupTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         return mTableData.get(rowIndex).get(columnIndex);
+    }
+
+    /**
+     * This empty implementation is provided so users don't have to implement
+     * this method if their data model is not editable.
+     *
+     * @param value      value to assign to cell
+     * @param rowIndex    row of cell
+     * @param columnIndex column of cell
+     */
+    @Override
+    public void setValueAt(Object value, int rowIndex, int columnIndex) {
+        mTableData.get(rowIndex).set(columnIndex, value);
     }
 
     /**

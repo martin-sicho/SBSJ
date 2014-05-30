@@ -27,6 +27,7 @@ public class MainWindow extends JFrame implements BackupViewer {
     private JButton btSyncAll;
     private JButton btCreateNew;
     private JLabel lbIntro;
+    private JButton btDelSelected;
 
     // members
     BackupTableModel mTableModel;
@@ -74,10 +75,11 @@ public class MainWindow extends JFrame implements BackupViewer {
         table.setModel(mTableModel);
         table.setDefaultRenderer(Date.class, new BackupTableDateRenderer());
         TableColumn col = table.getColumn("Synchronize");
+        col.setCellEditor(new BackupTableButtonEditor());
         col.setCellRenderer(new BackupTableSyncButtonRenderer());
-        col.setMaxWidth(100);
+        col.setWidth(100);
         col = table.getColumn("Selected");
-        col.setCellRenderer(new BackupTableSelectedRenderer());
+        //col.setCellRenderer(new BackupTableSelectedRenderer());
         col.setMaxWidth(60);
         col = table.getColumn("Shallow");
         col.setMaxWidth(60);
@@ -106,6 +108,11 @@ public class MainWindow extends JFrame implements BackupViewer {
         pButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         pButtons.setAlignmentX(0.5f);
         pContainer.add(pButtons, BorderLayout.SOUTH);
+        btDelSelected = new JButton();
+        btDelSelected.setActionCommand("btDelSelected");
+        btDelSelected.setText("Delete Selected");
+        btDelSelected.setToolTipText("Delete selected backups.");
+        pButtons.add(btDelSelected);
         btSyncSele = new JButton();
         btSyncSele.setActionCommand("btSyncSele");
         btSyncSele.setText("Synchronize Seleceted");
