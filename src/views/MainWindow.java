@@ -1,14 +1,16 @@
 package views;
 
 import backupmanagment.BackupManager;
+import views.tablerenderers.*;
 
 import javax.swing.*;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.util.Date;
 
 /**
  * This class wraps all components of the aplication main window.
- *
+ * <p/>
  * <br/>
  * Created by Martin Sicho on 26.5.2014.
  */
@@ -27,13 +29,16 @@ public class MainWindow extends JFrame implements BackupViewer {
     private JLabel lbIntro;
 
     // members
-    String mBackupName;
+    BackupTableModel mTableModel;
 
     public MainWindow() {
         setTitle("Simple Backup System in Java");
         getContentPane().add($$$getRootComponent$$$());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        adjustTable();
         updateTable();
+
         pack();
         setResizable(false);
         setLocationByPlatform(true);
@@ -45,23 +50,39 @@ public class MainWindow extends JFrame implements BackupViewer {
 
     @Override
     public void showBackupInfo(String name, String original, String backup, boolean shallow, Date date) {
-        // TODO: implement the logic of table update
+        mTableModel.fillRow(name, original, backup, shallow, date);
     }
 
     @Override
     public String getBackupName() {
-        return mBackupName;
+        return null;
     }
 
     @Override
     public void setBackupName(String name) {
-        mBackupName = name;
+        // no action
     }
 
     // private methods
-
     private void updateTable() {
         new BackupManager().updateView(this);
+    }
+
+    private void adjustTable() {
+        table.setRowHeight(25);
+        mTableModel = new BackupTableModel();
+        table.setModel(mTableModel);
+        table.setDefaultRenderer(Date.class, new BackupTableDateRenderer());
+        TableColumn col = table.getColumn("Synchronize");
+        col.setCellRenderer(new BackupTableSyncButtonRenderer());
+        col.setMaxWidth(100);
+        col = table.getColumn("Selected");
+        col.setCellRenderer(new BackupTableSelectedRenderer());
+        col.setMaxWidth(60);
+        col = table.getColumn("Shallow");
+        col.setMaxWidth(60);
+        col = table.getColumn("Name");
+        col.setPreferredWidth(50);
     }
 
     {
@@ -101,7 +122,7 @@ public class MainWindow extends JFrame implements BackupViewer {
         btCreateNew.setToolTipText("Create new backup.");
         pButtons.add(btCreateNew);
         scrlPane = new JScrollPane();
-        scrlPane.setPreferredSize(new Dimension(453, 200));
+        scrlPane.setPreferredSize(new Dimension(700, 200));
         pContainer.add(scrlPane, BorderLayout.CENTER);
         table = new JTable();
         scrlPane.setViewportView(table);

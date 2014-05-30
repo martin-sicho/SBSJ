@@ -43,7 +43,7 @@
       <scrollpane id="f4fda" binding="scrlPane">
         <constraints border-constraint="Center"/>
         <properties>
-          <preferredSize width="453" height="200"/>
+          <preferredSize width="700" height="200"/>
         </properties>
         <border type="none"/>
         <children>
