@@ -29,6 +29,10 @@ public class BackupInstanceFramework {
     private String mName;
     private String mDeleteName;
 
+    public BackupInstanceFramework() {
+        // no action
+    }
+
     /**
      * The {@link backupmanagment.BackupInstanceFramework} constructor.
      * It takes an instance of the {@link net.sourceforge.argparse4j.inf.Namespace}
@@ -66,6 +70,28 @@ public class BackupInstanceFramework {
         mSync = args.getBoolean(SYNCHRONIZE.toString());
         mKeepAll = args.getBoolean(KEEP_ALL.toString());
         mDeleteName = args.getString(DELETE.toString());
+    }
+
+    public void setOptions(
+            Path original
+            , Path backup
+            , String name
+            , String delete_name
+            , boolean keep_all
+            , boolean shallow
+            , boolean create
+            , boolean list
+            , boolean sync
+    ) {
+        mDirOriginal = original;
+        mDirBackup = backup;
+        mName = name;
+        mDeleteName = delete_name;
+        mKeepAll = keep_all;
+        mShallow = shallow;
+        mCreateNewBackup = create;
+        mList = list;
+        mSync = sync;
     }
 
     // internal private methods

@@ -40,7 +40,7 @@ public class MainWindow extends JFrame {
         mBackupManager = new BackupManager();
         setTitle("Simple Backup System in Java");
         getContentPane().add($$$getRootComponent$$$());
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         setUpTable();
 
@@ -56,8 +56,7 @@ public class MainWindow extends JFrame {
     }
 
     public void updateTable() {
-        mTableModel.update();
-        tbTable.repaint();
+        mTableModel.update();        scrlPane.repaint();
     }
 
     // private methods
@@ -118,7 +117,23 @@ public class MainWindow extends JFrame {
              */
             @Override
             public void mouseClicked(MouseEvent e) {
-                new Thread(new CreateNewBackupDialog(mBackupManager, MainWindow.this)).start();
+                new Thread(new CreateNewBackupWindow(mBackupManager, MainWindow.this)).start();
+            }
+        });
+
+        btDelSelected.addMouseListener(new MouseAdapter() {
+            /**
+             * {@inheritDoc}
+             *
+             * @param e
+             */
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Set<String> backup_names = mTableModel.getSelectedBackups();
+                for (String name : backup_names) {
+                    mBackupManager.deleteBackup(name);
+                }
+                updateTable();
             }
         });
     }
