@@ -40,7 +40,7 @@ public class MainWindow extends JFrame {
         mBackupManager = new BackupManager();
         setTitle("Simple Backup System in Java");
         getContentPane().add($$$getRootComponent$$$());
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         setUpTable();
 
@@ -118,7 +118,7 @@ public class MainWindow extends JFrame {
              */
             @Override
             public void mouseClicked(MouseEvent e) {
-                // TODO invocation of a dialog window, where the user can specify the backup properties
+                new Thread(new CreateNewBackupDialog(mBackupManager, MainWindow.this)).start();
             }
         });
     }
