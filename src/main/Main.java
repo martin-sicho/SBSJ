@@ -4,6 +4,8 @@ import backupmanagment.*;
 import views.CommandLineViewer;
 import views.MainWindow;
 
+import javax.swing.*;
+
 /**
  * This is the main class.
  *
@@ -45,6 +47,20 @@ public class Main {
                 manager.updateView(viewer);
             }
         } else {
+            UIManager.LookAndFeelInfo[] infos = UIManager.getInstalledLookAndFeels();
+            for (UIManager.LookAndFeelInfo info : infos) {
+                String name = info.getName();
+                if ("Windows".equals(name)) {
+                    name = info.getClassName();
+                    try {
+                        UIManager.setLookAndFeel(name);
+                        //SwingUtilities.updateComponentTreeUI(this);
+                        break;
+                    } catch (Exception e) {
+                        //e.printStackTrace();
+                    }
+                }
+            }
             MainWindow gui = new MainWindow();
             gui.showGUI();
         }

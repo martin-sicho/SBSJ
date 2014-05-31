@@ -38,6 +38,7 @@
                     <properties>
                       <actionCommand value="cbShallow"/>
                       <text value="Only make a shallow copy."/>
+                      <toolTipText value="Do not descent into subdirectories."/>
                     </properties>
                   </component>
                   <component id="1c7b9" class="javax.swing.JCheckBox" binding="cbKeepAll">
@@ -47,6 +48,7 @@
                     <properties>
                       <actionCommand value="cbKeepAll"/>
                       <text value="Don't delete any files from the backup directory. "/>
+                      <toolTipText value="All files will remain. Even if thei're removed from the original."/>
                     </properties>
                   </component>
                 </children>
@@ -77,6 +79,7 @@
                           <actionCommand value="btOriginalDest"/>
                           <label value="Original Path"/>
                           <text value="Original Path"/>
+                          <toolTipText value="Can be a directory or a file."/>
                         </properties>
                       </component>
                       <component id="a3042" class="javax.swing.JTextField" binding="tfOriginalDest">
@@ -106,6 +109,7 @@
                         <properties>
                           <actionCommand value="btbackupDest"/>
                           <text value="Backup Directory"/>
+                          <toolTipText value="Always a directory. If it doesn't exist, it is created."/>
                         </properties>
                       </component>
                       <component id="1cd56" class="javax.swing.JTextField" binding="tfBackupDest">
@@ -136,6 +140,7 @@
                     </constraints>
                     <properties>
                       <text value="Great New Backup"/>
+                      <toolTipText value="Must be unique for each backup."/>
                     </properties>
                   </component>
                 </children>
@@ -147,6 +152,7 @@
                 <properties>
                   <actionCommand value="btCreateBackup"/>
                   <text value="Create Backup"/>
+                  <toolTipText value="Create a backup with the specified parameters."/>
                 </properties>
               </component>
             </children>

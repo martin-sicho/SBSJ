@@ -10,6 +10,19 @@ import java.awt.*;
  */
 public class BackupTableSyncButtonRenderer extends JButton implements TableCellRenderer {
 
+    private int mRow = -1;
+    private int mColumn = -1;
+
+    public BackupTableSyncButtonRenderer() {
+        setText("Synchronize");
+        setOpaque(true);
+    }
+
+    public void setCoords(int row, int column) {
+        mRow = row;
+        mColumn = column;
+    }
+
     /**
      * Returns the component used for drawing the cell.  This method is
      * used to configure the renderer appropriately before drawing.
@@ -63,6 +76,14 @@ public class BackupTableSyncButtonRenderer extends JButton implements TableCellR
      */
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        return new JButton("Synchronize");
+        if(row == mRow && column == mColumn)
+        {
+            this.setSelected(true);
+        }
+        else
+        {
+            this.setSelected(false);
+        }
+        return this;
     }
 }

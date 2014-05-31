@@ -269,10 +269,12 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
         cbShallow = new JCheckBox();
         cbShallow.setActionCommand("cbShallow");
         cbShallow.setText("Only make a shallow copy.");
+        cbShallow.setToolTipText("Do not descent into subdirectories.");
         panel2.add(cbShallow, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         cbKeepAll = new JCheckBox();
         cbKeepAll.setActionCommand("cbKeepAll");
         cbKeepAll.setText("Don't delete any files from the backup directory. ");
+        cbKeepAll.setToolTipText("All files will remain. Even if thei're removed from the original.");
         panel2.add(cbKeepAll, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
@@ -285,6 +287,7 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
         btOriginalDest.setActionCommand("btOriginalDest");
         btOriginalDest.setLabel("Original Path");
         btOriginalDest.setText("Original Path");
+        btOriginalDest.setToolTipText("Can be a directory or a file.");
         panel4.add(btOriginalDest, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(135, -1), null, null, 0, false));
         tfOriginalDest = new JTextField();
         panel4.add(tfOriginalDest, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
@@ -294,6 +297,7 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
         btBackupDest = new JButton();
         btBackupDest.setActionCommand("btbackupDest");
         btBackupDest.setText("Backup Directory");
+        btBackupDest.setToolTipText("Always a directory. If it doesn't exist, it is created.");
         panel5.add(btBackupDest, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(135, -1), null, null, 0, false));
         tfBackupDest = new JTextField();
         panel5.add(tfBackupDest, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
@@ -303,10 +307,12 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
         panel6.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Backup Name"));
         tfBackupName = new JTextField();
         tfBackupName.setText("Great New Backup");
+        tfBackupName.setToolTipText("Must be unique for each backup.");
         panel6.add(tfBackupName, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         btCreateBackup = new JButton();
         btCreateBackup.setActionCommand("btCreateBackup");
         btCreateBackup.setText("Create Backup");
+        btCreateBackup.setToolTipText("Create a backup with the specified parameters.");
         panel1.add(btCreateBackup, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 

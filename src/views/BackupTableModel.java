@@ -14,8 +14,8 @@ import java.util.*;
 class BackupTableModel extends AbstractTableModel implements TableModelListener, BackupViewer {
 
     private String[] mTableHeader = {
-            "Selected"
-            , "Synchronize"
+            "Synchronize"
+            , "Selected"
             , "Name"
             , "Original Directory"
             , "Backup Directory"
@@ -34,8 +34,8 @@ class BackupTableModel extends AbstractTableModel implements TableModelListener,
 
     public void addRow(boolean selected, String name, String original, String backup, boolean shallow, Date date) {
         Vector<Object> row = new Vector<>();
-        row.add(selected);
         row.add(name);
+        row.add(selected);
         row.add(name);
         row.add(original);
         row.add(backup);
@@ -59,11 +59,11 @@ class BackupTableModel extends AbstractTableModel implements TableModelListener,
     private void saveSelectedBackups() {
         for (Enumeration<Vector> e = mTableData.elements(); e.hasMoreElements();) {
             Vector<Object> row = e.nextElement();
-            if ((Boolean) row.get(0)) {
-                mSelectedBackups.add((String) row.get(1));
+            if ((Boolean) row.get(1)) {
+                mSelectedBackups.add((String) row.get(2));
             }
             else {
-                mSelectedBackups.remove((String) row.get(1));
+                mSelectedBackups.remove((String) row.get(2));
             }
         }
     }

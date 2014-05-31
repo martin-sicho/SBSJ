@@ -35,16 +35,19 @@ public class MainWindow extends JFrame {
     // members
     BackupTableModel mTableModel;
     BackupManager mBackupManager;
+    int mMousedOverRow;
+    int mMousedOverColumn;
 
     public MainWindow() {
         mBackupManager = new BackupManager();
+
         setTitle("Simple Backup System in Java");
         getContentPane().add($$$getRootComponent$$$());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         setUpTable();
 
-        attachButtonListeners();
+        attachListeners();
 
         setMinimumSize(new Dimension(600, 200));
         pack();
@@ -56,7 +59,8 @@ public class MainWindow extends JFrame {
     }
 
     public void updateTable() {
-        mTableModel.update();        scrlPane.repaint();
+        mTableModel.update();
+        scrlPane.repaint();
     }
 
     // private methods
@@ -71,7 +75,6 @@ public class MainWindow extends JFrame {
         col.setCellRenderer(new BackupTableSyncButtonRenderer());
         col.setWidth(100);
         col = tbTable.getColumn("Selected");
-        //col.setCellRenderer(new BackupTableSelectedRenderer());
         col.setMaxWidth(60);
         col = tbTable.getColumn("Shallow");
         col.setMaxWidth(60);
@@ -79,7 +82,54 @@ public class MainWindow extends JFrame {
         col.setPreferredWidth(50);
     }
 
-    private void attachButtonListeners() {
+    private void attachListeners() {
+        tbTable.addMouseMotionListener(new MouseAdapter() {
+            /**
+             * Invoked when the mouse button has been moved on a component
+             * (with no buttons no down).
+             *
+             * @param e the resulting event
+             */
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                JTable aTable = (JTable) e.getSource();
+                mMousedOverRow = aTable.rowAtPoint(e.getPoint());
+                mMousedOverColumn = aTable.columnAtPoint(e.getPoint());
+                TableColumn col = aTable.getColumnModel().getColumn(mMousedOverColumn);
+                String id = (String) col.getIdentifier();
+                BackupTableSyncButtonRenderer renderer;
+                if (id.equals("Synchronize")) {
+                    renderer = (BackupTableSyncButtonRenderer) aTable.getCellRenderer(mMousedOverRow, mMousedOverColumn);
+                    renderer.setCoords(mMousedOverRow, mMousedOverColumn);
+                } else {
+                    col = aTable.getColumn("Synchronize");
+                    renderer = (BackupTableSyncButtonRenderer) col.getCellRenderer();
+                    renderer.setCoords(-1, -1);
+                    renderer.setSelected(false);
+                }
+                renderer.repaint();
+                aTable.repaint();
+            }
+        });
+
+        tbTable.addMouseListener(new MouseAdapter() {
+            /**
+             * {@inheritDoc}
+             *
+             * @param e
+             */
+            @Override
+            public void mouseExited(MouseEvent e) {
+                JTable aTable = (JTable) e.getSource();
+                TableColumn col = aTable.getColumn("Synchronize");
+                BackupTableSyncButtonRenderer renderer = (BackupTableSyncButtonRenderer) col.getCellRenderer();
+                renderer.setCoords(-1, -1);
+                renderer.setSelected(false);
+                renderer.repaint();
+                aTable.repaint();
+            }
+        });
+
         btSyncSele.addMouseListener(new MouseAdapter() {
             /**
              * {@inheritDoc}
@@ -155,6 +205,7 @@ public class MainWindow extends JFrame {
     private void $$$setupUI$$$() {
         pContainer = new JPanel();
         pContainer.setLayout(new BorderLayout(0, 0));
+        pContainer.setPreferredSize(new Dimension(650, 300));
         pButtons = new JPanel();
         pButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         pButtons.setAlignmentX(0.5f);
@@ -180,7 +231,6 @@ public class MainWindow extends JFrame {
         btCreateNew.setToolTipText("Create new backup.");
         pButtons.add(btCreateNew);
         scrlPane = new JScrollPane();
-        scrlPane.setPreferredSize(new Dimension(700, 200));
         pContainer.add(scrlPane, BorderLayout.CENTER);
         tbTable = new JTable();
         scrlPane.setViewportView(tbTable);
@@ -189,7 +239,7 @@ public class MainWindow extends JFrame {
         pContainer.add(pIntro, BorderLayout.NORTH);
         pIntro.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(5, 3, 5, 3), null));
         lbIntro = new JLabel();
-        lbIntro.setText("Introductory text.");
+        lbIntro.setText("<html>\n<p>\nThis tiny application provides its user with the ability to make directory or file backups with a simple click of a button.\n</p>\n<p>\nBelow is a table with a summary of all currently scheduled backups. You can manage them directly from here or via the command line interface (use the <code>-h</code> or <code>--help</code> option for usage details).\n</p>\n</html>");
         pIntro.add(lbIntro, BorderLayout.CENTER);
     }
 
