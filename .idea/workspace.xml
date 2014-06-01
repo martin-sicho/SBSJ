@@ -9,11 +9,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b979a217-a83a-45db-9af1-974474b2d46a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/MainWindow.java" afterPath="$PROJECT_DIR$/src/views/MainWindow.java" />
+    <list default="true" id="b979a217-a83a-45db-9af1-974474b2d46a" name="Default" comment="- fixed a bug with deleting multiple backups&#10;- edited README">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SBSJ.iws" />
@@ -45,8 +42,8 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57954544" vertical-offset="0" max-vertical-offset="880">
-              <caret line="30" column="138" selection-start-line="30" selection-start-column="138" selection-end-line="30" selection-end-column="138" />
+            <state vertical-scroll-proportion="0.34772727" vertical-offset="0" max-vertical-offset="880">
+              <caret line="18" column="148" selection-start-line="18" selection-start-column="148" selection-end-line="18" selection-end-column="148" />
               <folding />
             </state>
           </provider>
@@ -107,8 +104,8 @@
         <option value="$PROJECT_DIR$/src/backupmanagment/BackupManager.java" />
         <option value="$PROJECT_DIR$/src/backupmanagment/BackupInstanceFramework.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/views/MainWindow.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -634,7 +631,11 @@
       <created>1401645553154</created>
       <updated>1401645553154</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="- fixed a bug with deleting multiple backups&#10;- edited README">
+      <created>1401650860996</created>
+      <updated>1401650860996</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -729,7 +730,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="bdgd" />
     <MESSAGE value="Repaired a problem with VCS." />
     <MESSAGE value="Added new corrected project files." />
     <MESSAGE value="Improved listing of backups. Fixed a bug that occured when backup and original had different roots." />
@@ -754,7 +754,8 @@
     <MESSAGE value="added some more features for better user experience (threads and other goodies)" />
     <MESSAGE value="- wrote documentation for the packages and GUI&#10;- some minor adjustments and refactoring" />
     <MESSAGE value="- finished with the documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="- finished with the documentation" />
+    <MESSAGE value="- fixed a bug with deleting multiple backups&#10;- edited README" />
+    <option name="LAST_COMMIT_MESSAGE" value="- fixed a bug with deleting multiple backups&#10;- edited README" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1149,8 +1150,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57954544" vertical-offset="0" max-vertical-offset="880">
-          <caret line="30" column="138" selection-start-line="30" selection-start-column="138" selection-end-line="30" selection-end-column="138" />
+        <state vertical-scroll-proportion="0.34772727" vertical-offset="0" max-vertical-offset="880">
+          <caret line="18" column="148" selection-start-line="18" selection-start-column="148" selection-end-line="18" selection-end-column="148" />
           <folding />
         </state>
       </provider>

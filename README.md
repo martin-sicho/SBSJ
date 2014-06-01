@@ -16,7 +16,7 @@ However, you are more than welcome to look around and I will be glad for any com
 For more details see the project's [Wiki](https://github.com/martin-sicho/SBSJ/wiki "SBSJ Wiki").
 
 ### Current State of the Project
-I am happy to announce that I finally finished the GUI (you can check the release [here](https://github.com/martin-sicho/SBSJ/releases "SBSJ v2.0").
+I am happy to announce that I finally finished the GUI (you can check the release [here](https://github.com/martin-sicho/SBSJ/releases "SBSJ v2.0")).
 
 For now I will call this a finished product even though there are still some things that might have been done better.
 Some I am aware of and some I am not.
