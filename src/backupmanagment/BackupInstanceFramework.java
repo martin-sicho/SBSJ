@@ -19,14 +19,42 @@ import static enums.ProgramParameters.*;
  * Created by Martin Sicho on 18.3.14.
  */
 public class BackupInstanceFramework {
+    /**
+     * {@link java.nio.file.Path} to the original directory.
+     */
     private Path mDirOriginal;
+    /**
+     * {@link java.nio.file.Path} to the backup directory.
+     */
     private Path mDirBackup;
+    /**
+     * Specifies whether a new backup supposed to be created or not.
+     */
     private boolean mCreateNewBackup;
+    /**
+     * Specifies whether the user wants to see the listing of backups or not.
+     */
     private boolean mList;
+    /**
+     * Specifies whether the user wants the newly created backup to be shallow or not.
+     */
     private boolean mShallow;
+    /**
+     * Specifies whether the user wants backup synchronization or not.
+     */
     private boolean mSync;
+    /**
+     * Specifies whether the user wants to keep all backed files
+     * in the backup directory synchronization or not.
+     */
     private boolean mKeepAll;
+    /**
+     * The backup name.
+     */
     private String mName;
+    /**
+     * The name of the backup that is to be deleted.
+     */
     private String mDeleteName;
 
     public BackupInstanceFramework() {
@@ -72,6 +100,20 @@ public class BackupInstanceFramework {
         mDeleteName = args.getString(DELETE.toString());
     }
 
+    /**
+     * This method allows to set the {@link backupmanagment.BackupInstanceFramework}
+     * properties manually. It is used by the GUI.
+     *
+     * @param original original path
+     * @param backup backup directory
+     * @param name backup name
+     * @param delete_name name of the backup that should be deleted
+     * @param keep_all the value of {@link backupmanagment.BackupInstanceFramework#mKeepAll}
+     * @param shallow the value of {@link backupmanagment.BackupInstanceFramework#mShallow}
+     * @param create the value of {@link backupmanagment.BackupInstanceFramework#mCreateNewBackup}
+     * @param list the value of {@link backupmanagment.BackupInstanceFramework#mList}
+     * @param sync the value of {@link backupmanagment.BackupInstanceFramework#mSync}
+     */
     public void setOptions(
             Path original
             , Path backup
@@ -96,6 +138,13 @@ public class BackupInstanceFramework {
 
     // internal private methods
 
+    /**
+     * Checks whether the user input via command line is valid.
+     * It also notifies the user if some problems occur.
+     *
+     * @param args the arguments passed from the command line in the
+     *             form of {@link net.sourceforge.argparse4j.inf.Namespace} instance.
+     */
     private void parseLocations(Namespace args) {
         // load the original path and test if the original path is valid and exists
         try {

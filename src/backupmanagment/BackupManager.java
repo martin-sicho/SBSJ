@@ -19,8 +19,19 @@ import static enums.ProgramPaths.*;
  * Created by Martin Sicho on 19.3.14.
  */
 public class BackupManager {
+    /**
+     * This {@link java.text.DateFormat} instance formats the {@link java.util.Date}
+     * for the case when the backup name was not specified. It is used in the construction of
+     * a default unique name that is still human readable.
+     */
     private DateFormat mDateFormatter = new SimpleDateFormat("dd_MM_yyyy-HH_mm_ss_SSS");
+    /**
+     * This {@link java.util.Map} ensures quick accessibility of all scheduled backups.
+     */
     private Map<String,BackupInstance> mBackupList;
+    /**
+     * The names of the backups that failed to load for any reason are stored here.
+     */
     private List<String> mFailedToLoad = new ArrayList<>();
 
     /**
@@ -179,6 +190,12 @@ public class BackupManager {
 
     // internal private methods
 
+    /**
+     * This method takes a backup name and saves it to the disc as
+     * a serialized instance of {@link backupmanagment.BackupInstance}.
+     *
+     * @param key the backup name
+     */
     synchronized private void serializeBackup(String key) {
         try (
                 FileOutputStream fileOut = new FileOutputStream(BACKUPS_DIR.toString() + key);
@@ -190,12 +207,19 @@ public class BackupManager {
         }
     }
 
+    /**
+     * This method takes the {@link #mBackupList} and saves it to the disc as separate
+     * serialized instances of {@link backupmanagment.BackupInstance}.
+     */
     synchronized private void serializeBackupList() {
         for (String key : mBackupList.keySet()) {
             serializeBackup(key);
         }
     }
 
+    /**
+     * This method attempts to load all backups that were previously saved to disc.
+     */
     synchronized private void deserializeBackupList() {
         DirectoryStream.Filter<Path> filter = new DirectoryStream.Filter<Path>() {
 

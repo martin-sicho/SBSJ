@@ -22,23 +22,65 @@ import java.util.Set;
  */
 public class MainWindow extends JFrame {
     // containers
+    /**
+     * This is the root component.
+     */
     private JPanel pContainer;
+    /**
+     * This {@link javax.swing.JPanel} holds the text at the top of the {@link views.MainWindow}.
+     */
     private JPanel pIntro;
+    /**
+     * This is the {@link javax.swing.JScrollPane} that wraps the table.
+     */
     private JScrollPane scrlPane;
+    /**
+     * This {@link javax.swing.JPanel} holds the buttons at the bottom of the {@link views.MainWindow}.
+     */
     private JPanel pButtons;
 
     // components
+    /**
+     * The interactive list of backups.
+     */
     private JTable tbTable;
+    /**
+     * The Synchonize Selected button.
+     */
     private JButton btSyncSele;
+    /**
+     * The Synchonize All button.
+     */
     private JButton btSyncAll;
+    /**
+     * The Create New Backup button.
+     */
     private JButton btCreateNew;
+    /**
+     * The {@link javax.swing.JLabel} with the introductory text.
+     */
     private JLabel lbIntro;
+    /**
+     * The Delete Selected button.
+     */
     private JButton btDelSelected;
 
     // members
+    /**
+     * This is the table model. It is responsible for the data displayed inside the {@link #tbTable}.
+     */
     private BackupTableModel mTableModel;
+    /**
+     * The {@link backupmanagment.BackupManager}.
+     */
     private BackupManager mBackupManager;
+    /**
+     * The row of the table that the mouse cursor is currently hovering over.
+     */
     private int mMousedOverRow;
+    /**
+     * The column of the table that the mouse cursor is currently hovering over.
+     */
     private int mMousedOverColumn;
 
     /**

@@ -8,7 +8,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 import static enums.ProgramParameters.*;
 
 /**
- * This class is where all the argument definition and customization is located.
+ * This utility class is where all the argument definition and customization is located.
  * The command line arguments are parsed here and return as a Namescpace object
  * via the <code>{@link #build(String[]) build()}</code> method.
  *
@@ -16,9 +16,12 @@ import static enums.ProgramParameters.*;
  * Created by Martin Sicho on 18.3.14.
  */
 class ArgumentBuilder {
+    /**
+     * This is the instance of {@link net.sourceforge.argparse4j.inf.ArgumentParser}.
+     * It makes building command line interface a very easy task. It is the core
+     * instrument of <a href="http://argparse4j.sourceforge.net/">argparse4j</a>.
+     */
     private static ArgumentParser mParser;
-    private static String mDescription = "This is a very simple backup application. " +
-            "It will look for changes in one directory and transfer them to another.";
 
     /**
      * Empty private constructor - prevents the class from being instantiated.
@@ -47,9 +50,17 @@ class ArgumentBuilder {
         return res;
     }
 
+    /**
+     * This method defines all command line arguments along with their names and help messages.
+     */
     private static void buildArguments() {
         mParser = ArgumentParsers.newArgumentParser(PROGRAM_NAME.toString())
-                .description(mDescription);
+                .description("This is a very simple backup application. " +
+                        "It will look for changes in one directory and transfer them to another.")
+                .version("${prog} 2.0");
+        mParser.addArgument("--version")
+                .action(Arguments.version())
+                .help("displays the program's current version");
         mParser.addArgument(ORIGINAL.toString())
                 .metavar(ORIGINAL_METAVAR.toString())
                 .nargs("?")
@@ -84,7 +95,9 @@ class ArgumentBuilder {
                 .nargs("?")
                 .setDefault(false)
                 .help("this option can be specified to tell the utility to keep all files and directories " +
-                        "that were ever created in the " + ORIGINAL_METAVAR + " backed up forever in the " + BACKUP_METAVAR + " .");
+                        "that were ever created in the " + ORIGINAL_METAVAR + " backed up forever in the "
+                        + BACKUP_METAVAR + ". In other words, files deleted in the " + ORIGINAL_METAVAR
+                        + " will be kept in the " + BACKUP_METAVAR + " until the user deletes them manually.");
         mParser.addArgument("-s", "--" + SYNCHRONIZE)
                 .action(Arguments.storeTrue())
                 .nargs("?")

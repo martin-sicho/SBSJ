@@ -16,13 +16,34 @@ import java.util.HashMap;
  * Created by Martin Sicho on 19.3.14.
  */
 class BackupInstance implements java.io.Serializable  {
+    /**
+     * The backup name.
+     */
     private String mName;
+    /**
+     * Path to the original directory as {@link java.lang.String}.
+     */
     private String mDirOriginal;
+    /**
+     * Path to the directory where the copies are stored as {@link java.lang.String}.
+     */
     private String mDirBackup;
+    /**
+     * Specifies whether the backup is shallow or not.
+     */
     private boolean mShallow;
+    /**
+     * Specifies whether a complete file history should be kept or not.
+     */
     private boolean mKeepAll;
+    /**
+     * This is the file index. There is a {@link java.lang.Long} value attached to each file.
+     * It represents the last modified date of the file when it was last backed up.
+     */
     private Map<String,Long> mBackupIndex;
-
+    /**
+     * This is the {@link java.util.Date} of last synchronization of this {@link backupmanagment.BackupInstance}.
+     */
     private Date mLastSynchronization;
 
     /**
@@ -280,6 +301,12 @@ class BackupInstance implements java.io.Serializable  {
 
     // internal private methods
 
+    /**
+     * Calls the {@link backupmanagment.DeleteFileVisitor} to delete files
+     * that are no longer present in the original directory.
+     *
+     * @throws IOException
+     */
     private void removeDeleted() throws IOException{
         Files.walkFileTree(dirBackup(), new DeleteFileVisitor(this));
     }
