@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -263,9 +264,12 @@ public class MainWindow extends JFrame {
                 int selection = JOptionPane.showConfirmDialog(MainWindow.this, "Do you want to remove all selected backups?");
                 switch (selection) {
                     case JOptionPane.YES_OPTION:
-                        Set<String> backup_names = mTableModel.getSelectedBackups();
-                        for (String name : backup_names) {
+                        Set<String> removed_names = new HashSet<>();
+                        for (String name : mTableModel.getSelectedBackups()) {
                             mBackupManager.deleteBackup(name);
+                            removed_names.add(name);
+                        }
+                        for (String name : removed_names) {
                             mTableModel.removeFromSelectedBackups(name);
                         }
                         updateTable();

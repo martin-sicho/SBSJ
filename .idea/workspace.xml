@@ -9,14 +9,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b979a217-a83a-45db-9af1-974474b2d46a" name="Default" comment="- finished with the documentation">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ArgumentBuilder.java" afterPath="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/backupmanagment/BackupFileVisitor.java" afterPath="$PROJECT_DIR$/src/backupmanagment/BackupFileVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/backupmanagment/BackupInstance.java" afterPath="$PROJECT_DIR$/src/backupmanagment/BackupInstance.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/backupmanagment/BackupInstanceFramework.java" afterPath="$PROJECT_DIR$/src/backupmanagment/BackupInstanceFramework.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/backupmanagment/BackupManager.java" afterPath="$PROJECT_DIR$/src/backupmanagment/BackupManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/backupmanagment/DeleteFileVisitor.java" afterPath="$PROJECT_DIR$/src/backupmanagment/DeleteFileVisitor.java" />
+    <list default="true" id="b979a217-a83a-45db-9af1-974474b2d46a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/MainWindow.java" afterPath="$PROJECT_DIR$/src/views/MainWindow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SBSJ.iws" />
@@ -48,8 +45,8 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61551726" vertical-offset="0" max-vertical-offset="580">
-              <caret line="21" column="130" selection-start-line="21" selection-start-column="96" selection-end-line="21" selection-end-column="130" />
+            <state vertical-scroll-proportion="0.57954544" vertical-offset="0" max-vertical-offset="880">
+              <caret line="30" column="138" selection-start-line="30" selection-start-column="138" selection-end-line="30" selection-end-column="138" />
               <folding />
             </state>
           </provider>
@@ -103,14 +100,15 @@
         <option value="$PROJECT_DIR$/src/views/BackupTableButtonEditor.java" />
         <option value="$PROJECT_DIR$/src/views/BackupTableDateRenderer.java" />
         <option value="$PROJECT_DIR$/src/views/BackupTableSyncButtonEditor.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/ArgumentBuilder.java" />
         <option value="$PROJECT_DIR$/src/backupmanagment/BackupFileVisitor.java" />
         <option value="$PROJECT_DIR$/src/backupmanagment/DeleteFileVisitor.java" />
         <option value="$PROJECT_DIR$/src/backupmanagment/BackupInstance.java" />
         <option value="$PROJECT_DIR$/src/backupmanagment/BackupManager.java" />
-        <option value="$PROJECT_DIR$/src/views/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/backupmanagment/BackupInstanceFramework.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/views/MainWindow.java" />
       </list>
     </option>
   </component>
@@ -223,6 +221,24 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SBSJ" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SBSJ" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -236,7 +252,7 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/lib/forms_rt.jar!/" />
-    <property name="options.lastSelected" value="Errors" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -614,7 +630,11 @@
       <created>1401624331857</created>
       <updated>1401624331857</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="- finished with the documentation">
+      <created>1401645553154</created>
+      <updated>1401645553154</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -646,12 +666,13 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15649183" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3262032" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39717084" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39679146" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272727" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32085562" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32085562" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297062" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933104" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -664,7 +685,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3262032" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -879,13 +899,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="601">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SBSJ.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="601">
@@ -970,34 +983,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/CreateNewBackupWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.620729" vertical-offset="0" max-vertical-offset="7038">
-          <caret line="189" column="36" selection-start-line="189" selection-start-column="36" selection-end-line="189" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4305#4868#0" expanded="true" />
-            <element signature="e#4857#4858#0" expanded="true" />
-            <element signature="e#4912#5892#0" expanded="true" />
-            <element signature="e#5881#5882#0" expanded="true" />
-            <element signature="e#5934#6579#0" expanded="true" />
-            <element signature="e#6568#6569#0" expanded="true" />
-            <element signature="e#6812#7851#0" expanded="true" />
-            <element signature="e#7840#7841#0" expanded="true" />
-            <element signature="e#7893#8966#0" expanded="true" />
-            <element signature="e#8955#8956#0" expanded="true" />
-            <element signature="e#9010#12798#0" expanded="true" />
-            <element signature="e#12373#12622#0" expanded="true" />
-            <element signature="e#12603#12604#0" expanded="true" />
-            <element signature="e#12787#12788#0" expanded="true" />
-            <element signature="initializer##0;class#CreateNewBackupWindow#0" expanded="true" />
-            <element signature="initializer##0;class#CreateNewBackupWindow#0" expanded="true" />
-            <element signature="e#20417#20418#0" expanded="true" />
-            <element signature="e#20450#20451#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/CommandLineViewer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31828195" vertical-offset="0" max-vertical-offset="2142">
@@ -1021,16 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/BackupTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9625138" vertical-offset="3462" max-vertical-offset="4675">
-          <caret line="277" column="65" selection-start-line="277" selection-start-column="65" selection-end-line="277" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/BackupTableSyncButtonRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7684675" vertical-offset="0" max-vertical-offset="1921">
@@ -1042,6 +1017,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5435502" vertical-offset="0" max-vertical-offset="1496">
           <caret line="34" column="68" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1126,28 +1102,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/backupmanagment/BackupInstanceFramework.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="921" max-vertical-offset="3859">
+          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.037486218" vertical-offset="0" max-vertical-offset="907">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/BackupTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.1675854" vertical-offset="470" max-vertical-offset="4590">
+          <caret line="277" column="65" selection-start-line="277" selection-start-column="65" selection-end-line="277" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/CreateNewBackupWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22147651" vertical-offset="5327" max-vertical-offset="6307">
+          <caret line="368" column="22" selection-start-line="368" selection-start-column="22" selection-end-line="368" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3501118" vertical-offset="0" max-vertical-offset="4658">
-          <caret line="79" column="31" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.42281878" vertical-offset="3192" max-vertical-offset="4794">
+          <caret line="274" column="38" selection-start-line="274" selection-start-column="38" selection-end-line="274" selection-end-column="38" />
           <folding>
+            <element signature="initializer##0;class#MainWindow#0" expanded="true" />
             <element signature="initializer##0;class#MainWindow#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/backupmanagment/BackupInstanceFramework.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3607908" vertical-offset="2127" max-vertical-offset="3859">
-          <caret line="145" column="85" selection-start-line="145" selection-start-column="85" selection-end-line="145" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61551726" vertical-offset="0" max-vertical-offset="580">
-          <caret line="21" column="130" selection-start-line="21" selection-start-column="96" selection-end-line="21" selection-end-column="130" />
+        <state vertical-scroll-proportion="0.57954544" vertical-offset="0" max-vertical-offset="880">
+          <caret line="30" column="138" selection-start-line="30" selection-start-column="138" selection-end-line="30" selection-end-column="138" />
           <folding />
         </state>
       </provider>
