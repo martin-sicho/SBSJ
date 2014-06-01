@@ -77,8 +77,13 @@ class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEdi
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        mTableModel.getBackupManager().synchronize(mBackupName);
-        fireEditingStopped();
-        tbTable.repaint();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mTableModel.getBackupManager().synchronize(mBackupName);
+                fireEditingStopped();
+                tbTable.repaint();
+            }
+        }).start();
     }
 }

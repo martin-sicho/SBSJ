@@ -88,7 +88,10 @@
                             <preferred-size width="150" height="-1"/>
                           </grid>
                         </constraints>
-                        <properties/>
+                        <properties>
+                          <text value="."/>
+                          <toolTipText value="You can use both relative and absolute paths. If left empty, current directory is used."/>
+                        </properties>
                       </component>
                     </children>
                   </grid>
@@ -118,7 +121,10 @@
                             <preferred-size width="150" height="-1"/>
                           </grid>
                         </constraints>
-                        <properties/>
+                        <properties>
+                          <text value="."/>
+                          <toolTipText value="You can use both relative and absolute paths. If left empty, current directory is used."/>
+                        </properties>
                       </component>
                     </children>
                   </grid>

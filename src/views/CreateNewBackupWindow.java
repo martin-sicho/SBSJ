@@ -130,7 +130,8 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
     private void attachListeners() {
         btOriginalDest.addMouseListener(new MouseAdapter() {
             /**
-             * {@inheritDoc}
+             * Invoked when the user clicks the button that opens the
+             * File Selection Dialog to specify the path he/she wants to make a backup of.
              *
              * @param e event that occured when the user clicked the button
              */
@@ -152,7 +153,9 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
 
         btBackupDest.addMouseListener(new MouseAdapter() {
             /**
-             * {@inheritDoc}
+             * Invoked when the user clicks the button that opens the
+             * File Selection Dialog to specify the directory into which he/she
+             * wants to synchronize the original files.
              *
              * @param e event that occured when the user clicked the button
              */
@@ -174,7 +177,7 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
 
         btCreateBackup.addMouseListener(new MouseAdapter() {
             /**
-             * {@inheritDoc}
+             * Invoked when the user decides to add a backup with currently specified parameters to the watchlist.
              *
              * @param e event that occured when the user clicked the button
              */
@@ -186,7 +189,13 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
                 boolean shallow = cbShallow.isSelected();
                 String name = tfBackupName.getText();
 
-                // last validation
+                // test if backup exists
+                if (mBackupManager.backupExists(name)) {
+                    String msg = "This backup already exists. It will only be synchronized.";
+                    JOptionPane.showMessageDialog(CreateNewBackupWindow.this, msg);
+                }
+
+                // paths cannot be equal
                 if (backup.equals(original)) {
                     String msg = "<html>The original and backup paths are equal. "
                             + "You have to put your backup<br /> into a directory that " +
@@ -196,6 +205,7 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
                     return;
                 }
 
+                // check for recursive loop
                 if (backup.getRoot().equals(original.getRoot())) {
                     Path pp = backup.relativize(original);
                     boolean backup_is_subpath = true;
@@ -221,6 +231,7 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
                     JOptionPane.showMessageDialog(CreateNewBackupWindow.this, msg);
                 }
 
+                // build the framework
                 mFramework.setOptions(
                         original
                         , backup
@@ -232,9 +243,18 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
                         , false
                         , true
                 );
-                mBackupManager.registerNewBackup(mFramework);
-                mParentWindow.updateTable();
-                //CreateNewBackupWindow.this.dispose();
+
+                // execute backup creation process
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mBackupManager.registerNewBackup(mFramework);
+                        mParentWindow.updateTable();
+                    }
+                }).start();
+
+                // close the window or not close the window, that is the question :]
+//                CreateNewBackupWindow.this.dispose();
             }
         });
     }
@@ -290,6 +310,8 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
         btOriginalDest.setToolTipText("Can be a directory or a file.");
         panel4.add(btOriginalDest, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(135, -1), null, null, 0, false));
         tfOriginalDest = new JTextField();
+        tfOriginalDest.setText(".");
+        tfOriginalDest.setToolTipText("You can use both relative and absolute paths. If left empty, current directory is used.");
         panel4.add(tfOriginalDest, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JPanel panel5 = new JPanel();
         panel5.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -300,6 +322,8 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
         btBackupDest.setToolTipText("Always a directory. If it doesn't exist, it is created.");
         panel5.add(btBackupDest, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(135, -1), null, null, 0, false));
         tfBackupDest = new JTextField();
+        tfBackupDest.setText(".");
+        tfBackupDest.setToolTipText("You can use both relative and absolute paths. If left empty, current directory is used.");
         panel5.add(tfBackupDest, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JPanel panel6 = new JPanel();
         panel6.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));

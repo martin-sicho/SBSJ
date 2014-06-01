@@ -60,6 +60,7 @@ public class MainWindow extends JFrame {
 
     public void updateTable() {
         mTableModel.update();
+        tbTable.revalidate();
         scrlPane.repaint();
     }
 
@@ -83,10 +84,11 @@ public class MainWindow extends JFrame {
     }
 
     private void attachListeners() {
+        // table
+
         tbTable.addMouseMotionListener(new MouseAdapter() {
             /**
-             * Invoked when the mouse button has been moved on a component
-             * (with no buttons no down).
+             * Invoked when the mouse has been moved over the area of the table.
              *
              * @param e the resulting event
              */
@@ -114,9 +116,9 @@ public class MainWindow extends JFrame {
 
         tbTable.addMouseListener(new MouseAdapter() {
             /**
-             * {@inheritDoc}
+             * Invoked when the mouse has been moved outside the area of the table.
              *
-             * @param e
+             * @param e the captured event
              */
             @Override
             public void mouseExited(MouseEvent e) {
@@ -130,40 +132,52 @@ public class MainWindow extends JFrame {
             }
         });
 
+        // buttons
+
         btSyncSele.addMouseListener(new MouseAdapter() {
             /**
-             * {@inheritDoc}
+             * When the user clicks this button, the backups currently selected in the table are synchronized.
              *
-             * @param e
+             * @param e the resulting event
              */
             @Override
             public void mouseClicked(MouseEvent e) {
                 Set<String> backup_names = mTableModel.getSelectedBackups();
-                for (String name : backup_names) {
-                    mBackupManager.synchronize(name);
+                for (final String name : backup_names) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mBackupManager.synchronize(name);
+                            updateTable();
+                        }
+                    }).start();
                 }
-                updateTable();
             }
         });
 
         btSyncAll.addMouseListener(new MouseAdapter() {
             /**
-             * {@inheritDoc}
+             * When the user clicks this button, all backups are synchronized.
              *
-             * @param e
+             * @param e the resulting event
              */
             @Override
             public void mouseClicked(MouseEvent e) {
-                mBackupManager.synchronize();
-                updateTable();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mBackupManager.synchronize();
+                        updateTable();
+                    }
+                }).start();
             }
         });
 
         btCreateNew.addMouseListener(new MouseAdapter() {
             /**
-             * {@inheritDoc}
+             * Displays a window where user can specify the details of new backups and add them to the watchlist.
              *
-             * @param e
+             * @param e the resulting event
              */
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -182,6 +196,7 @@ public class MainWindow extends JFrame {
                 Set<String> backup_names = mTableModel.getSelectedBackups();
                 for (String name : backup_names) {
                     mBackupManager.deleteBackup(name);
+                    mTableModel.removeFromSelectedBackups(name);
                 }
                 updateTable();
             }

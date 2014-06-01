@@ -51,7 +51,7 @@ public class BackupManager {
      *
      * @param framework instance of {@link backupmanagment.BackupInstanceFramework}
      */
-    public void registerNewBackup(BackupInstanceFramework framework) {
+    synchronized public void registerNewBackup(BackupInstanceFramework framework) {
         String name = framework.getBackupName();
         if (name.equals("") && !backupExists(name)) {
             Date timestamp = new Date();
@@ -179,7 +179,7 @@ public class BackupManager {
 
     // internal private methods
 
-    private void serializeBackup(String key) {
+    synchronized private void serializeBackup(String key) {
         try (
                 FileOutputStream fileOut = new FileOutputStream(BACKUPS_DIR.toString() + key);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut)
@@ -190,13 +190,13 @@ public class BackupManager {
         }
     }
 
-    private void serializeBackupList() {
+    synchronized private void serializeBackupList() {
         for (String key : mBackupList.keySet()) {
             serializeBackup(key);
         }
     }
 
-    private void deserializeBackupList() {
+    synchronized private void deserializeBackupList() {
         DirectoryStream.Filter<Path> filter = new DirectoryStream.Filter<Path>() {
 
             public boolean accept(Path path) throws IOException {

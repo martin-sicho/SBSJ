@@ -56,16 +56,8 @@ class BackupTableModel extends AbstractTableModel implements TableModelListener,
         return mSelectedBackups;
     }
 
-    private void saveSelectedBackups() {
-        for (Enumeration<Vector> e = mTableData.elements(); e.hasMoreElements();) {
-            Vector<Object> row = e.nextElement();
-            if ((Boolean) row.get(1)) {
-                mSelectedBackups.add((String) row.get(2));
-            }
-            else {
-                mSelectedBackups.remove((String) row.get(2));
-            }
-        }
+    public void removeFromSelectedBackups(String name) {
+        mSelectedBackups.remove(name);
     }
 
     public void update() {
@@ -203,5 +195,17 @@ class BackupTableModel extends AbstractTableModel implements TableModelListener,
     @Override
     public void setBackupName(String name) {
         // no action
+    }
+
+    private void saveSelectedBackups() {
+        for (Enumeration<Vector> e = mTableData.elements(); e.hasMoreElements();) {
+            Vector<Object> row = e.nextElement();
+            if ((Boolean) row.get(1)) {
+                mSelectedBackups.add((String) row.get(2));
+            }
+            else {
+                mSelectedBackups.remove((String) row.get(2));
+            }
+        }
     }
 }

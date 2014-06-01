@@ -20,7 +20,7 @@ public class Main {
      *             as a <code>{@link java.lang.String String}</code> array.
      */
     public static void main(String[] args) {
-        if (args.length != 0) {
+        if (args.length > 0) {
             BackupInstanceFramework framework = new BackupInstanceFramework(ArgumentBuilder.build(args));
             BackupManager manager = new BackupManager();
             CommandLineViewer viewer = new CommandLineViewer();
@@ -54,15 +54,13 @@ public class Main {
                     name = info.getClassName();
                     try {
                         UIManager.setLookAndFeel(name);
-                        //SwingUtilities.updateComponentTreeUI(this);
                         break;
                     } catch (Exception e) {
                         //e.printStackTrace();
                     }
                 }
             }
-            MainWindow gui = new MainWindow();
-            gui.showGUI();
+            new MainWindow().showGUI();
         }
     }
 }
