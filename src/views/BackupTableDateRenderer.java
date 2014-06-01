@@ -1,14 +1,16 @@
-package views.tablerenderers;
+package views;
 
 import javax.swing.table.DefaultTableCellRenderer;
 import java.text.DateFormat;
 import java.util.Locale;
 
 /**
+ * This class renders all dates in the table using the {@link java.text.DateFormat#FULL} format.
+ *
  * <br />
  * Created by Martin Sicho on 30.5.2014.
  */
-public class BackupTableDateRenderer extends DefaultTableCellRenderer {
+class BackupTableDateRenderer extends DefaultTableCellRenderer {
     private DateFormat mDateFormatter = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.DEFAULT, new Locale("en", "GB"));
 
     /**

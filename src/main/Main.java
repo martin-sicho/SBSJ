@@ -8,6 +8,7 @@ import javax.swing.*;
 
 /**
  * This is the main class.
+ * It only has a {@link #main(String[])} method.
  *
  * <br/>
  * Created by Martin Sicho on 11.3.14.
@@ -16,6 +17,10 @@ public class Main {
 
     /**
      * This is the main method.
+     * It drives the application workflow. It uses the
+     * {@link main.ArgumentBuilder} to parse command line arguments
+     * and prepare the {@link backupmanagment.BackupInstanceFramework}
+     * for the {@link backupmanagment.BackupManager}.
      * @param args command line arguments
      *             as a <code>{@link java.lang.String String}</code> array.
      */

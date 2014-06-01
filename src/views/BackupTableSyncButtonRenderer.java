@@ -1,23 +1,41 @@
-package views.tablerenderers;
+package views;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
 /**
+ * This class takes care of rendering the Synchronize buttons inside the {@link javax.swing.JTable}.
+ * It is an instance of this class that is rendered in each row.
+ *
  * <br />
  * Created by Martin Sicho on 30.5.2014.
  */
-public class BackupTableSyncButtonRenderer extends JButton implements TableCellRenderer {
+class BackupTableSyncButtonRenderer extends JButton implements TableCellRenderer {
 
+    /**
+     * Row number of currently rendered cell.
+     */
     private int mRow = -1;
+    /**
+     * Column number of currently rendered cell.
+     */
     private int mColumn = -1;
 
+    /**
+     * The constructor. Just defines the initial visual appearance.
+     */
     public BackupTableSyncButtonRenderer() {
         setText("Synchronize");
         setOpaque(true);
     }
 
+    /**
+     * Provides a way of setting the {@link #mRow} and {@link #mColumn} manually.
+     *
+     * @param row the row index of the cell being drawn
+     * @param column the column index of the cell being drawn
+     */
     public void setCoords(int row, int column) {
         mRow = row;
         mColumn = column;

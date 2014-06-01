@@ -17,6 +17,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
+ * This {@link javax.swing.JFrame} opens when the
+ * {@link views.MainWindow#btCreateNew Create New Backup}
+ * button in the {@link views.MainWindow} is pressed.
+ * Here the user can specify the parameters and create new backups.
+ *
  * <br />
  * Created by Martin Sicho on 31.5.2014.
  */
@@ -26,20 +31,63 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
 
     // components
     private JTextField tfBackupName;
+    /**
+     * Invokes a file selection dialog where the user can
+     * choose the location he/she wants backed up.
+     */
     private JButton btOriginalDest;
+    /**
+     * Displays the selected path.
+     */
     private JTextField tfOriginalDest;
+    /**
+     * Invokes a file selection dialog where the user can
+     * choose the location where he/she wants to store the copied files.
+     */
     private JButton btBackupDest;
+    /**
+     * Displays the selected path.
+     */
     private JTextField tfBackupDest;
+    /**
+     * Corresponds to the <code>--shallow</code> command line option.
+     */
     private JCheckBox cbShallow;
+    /**
+     * Corresponds to the <code>--keep_all</code> command line option.
+     */
     private JCheckBox cbKeepAll;
+    /**
+     * When clicked it takes all information from all of the above
+     * and uses it to construct a {@link backupmanagment.BackupInstanceFramework}
+     * to feed to the {@link backupmanagment.BackupManager}.
+     */
     private JButton btCreateBackup;
 
-
     // members
+    /**
+     * The {@link backupmanagment.BackupManager} instance
+     * shared between the {@link views.MainWindow}
+     * and this {@link views.CreateNewBackupWindow}.
+     */
     private BackupManager mBackupManager;
+    /**
+     * The {@link views.MainWindow} that spawned this {@link views.CreateNewBackupWindow}.
+     */
     private MainWindow mParentWindow;
+    /**
+     * The {@link backupmanagment.BackupInstanceFramework} built by the user.
+     */
     private BackupInstanceFramework mFramework;
 
+    /**
+     * The only constructor.
+     * Configures the new {@link views.CreateNewBackupWindow} instance
+     * and attaches verifiers and listeners to the components.
+     *
+     * @param manager the {@link backupmanagment.BackupManager} instance to be used
+     * @param parent the {@link views.MainWindow} that spawned this {@link views.CreateNewBackupWindow}
+     */
     CreateNewBackupWindow(BackupManager manager, MainWindow parent) {
         setTitle("Create New Backup");
         getContentPane().add($$$getRootComponent$$$());
@@ -56,6 +104,10 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
     }
 
     /**
+     * The {@link views.CreateNewBackupWindow} implements the {@link java.lang.Runnable}
+     * interface, which allows it to be run in a {@link java.lang.Thread} separate from
+     * the caller.
+     * <p />
      * When an object implementing interface <code>Runnable</code> is used
      * to create a thread, starting the thread causes the object's
      * <code>run</code> method to be called in that separately executing
@@ -73,6 +125,10 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
 
     // private methods
 
+    /**
+     * This method wraps the attachment of {@link javax.swing.InputVerifier}
+     * instances to components that need prior verification before the backup creation.
+     */
     private void attachVerifiers() {
         tfBackupName.setInputVerifier(new InputVerifier() {
             public boolean verify(JComponent comp) {
@@ -127,6 +183,10 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
         });
     }
 
+    /**
+     * This wrapper method attaches listeners to all buttons
+     * present in this {@link views.CreateNewBackupWindow} instance.
+     */
     private void attachListeners() {
         btOriginalDest.addMouseListener(new MouseAdapter() {
             /**
@@ -191,8 +251,9 @@ class CreateNewBackupWindow extends JFrame implements Runnable {
 
                 // test if backup exists
                 if (mBackupManager.backupExists(name)) {
-                    String msg = "This backup already exists. It will only be synchronized.";
+                    String msg = "Backup with this name already exists.";
                     JOptionPane.showMessageDialog(CreateNewBackupWindow.this, msg);
+                    return;
                 }
 
                 // paths cannot be equal

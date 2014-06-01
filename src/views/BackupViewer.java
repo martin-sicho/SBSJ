@@ -12,6 +12,16 @@ import java.util.Date;
  * Created by Martin Sicho on 25.3.14.
  */
 public interface BackupViewer {
+    /**
+     * This method is used by the {@link backupmanagment.BackupManager}
+     * to show backup information in the view.
+     *
+     * @param name backup name
+     * @param original original directory
+     * @param backup backup directory
+     * @param shallow specifies whether the backup is shallow or not
+     * @param date when the last synchronization took place
+     */
     public void showBackupInfo(String name, String original, String backup, boolean shallow, Date date);
     public String getBackupName();
     public void setBackupName(String name);

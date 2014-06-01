@@ -1,7 +1,6 @@
 package views;
 
 import backupmanagment.BackupManager;
-import views.tablerenderers.*;
 
 import javax.swing.*;
 import javax.swing.table.TableColumn;
@@ -12,8 +11,12 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * This class wraps all components of the aplication main window.
- * <p/>
+ * This class is the {@link javax.swing.JFrame} that
+ * wraps all components of the application's main window.
+ * It uses an instance of {@link javax.swing.JTable} to display the backup watchlist.
+ * There are also a few buttons to also allow the user to interact
+ * with the {@link backupmanagment.BackupManager} instance.
+ *
  * <br/>
  * Created by Martin Sicho on 26.5.2014.
  */
@@ -33,11 +36,15 @@ public class MainWindow extends JFrame {
     private JButton btDelSelected;
 
     // members
-    BackupTableModel mTableModel;
-    BackupManager mBackupManager;
-    int mMousedOverRow;
-    int mMousedOverColumn;
+    private BackupTableModel mTableModel;
+    private BackupManager mBackupManager;
+    private int mMousedOverRow;
+    private int mMousedOverColumn;
 
+    /**
+     * This constructor first registers an instance of {@link backupmanagment.BackupManager}
+     * and then uses its information to build and display the GUI to the user.
+     */
     public MainWindow() {
         mBackupManager = new BackupManager();
 
@@ -54,10 +61,18 @@ public class MainWindow extends JFrame {
         setLocationByPlatform(true);
     }
 
+    /**
+     * Displays the {@link javax.swing.JFrame} to the user.
+     */
     public void showGUI() {
         setVisible(true);
     }
 
+    /**
+     * Requests update of the {@link views.BackupTableModel}
+     * (for example when the user clicks the Delete Backup button)
+     * and updates the displayed table.
+     */
     public void updateTable() {
         mTableModel.update();
         tbTable.revalidate();
@@ -66,13 +81,19 @@ public class MainWindow extends JFrame {
 
     // private methods
 
+    /**
+     * Just a wrapper method to make the table nice and cozy.
+     * It associates the {@link views.BackupTableModel},
+     * {@link views.BackupTableDateRenderer}, {@link views.BackupTableSyncButtonRenderer},
+     * and {@link BackupTableSyncButtonEditor} with the table and sets some dimension constraints.
+     */
     private void setUpTable() {
         tbTable.setRowHeight(25);
         mTableModel = new BackupTableModel(mBackupManager);
         tbTable.setModel(mTableModel);
         tbTable.setDefaultRenderer(Date.class, new BackupTableDateRenderer());
         TableColumn col = tbTable.getColumn("Synchronize");
-        col.setCellEditor(new BackupTableButtonEditor());
+        col.setCellEditor(new BackupTableSyncButtonEditor());
         col.setCellRenderer(new BackupTableSyncButtonRenderer());
         col.setWidth(100);
         col = tbTable.getColumn("Selected");
@@ -83,6 +104,10 @@ public class MainWindow extends JFrame {
         col.setPreferredWidth(50);
     }
 
+    /**
+     * Just a wrapper method that associates the table and every button
+     * with the respective listeners.
+     */
     private void attachListeners() {
         // table
 
@@ -187,18 +212,23 @@ public class MainWindow extends JFrame {
 
         btDelSelected.addMouseListener(new MouseAdapter() {
             /**
-             * {@inheritDoc}
+             * This method is invoked when the user decides to delete selected backups.
              *
-             * @param e
+             * @param e the resulting event
              */
             @Override
             public void mouseClicked(MouseEvent e) {
-                Set<String> backup_names = mTableModel.getSelectedBackups();
-                for (String name : backup_names) {
-                    mBackupManager.deleteBackup(name);
-                    mTableModel.removeFromSelectedBackups(name);
+                int selection = JOptionPane.showConfirmDialog(MainWindow.this, "Do you want to remove all selected backups?");
+                switch (selection) {
+                    case JOptionPane.YES_OPTION:
+                        Set<String> backup_names = mTableModel.getSelectedBackups();
+                        for (String name : backup_names) {
+                            mBackupManager.deleteBackup(name);
+                            mTableModel.removeFromSelectedBackups(name);
+                        }
+                        updateTable();
+                        break;
                 }
-                updateTable();
             }
         });
     }

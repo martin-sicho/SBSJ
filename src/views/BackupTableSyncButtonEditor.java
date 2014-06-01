@@ -8,19 +8,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * When the cell is being edited (clicked) an instance of this class
+ * performs actions according to what happens inside the edited cell.
+ * It implements the {@link java.awt.event.ActionListener} interface
+ * so it can listen to the events that occur during editing of the table.
+ * An instance of this class is attached to the Synchronize column and is
+ * responsible for synchronizing the respective backup when the Synchronize button is clicked.
+ *
  * <br />
  * Created by Martin Sicho on 30.5.2014.
  */
-class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
+class BackupTableSyncButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
 
     private JButton btSyncButton;
     private String mBackupName;
     private JTable tbTable;
     private BackupTableModel mTableModel;
-//    private int mRow;
-//    private int mColumn;
 
-    BackupTableButtonEditor() {
+    BackupTableSyncButtonEditor() {
         btSyncButton = new JButton("Syncronizing...");
         btSyncButton.addActionListener(this);
     }
@@ -54,8 +59,6 @@ class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEdi
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         tbTable = table;
         mTableModel = (BackupTableModel) table.getModel();
-//        mRow = row;
-//        mColumn = column;
         mBackupName = (String) value;
         return btSyncButton;
     }
@@ -73,7 +76,7 @@ class BackupTableButtonEditor extends AbstractCellEditor implements TableCellEdi
     /**
      * Invoked when the Synchronize button inside the table is pressed.
      *
-     * @param e the event passed to the {@link views.BackupTableButtonEditor BackupTableButtonEditor}
+     * @param e the event passed to the {@link BackupTableSyncButtonEditor BackupTableSyncButtonEditor}
      */
     @Override
     public void actionPerformed(ActionEvent e) {

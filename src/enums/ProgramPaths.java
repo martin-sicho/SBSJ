@@ -9,8 +9,8 @@ import java.nio.file.Paths;
  * Created by Martin Sicho on 21.3.14.
  */
 public enum ProgramPaths {
-    //BACKUPS_DIR(Paths.get(System.getProperty("user.home"), "SBSJ_backups").toString() + "/");
-    BACKUPS_DIR(Paths.get("backups").toString() + "/");
+    BACKUPS_DIR(Paths.get(System.getProperty("user.home"), "SBSJ_backups").toString() + "/");
+    //BACKUPS_DIR(Paths.get("backups").toString() + "/");
 
     private final String value;
 
