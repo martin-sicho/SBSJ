@@ -9,7 +9,7 @@ It will start off as a very basic console application that will be able to take 
 and perform backups on demand. Then I would like to add a simple GUI for ease of use.
 
 Please, note that this project was mainly created for educational purposes
-and is therefore under heavy development so it may contain a lot of bugs and unresolved issues.
+so it may contain a lot of bugs and unresolved issues.
 If you're looking for some serious backup software, you should seek it elsewhere.
 However, you are more than welcome to look around and I will be glad for any comments, questions or suggestions regarding the project.
 
